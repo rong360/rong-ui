@@ -2,7 +2,7 @@
     "name": "rong-ui",
     "description": "A Vue.js 2.0 UI Toolkit for Web.",
     "version": "0.1.1",
-    "author": "daikuan-fe",
+    "author": "rong-ui",
     "main": "lib/rong-ui.js",
     "predependencies": {
         "vue": "^2.3.3"
