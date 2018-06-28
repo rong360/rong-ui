@@ -13,15 +13,6 @@ npm run dev
 ```
 
 
-
-## 发布到 "gitlab.rong360.com"
-``` bash
-更新package.json 和 release.packgage.json里的版本号。
-
-sh release.sh 
-```
-
-
 ## How to Use
 
 ``` bash

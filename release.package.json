@@ -1,30 +1,28 @@
 {
-  "name": "rong-ui",
-  "description": "A Vue.js 2.0 UI Toolkit for Web.",
-  "version": "0.1.1",
-  "author": "daikuan-fe",
-  "main": "lib/rong-ui.js",
-  "predependencies": {
-    "vue": "^2.3.3"
-  },
-  "repository": {
-    "type": "git",
-    "url": "http://gitlab.rong360.com/RFE/rong-ui.git"
-  },
-  "bugs": {
-    "url": "http://gitlab.rong360.com/RFE/rong-ui/issues"
-  },
-  "contributors": [
-    {
-      "name": "List of Acorn contributors. Updated before every release."
-    },{
-      "name": "Ingid.Zhang && ZYX"
-    }
-  ],
-  "engines": {
-    "node": ">= 4.0.0",
-    "npm": ">= 3.0.0"
-  },
-  "license": "MIT",
-  "module": "lib/rong-ui.js"
+    "name": "rong-ui",
+    "description": "A Vue.js 2.0 UI Toolkit for Web.",
+    "version": "0.1.1",
+    "author": "daikuan-fe",
+    "main": "lib/rong-ui.js",
+    "predependencies": {
+        "vue": "^2.3.3"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/rong360/rong-ui.git"
+    },
+    "bugs": {
+        "url": "https://github.com/rong360/rong-ui/issues"
+    },
+    "contributors": [{
+        "name": "List of Acorn contributors. Updated before every release."
+    }, {
+        "name": "Ingid.Zhang && jay200212003 && mrbackkom"
+    }],
+    "engines": {
+        "node": ">= 4.0.0",
+        "npm": ">= 3.0.0"
+    },
+    "license": "MIT",
+    "module": "lib/rong-ui.js"
 }
