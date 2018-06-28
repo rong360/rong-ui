@@ -1,0 +1,99 @@
+/* rong-button by chenchen01*/
+@function r($px){
+    $rem:18.75;
+    @return $px/$rem * 1rem;
+}
+
+/* 普通颜色从左到右*/
+$high_blue: #51D4EC;
+$blue : #4080E8;
+
+/* 警告颜色从左到右*/
+$red: #FF3061;
+$high_red: #FF8A71;
+
+/* 按钮不可用灰色*/
+$gray : #999999;
+
+/* 不可用文字颜色 ,点击态文字颜色*/
+$gray_font: #D6D6D6;
+
+$white : #ffffff;
+
+button:focus{
+    outline: 0;
+}
+
+/* 正常按钮 */
+.r-button--default{
+    border: 0;
+    color:$white;
+    background-image: -webkit-linear-gradient(0deg,$high_blue, $blue); 
+}
+
+// .r-button--default:active{
+//     background: #3D70C3;
+//     color:$gray_font;
+// }
+
+.r-button--default--empty{
+    color:$blue;
+    border: 1px solid $blue;
+    box-sizing: border-box;
+}
+
+
+/* 警告按钮 */
+.r-button--warning{
+    border: 0;
+    color:$white;
+    background-image: -webkit-linear-gradient(0deg,$high_red,$red); 
+}
+
+// .r-button--warning:active{
+//     background:#D25454; 
+//     color:$gray_font;
+// }
+
+.r-button--warning--empty{
+    color:$red;
+    border: 1px solid $red;
+    box-sizing: border-box;
+}
+
+
+/* 不可用按钮 */
+.r-button--disabled{
+    border: 0;
+    color:$white;
+    background: $gray; 
+}
+
+.r-button--disabled:hover{
+    cursor: not-allowed;
+}
+
+.r-button--disabled--empty{
+    color: $gray;
+    border: 1px solid $gray;
+    box-sizing: border-box; 
+}
+
+
+
+/* 按钮尺寸 */
+.r-button{
+    width: 100%; 
+    height: r(45);
+    font-size: r(16);
+    text-align: center;
+    line-height: r(45);
+}
+
+/* 按钮圆角 */
+.r-radius--on{
+    border-radius:r(5);
+}
+.r-radius--off{
+    border-radius:none;
+}

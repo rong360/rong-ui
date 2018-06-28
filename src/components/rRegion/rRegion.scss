@@ -1,0 +1,52 @@
+/* rong-button by chenchen01*/
+@function r($px){
+    $rem:18.75;
+    @return $px/$rem * 1rem;
+}
+
+/* 普通颜色从左到右*/
+$high_blue: #51D4EC;
+$blue : #4080E8;
+
+/* 警告颜色从左到右*/
+$red: #FF3061;
+$high_red: #FF8A71;
+
+/* 按钮不可用灰色*/
+$gray : #999999;
+
+/* 不可用文字颜色 ,点击态文字颜色*/
+$gray_font: #D6D6D6;
+
+$white : #ffffff;
+
+button:focus{
+    outline: 0;
+}
+.r-region{
+    
+    .region-label{
+        display: inline-block;
+        
+        width:r(200);
+        ul{
+            font-size: r(12);
+        }
+    }
+    .province{
+        position: absolute;
+        display: block;
+        width: r(60);
+    }
+    .city{
+        position: absolute;
+        display: block;
+        width: r(60);
+    }
+    .area{
+        position: absolute;
+        display: block;
+        width: r(60);
+    }
+}
+

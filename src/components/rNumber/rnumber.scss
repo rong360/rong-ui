@@ -1,0 +1,112 @@
+@function r($px){
+    @return $px/18.75 * 1rem;
+}
+.r-number{
+	position: relative;
+	overflow: hidden;
+	background: #fff;
+	width: 100%;
+	color: #333;
+	font-size: r(14);
+	&:after{
+		position: absolute;
+		left: -50%;
+		bottom: 0;
+		width: 200%;
+		height: 1px;
+		background: #D8D9DC;
+		content: " ";  
+		-webkit-transform: scale(0.5); 
+	    transform: scale(0.5);
+	    margin-left: r(15);
+	}
+	.r-txt-wrap{
+		height: r(45);
+		display: -webkit-box;
+		display: box;
+		-webkit-box-align: center;
+		box-align: center;
+		-webkit-justify-content: space-around;
+		justify-content: space-around;
+		margin: 0 r(15);
+		.r-input-label{
+			padding-right: r(20);
+			-webkit-box-flex: 1;
+			display: inline-block;
+			text-align: left;
+			&>*{
+				display: inline-block;
+				vertical-align: middle;
+			}
+			span:nth-child(2){
+				padding-left: r(3);
+			}
+		}
+		.input-wrap{
+			-webkit-box-flex: 1;
+			display: -webkit-box;
+			display: box;
+			-webkit-box-align: center;
+			box-align: center;
+			-webkit-justify-content: space-around;
+			justify-content: space-around;			
+			.rinput{
+				-webkit-box-flex: 1;
+			    // text-align: right;
+			    height: r(45);
+				line-height: r(49);
+				font-size: r(14);
+				overflow: hidden;
+				text-overflow: ellipsis;
+				white-space: nowrap;
+				position: relative;
+			}
+			.rinput-value-right, .rinput-value-left{
+				span{
+					position: relative;
+					&:after{
+						position: absolute;
+						top: 50%;
+						margin-top: -.5rem;
+						content: " ";
+						width: 2px;
+						height: 1rem;
+						background: #4080e8;
+						animation: shinning .65s infinite;
+					}
+				}
+			}
+			.rinput-value-right span:after{
+				right: 0;
+			}
+			.rinput-value-left span:after{
+				left: 0;
+			}
+			span.r-iconfont-close-circled{
+				display: inline-block;
+				vertical-align: middle;
+				-webkit-box-flex: 1;
+				width: r(15);
+				height: r(15);
+				margin-left: r(7);
+			}
+			.ta-left{ text-align: left;}
+			.ta-right{ text-align: right;}
+			.txt-placeholder{ color: #C8C7CC;}/*无值时的样式*/
+			.txt-value{ color: #333;} /*有值时的样式*/
+			.read-only{ color: #999;}
+		}	
+		.r-input-unit{
+			margin-left: r(7);
+		}
+	}
+	@keyframes shinning{
+		0%{opacity: 1};
+		100%{opacity: 0};
+	}
+	@-webkit-keyframes shinning{
+		0%{opacity: 1};
+		100%{opacity: 0};
+	}
+    
+}

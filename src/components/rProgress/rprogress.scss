@@ -1,0 +1,64 @@
+.r-progress{
+	width: 100%;
+	position: relative;
+	display: -webkit-box;
+	display: box;
+	display: flex;
+	-webkit-box-align: center;
+	box-align: center;
+	-webkit-box-pack: justify;
+	box-pack: justify;
+	-webkit-justify-content: space-between;
+	justify-content: space-between;
+	align-items: center;
+	font-size: 0;
+	.r-prog-outer-wrap{
+		-webkit-box-flex: 1;
+		flex: 1;
+	}
+	.r-prog-outer{
+		border-radius: 20px;
+	    width: 100%;
+	    background: #efeff4;
+	    display: inline-block;
+		.r-prog-inner{
+		    background: #1087fb;
+		    border-radius: 20px;
+		    position: relative;
+		    &.active:before{
+		    	content: "";
+		    	position: absolute;
+		    	left: 0;
+		    	right: 0;
+		    	background: #fff;
+		    	opacity: 0.2;
+		    	height: 100%;
+		    	border-radius: 20px;
+		    	-webkit-animation: r-progress-shining 1.5s infinite;
+		    	animation: r-progress-shining 1.5s infinite;
+		    }
+		}
+	}
+	.r-text-inside{
+		display: inline-block;
+		position: absolute;
+		top: 50%;
+		right: 3px;
+		color: #fff;
+	}
+	.r-text-outside{
+		width: 2rem;
+		// display: inline-block;
+		// position: absolute;
+		// right: 3px;
+		// top: 50%;
+	}
+}
+@keyframes r-progress-shining{
+	0%{width: 0;}
+	100%{width: 100%;}
+}
+@-webkit-keyframes r-progress-shining{
+	0%{width: 0;}
+	100%{width: 100%;}
+}

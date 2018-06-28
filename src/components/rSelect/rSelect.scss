@@ -1,0 +1,58 @@
+@function r($px){
+    @return $px/18.75 * 1rem;
+}
+.r-select{
+	position: relative;
+	overflow: hidden;
+	background: #fff;
+	width: 100%;
+	color: #333;
+	font-size: r(14);
+	.r-select-txt-wrap{
+		height: r(45);
+		display: -webkit-box;
+		display: box;
+		-webkit-box-align: center;
+		box-align: center;
+		-webkit-justify-content: space-around;
+		justify-content: space-around;
+		margin-left: r(15);
+		padding-right: r(15);
+		position: relative;
+		.r-select-label{
+			padding-right: r(20);
+			-webkit-box-flex: 1;
+			display: inline-block;
+			text-align: left;
+			&>*{
+				display: inline-block;
+				vertical-align: middle;
+			}
+			span:nth-child(2){
+				padding-left: r(3);
+			}
+		}
+		.r-select-input{
+			-webkit-box-flex: 1;
+			margin-right: r(7);
+		}
+		.r-iconfont-arrow-right{
+			display: block;
+		}
+		&:after{
+			position: absolute;
+			left: -50%;
+			bottom: 0;
+			width: 200%;
+			height: 1px;
+			background: #D8D9DC;
+			content: " ";  
+			-webkit-transform: scale(0.5); 
+		    transform: scale(0.5);
+		    // margin-left: r(15);
+		}
+	}
+    .r-select-children{
+    	margin-left: r(10);
+    }
+}

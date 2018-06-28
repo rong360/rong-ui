@@ -1,0 +1,40 @@
+@function r($px){
+	@return $px/18.75 * 1rem;
+}
+.r-email{
+	// .r-input{
+	// 	position: relative;
+	// 	z-index: 2;
+	// }	
+	.r-email-pad{
+		// position: fixed;
+		// bottom: 0;
+		// left: 0;
+		width: 100%;
+		// z-index: 3;
+		background: #fff;
+		overflow: scroll;
+		.r-email-item{
+			position: relative;
+			height: r(45);
+			line-height: r(45);
+			color: #333;
+			text-align: center;
+			font-size: r(14);
+			overflow: hidden;
+			&::after{
+			    position: absolute;
+			    left: -50%;
+			    bottom: 0;
+			    width: 200%;
+			    height: 1px;
+			    background: #D8D9DC;
+			    content: " ";
+			    -webkit-transform: scale(0.5);
+			    transform: scale(0.5);
+			    // margin-left: 0.8rem;
+			    margin-left: 1.6rem;//放在页面中，作为子列表，再缩进30px
+			}
+		}
+	}
+}

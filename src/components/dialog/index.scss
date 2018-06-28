@@ -1,0 +1,99 @@
+@function r($px){
+	@return $px/2/18.75px * 1rem;
+}
+.r-dialog{
+	.r-dlg-cliper{
+		position: fixed;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		background: rgba(14, 14, 14, 0.8);
+		z-index: 888;
+	}
+	.r-dlg-content{
+		position: fixed;
+		/*top: 25%;
+		width: r(540px);
+		left: 50%;
+		margin-left: r(-270px);*/
+		width: r(540px);
+		z-index: 999;
+		background: #fff;
+		border-radius: 4px;
+		text-align: center;
+		font-size: r(30px);
+		color: #333;
+		overflow: hidden;
+		.r-title{
+			&:after{
+		        display: block;
+		        content: "";
+		        background: #D8D9DC;
+		        height: 1px;
+		        overflow: hidden;
+		        -webkit-transform: scaleY(0.5);
+		        transform: scaleY(0.5);
+		    }
+		    .r-title-wrap{
+		    	padding: r(20px) r(30px);
+		    	font-size: r(34px);
+		    }
+		}
+		img{
+			display: inline-block;
+			width: r(120px);
+			height: r(120px);
+			padding-top: r(50px);
+		}
+		.r-dlg-close{
+			position: absolute;
+		    top: 0;
+		    right: 0;
+		    padding: r(23px) r(23px);
+		    line-height: 1rem;
+		}
+		.r-content{
+			margin: r(50px) r(30px) r(80px) r(30px);
+			.r-msg{
+				margin-top: r(15px);
+			}			
+		}
+		.r-btn-group{
+			height: r(90px);
+			line-height: r(90px);
+			border-top: 1px solid #e5e5e5;
+			display: -webkit-box;
+			display: box;
+			-webkit-box-align: center;
+			box-align: center;
+			-webkit-justify-content: space-around;
+			justify-content: space-around;
+			.r-btn-cancel{
+				color: #333;
+				-webkit-box-flex: 1;
+				border-right: 1px solid #e5e5e5;
+				border-bottom-left-radius: 4px;
+			}
+			.r-btn-confirm{
+				color: #333;
+				-webkit-box-flex: 1;
+				border-bottom-right-radius: 4px;
+			}
+		}
+	}
+}
+
+.dialog-fade-enter-active, .dialog-fade-leave-active {
+	transition: opacity 0.5s
+}
+.dialog-fade-leave-active {
+	opacity: 0;
+}
+
+.dialog-slide-enter-active, .dialog-slide-leave-active {
+	transition: transform 0.5s
+}
+.dialog-slide-enter, .dialog-slide-leave-active {
+	transform: translateY(700px);
+}

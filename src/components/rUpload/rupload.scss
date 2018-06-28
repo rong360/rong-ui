@@ -1,0 +1,19 @@
+@function r($px){
+    @return $px/18.75 * 1rem;
+}
+.r-upload{
+	.r-upload-input-wrap{
+		display: -webkit-box;
+		display: box;
+		-webkit-box-align: center;
+		box-align: center;
+	}
+	.r-uptxt{
+		-webkit-box-flex: 1;
+		font-size: r(14);
+		color: #333;
+	}
+	input{
+		display: none;
+	}
+}

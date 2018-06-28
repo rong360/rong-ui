@@ -1,0 +1,36 @@
+@function r($px){
+	@return $px/18.75 * 1rem;
+}
+
+.r-toast{
+	position: fixed;
+	background: transparent;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 888;
+	color: #fff;
+	.r-toast-wrap{
+		position: fixed;
+		top: 30%;
+		left: 50%;
+		background: #4C4C4C;
+		border-radius: 7px;
+		width: r(184);
+		margin-left: r(-92);//184/2
+		text-align: center;
+		.r-toast-icon{
+			padding: r(20) 0 r(10) 0;
+			
+		}
+		.r-toast-msg{
+			font-size: r(14);
+			padding: 0 r(22) r(20) r(22);
+		}
+		.r-toast-longmsg{
+			padding: r(20) r(22);
+		}
+	}
+	
+}

@@ -1,0 +1,127 @@
+@font-face {/*为了性能，只加载ttf格式字体文件*/
+  font-family: 'rong-iconfont';
+  src: url('./fonts/rong-iconfont.ttf?hn9g7o') format('truetype'); 
+  font-weight: normal;
+  font-style: normal;
+}
+
+[class^="r-iconfont-"], [class*=" r-iconfont-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'rong-iconfont' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+}
+
+// $check-color: #4583e9;
+// $inform-color: #ffa810;
+// $uncheck-color: #d8d9dc;
+// $addrlist-color: #3f80e8;
+// $arrow-color: #c8c7cc;
+// $close-circled-color: #d0d0d3;
+// $close-color: #999;
+// $white: #fff;
+
+
+.r-iconfont-check{
+  color: #4583e9;
+}
+.r-iconfont-check:before {
+  content: "\e90a";
+}
+
+.r-iconfont-inform{
+  color: #ffa810;
+}
+.r-iconfont-inform:before {
+  content: "\e900";
+}
+
+.r-iconfont-uncheck{
+  color: #d8d9dc;
+}
+.r-iconfont-uncheck:before {
+  content: "\e901";
+}
+
+.r-iconfont-check-circled:before {
+  content: "\e902";
+}
+
+.r-iconfont-addrlist:before {
+  content: "\e903";
+  color: #3f80e8;
+}
+
+.r-iconfont-clear:before {
+  content: "\e90d";
+}
+
+.r-iconfont-arrow-right,.r-iconfont-arrow-left,.r-iconfont-arrow-up,.r-iconfont-arrow-down,.r-iconfont-info{
+  color: #c8c7cc;
+}
+.r-iconfont-arrow-right:before {
+  content: "\e904";
+}
+.r-iconfont-arrow-left:before {
+  display: inline-block;
+  content: "\e904";
+  -moz-transform: rotate(180deg);
+  -webkit-transform: rotate(180deg);
+  transform: rotate(180deg);
+}
+.r-iconfont-arrow-up:before {
+  display: inline-block;
+  content: "\e904";
+  -moz-transform: rotate(-90deg);
+  -webkit-transform: rotate(-90deg);
+  transform: rotate(-90deg);
+}
+.r-iconfont-arrow-down:before {
+  display: inline-block;
+  content: "\e904";
+  -moz-transform: rotate(90deg);
+  -webkit-transform: rotate(90deg);
+  transform: rotate(90deg);
+}
+.r-iconfont-info:before {
+  content: "\e905";
+}
+
+.r-iconfont-close-circled{
+  color: #d0d0d3;
+}
+.r-iconfont-close-circled:before {
+  content: "\e906";
+}
+
+.r-iconfont-close{
+  color: #999;
+}
+.r-iconfont-close:before {
+  content: "\e907";
+}
+
+.r-iconfont-info-neg, .r-iconfont-info-pos{
+  color: #fff;
+}
+.r-iconfont-info-neg:before {
+  content: "\e908";
+}
+.r-iconfont-info-pos:before {
+  content: "\e909";
+}
+.r-iconfont-triangle-down:before {
+  content: "\e90b";
+}
+.r-iconfont-return:before {
+  content: "\e90c";
+}

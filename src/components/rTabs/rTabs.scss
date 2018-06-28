@@ -1,0 +1,10 @@
+@function r($px){
+    @return $px/18.75 * 1rem;
+}
+
+.r-tabs{
+	.rTabs-header{
+		display: -webkit-box;
+		display: box;
+	}
+}
