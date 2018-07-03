@@ -3,7 +3,11 @@
 > 基于Vue.js 2.0 UI组件库.
 
 
-## How to Use
+## 如何使用
+
+扫描二维码体验
+![Alt text](https://static.rong360.com/upload/png/a2/70/a27057593a1271f2e877d382d6718fed.png)
+
 
 ``` bash
 #install module
@@ -31,7 +35,8 @@ components.map(cp => Vue.use(cp));
 
 ## all components
 
-Vue.prototype上的组件
+### Vue.prototype上的组件
+
 ``` bash
 Dialog 弹框
 Toast 提示
@@ -55,7 +60,8 @@ this.$dialog({
 });
 ```
 
-非 Vue.prototype上的组件
+### 非 Vue.prototype上的组件
+
 ``` bash
 Titlebar 标题栏
 Button 按钮
@@ -96,7 +102,9 @@ Number 数字类型组件
 ```
 
 ## 组件详解
-Dialog 弹框
+
+### Dialog 弹框
+
 ``` bash
 安装：
   import Dialog from "rong-ui/components/dialog"
@@ -317,7 +325,8 @@ this.$dialog({
 
 ```
 
-Toast 提示
+### Toast 提示
+
 ``` bash
 安装：
   import Toast from "rong-ui/components/toast"
@@ -356,7 +365,8 @@ this.$toast({
 
 ```
 
-Loading 加载中
+### Loading 加载中
+
 ``` bash
 安装：
   import Loading from "rong-ui/components/loading"
@@ -407,7 +417,8 @@ var timer = setInterval(function(){
 }, 1000)
 ```
 
-Keyboard 数字虚拟键盘
+### Keyboard 数字虚拟键盘
+
 ``` bash
 安装：
   import Keyboard from "rong-ui/components/keyboard"
@@ -473,7 +484,8 @@ export default{
 }
 ```
 
-Titlebar 标题栏
+### Titlebar 标题栏
+
 ``` bash
 安装：
   import rTitlebar from 'rong-ui/components/rTitlebar'
@@ -528,7 +540,8 @@ export default{
 }
 ```
 
-Button 按钮
+### Button 按钮
+
 ``` bash
 安装：
   import rButton from "rong-ui/components/rButton"
@@ -598,7 +611,8 @@ export default{
 }
 ```
 
-Select 下拉列表
+### Select 下拉列表
+
 ``` bash
 安装：
   import rSelect from 'rong-ui/components/rSelect'
@@ -879,7 +893,8 @@ export default{
 }
 ```
 
-Datepicker 日期选择
+### Datepicker 日期选择
+
 ``` bash
 安装：
   import rDatepicker from 'rong-ui/components/rDatepicker'
@@ -963,7 +978,8 @@ export default{
 }
 ```
 
-Icon 图标
+### Icon 图标
+
 ``` bash
 安装：
   import rIcon from 'rong-ui/components/rIcon'
@@ -992,7 +1008,8 @@ iconClick                   function                   回调函数，点击icon
 <rIcon type="inform"></rIcon>
 ```
 
-Tabs 标签切换
+### Tabs 标签切换
+
 ``` bash
 安装：
   import rTabs from 'rong-ui/components/rTabs'
@@ -1085,7 +1102,7 @@ onclick                  function                  回调函数，点击tab时�
 
 
 
-Input 输入框
+### Input 输入框
 ``` bash
 安装：
   import rInput from 'rong-ui/components/rInput'
@@ -1370,7 +1387,7 @@ export default{
 }
 ```
 
-vcode 图片验证码
+### vcode 图片验证码
 ``` bash
 安装：
   import rVcode from 'rong-ui/components/rVcode'
@@ -1696,7 +1713,7 @@ export default{
 
 
 
-Number 数字类型组件
+### Number 数字类型组件
 ``` bash
 安装：
   import rNumber from 'rong-ui/components/rNumber'
@@ -1914,7 +1931,7 @@ export default{
 }
 ```
 
-Int 整数组件
+### Int 整数组件
 ``` bash
 安装：
   import rInt from 'rong-ui/components/rInt'
@@ -2075,7 +2092,7 @@ export default{
 
 ```
 
-Float 浮点数组件
+### Float 浮点数组件
 ``` bash
 安装：
   import rFloat from 'rong-ui/components/rFloat'
@@ -2255,7 +2272,7 @@ export default{
 }
 ```
 
-Telephone 手机号码
+### Telephone 手机号码
 ``` bash
 安装：
   import rTelephone from 'rong-ui/components/rTelephone'
@@ -2359,7 +2376,7 @@ export default{
 }
 ```
 
-Mvcode 短信验证码
+### Mvcode 短信验证码
 ``` bash
 安装：
   import rMvcode from 'rong-ui/components/rMvcode'
@@ -2510,7 +2527,7 @@ export default{
 }
 ```
 
-IDCard 身份证号码
+### IDCard 身份证号码
 ``` bash
 安装：
   import rIDCard from 'rong-ui/components/rIDCard'
