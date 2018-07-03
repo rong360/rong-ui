@@ -12,26 +12,26 @@
     	<li data-id="titlebar" @click="goCp">Titlebar 标题栏</li>
     	<li data-id="button" @click="goCp">Button 按钮</li>
 	  	<li data-id="select" @click="goCp">Select 下拉列表</li>
-		<li data-id="region" @click="goCp">Region 城市选取列表</li>
+		<!-- <li data-id="region" @click="goCp">Region 城市选取列表</li> -->
 	  	<li data-id="datepicker" @click="goCp">Datepicker 日期选择</li>
 		<li data-id="icon" @click="goCp">Icon 图标</li>
-	  	<li data-id="upload" @click="goCp">Upload 文件上传</li>
+	  	<!-- <li data-id="upload" @click="goCp">Upload 文件上传</li> -->
 	  	<li data-id="tabs" @click="goCp">Tabs 标签切换</li>
       	<!-- <li data-id="progress" class="ignore"  @click="goCp">Progress 进度条</li> -->
 	  	<!-- <li data-id="radio" @click="goCp">Radio 按钮</li> -->
 
 		<li data-id="input" @click="goCp" wrap="pt_30">Input 输入框</li>
-		<li class="desc">(以下组件继承 Input输入框 组件)</li>
-		<li data-id="vcode" @click="goCp">Input->vcode 图片验证码</li>
-		<li data-id="email" @click="goCp">Email 邮箱</li>
+		<li class="desc" wrap="ml_15">(以下组件继承 Input输入框 组件)</li>
+		<li data-id="vcode" wrap="ml_15" @click="goCp">Input->vcode 图片验证码</li>
+		<li data-id="email" wrap="ml_15" @click="goCp">Email 邮箱</li>
 
 		<li data-id="number" @click="goCp" wrap="pt_30">Number 数字类型组件</li>
-		<li class="desc">(以下组件继承 Number 组件)</li>
-		<li data-id="int"  @click="goCp">Number->Int 整数组件</li>
-		<li data-id="float"  @click="goCp">Number->Float 浮点数组件</li>
-		<li data-id="telephone" @click="goCp">Number->Telephone 手机号码</li>
-		<li data-id="mvcode" @click="goCp">Number->Mvcode 短信验证码</li>
-		<li data-id="idcard" @click="goCp">Number->IDCard 身份证号码</li>
+		<li class="desc" wrap="ml_15">(以下组件继承 Number 组件)</li>
+		<li data-id="int" wrap="ml_15" @click="goCp">Number->Int 整数组件</li>
+		<li data-id="float" wrap="ml_15" @click="goCp">Number->Float 浮点数组件</li>
+		<li data-id="telephone"wrap="ml_15" @click="goCp">Number->Telephone 手机号码</li>
+		<li data-id="mvcode"wrap="ml_15" @click="goCp">Number->Mvcode 短信验证码</li>
+		<li data-id="idcard"wrap="ml_15" @click="goCp">Number->IDCard 身份证号码</li>
     </ul>
     <div class="title">说明</div>
     <div class="desc">1) Input,Number,Select组件都有两个函数来获取表单数据<br>
@@ -43,18 +43,18 @@
 	<div class="desc" style="width: 90%; overflow: auto">
 <pre>
 npm 安装：
-1，npm set registry http://npm.rong360.com
-2，10.12.20.33  npm.rong360.com
+#install module
+npm install rong-ui --save
+
+#use one component
+import Dialog from "rong-ui/lib/dialog"
+Vue.use(Dialog);
 
 #use rong-ui
 import {Dialog, Tip} from "rong-ui"
 import "rong-ui/lib/rong-ui.css"
 let components = [Dialog, Tip];
 components.map(cp => Vue.use(cp));
-
-#use one component
-import Dialog from "rong-ui/lib/dialog"
-Vue.use(Dialog);
 </pre>
 	</div>
 </div>	    
@@ -64,7 +64,12 @@ Vue.use(Dialog);
 		name: "CpList",
 		methods:{
 			goCp(e){
-				this.$router.push({name: e.currentTarget.dataset.id});
+				this.$router.push({
+					name: e.currentTarget.dataset.id,
+					query: {
+						title: encodeURIComponent(e.currentTarget.innerHTML)
+					}
+				});
 			}
 		}
 	}
@@ -79,21 +84,43 @@ Vue.use(Dialog);
 }
 #cps{
 	.title{
+		text-align: left;
 		font-size: .9rem;
 		font-weight: bold;
 		color: #4080e8;
-		margin: r(30) 0;
+		padding: r(20) 0 0 r(15);
 	}
+}
+ul{
+	padding-left: r(30);
 }
 ul li{
 	font-size: .8rem;
 	color: #666;
-	margin: r(30) 0;
-}
-.desc{
-	text-align: justify;
-	margin: 0 r(30) r(30);
-	font-size: .8rem;
+	text-align: left;
+	border-bottom: 1px solid #D8D9DC;
+	padding: r(20) 0;
+	position: relative;
+	&:before,
+	&:after{
+		position: absolute;
+		right: r(15);
+		top: 50%;
+		-webkit-transform-origin: right center;
+		transform-origin: right center;
+		width: r(10);
+		height: 1px;
+		overflow: hidden;
+		background-color: #d8d9dc;
+		display: block;
+		content: "";
+	}
+	&:before{
+		transform: rotate(45deg);
+	}
+	&:after{
+		transform: rotate(-45deg);
+	}
 }
 .hl{
 	color: #4080e8;
@@ -102,10 +129,21 @@ ul li{
 [wrap~=pt_30]{
 	padding-top: r(30);
 }
+[wrap~=ml_15]{
+	margin-left: r(15);
+}
 li.desc{
 	color: red;
-	margin: 0;
-	text-align: center;
+	text-align: left;
 	font-size: r(10);
+	&:before,
+	&:after{
+		display: none;
+	}
+}
+div.desc{
+	font-size: r(14);
+	text-align: left;
+	padding: r(15);
 }
 </style>

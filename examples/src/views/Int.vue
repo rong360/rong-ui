@@ -1,21 +1,5 @@
 <template>
 	<div class="wrap">
-		<div class="title">说明</div>
-		<div class="content">
-			<div class="row">组件参数继承rNumber组件，限定type=int</div>
-		</div>
-		<div class="title">示例代码</div>
-		<textarea class="code-content" style="height: 300px">
-			<rInt 
-				:attrs="config" 
-				@oninput="oninput" 
-				@onclear="onclear" 
-				@onconfirm="onconfirm" 
-				@onclickLabelIcon="onclickLabelIcon"
-				@onclickInputIcon="onclickInputIcon"
-			>
-			</rInt>
-		</textarea>
 		<div class="exp">
 			<div class="title">实例</div>
 			<div class="tip">请输入以下信息：</div>
@@ -33,6 +17,23 @@
 			<div class="cb0">小矮人清空时，触发onclear事件弹出toast</div>
 			<div class="cb1" v-text="txt"></div>
 		</div>
+		<div class="title">说明</div>
+		<div class="content">
+			<div class="row">组件参数继承rNumber组件，限定type=int</div>
+		</div>
+		<div class="title">示例代码</div>
+		<textarea class="code-content" style="height: 300px">
+			<rInt 
+				:attrs="config" 
+				@oninput="oninput" 
+				@onclear="onclear" 
+				@onconfirm="onconfirm" 
+				@onclickLabelIcon="onclickLabelIcon"
+				@onclickInputIcon="onclickInputIcon"
+			>
+			</rInt>
+		</textarea>
+		
 	</div>
 </template>
 <script>

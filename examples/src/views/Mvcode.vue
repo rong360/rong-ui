@@ -1,5 +1,23 @@
 <template>
 <div class="wrap">
+	<div class="exp">
+		<div class="title">实例</div>
+		<div class="tip">请输入以下信息：{{config.counter}}</div>
+		<rMvcode 
+			:attrs="config" 
+			@oninput="oninput" 
+			@onclear="onclear" 
+			@onconfirm="onconfirm" 
+			@onclickLabelIcon="onclickLabelIcon"
+			@onclickInputIcon="onclickInputIcon"  
+			@success="onSuccess"
+			@fail="onFail"
+			:ref="config.name"
+		>
+		</rMvcode>
+		<rMvcode :attrs="config0" @oninput="oninput" @onclear="onclear" @success="onSuccess" @fail="onFail" :ref="config0.name"></rMvcode>
+		<div class="btn" @click="doSubmit">提交</div>
+	</div>
 	<div class="title">说明</div>
 	<div class="content">
 		<div class="row">组件参数继承rNumber组件，限定type=int,attrs里新增{
@@ -23,24 +41,6 @@
 		>
 		</rMvcode>
 	</textarea>
-	<div class="exp">
-		<div class="title">实例</div>
-		<div class="tip">请输入以下信息：{{config.counter}}</div>
-		<rMvcode 
-			:attrs="config" 
-			@oninput="oninput" 
-			@onclear="onclear" 
-			@onconfirm="onconfirm" 
-			@onclickLabelIcon="onclickLabelIcon"
-			@onclickInputIcon="onclickInputIcon"  
-			@success="onSuccess"
-			@fail="onFail"
-			:ref="config.name"
-		>
-		</rMvcode>
-		<rMvcode :attrs="config0" @oninput="oninput" @onclear="onclear" @success="onSuccess" @fail="onFail" :ref="config0.name"></rMvcode>
-		<div class="btn" @click="doSubmit">提交</div>
-	</div>
 </div>
 </template>
 <script>

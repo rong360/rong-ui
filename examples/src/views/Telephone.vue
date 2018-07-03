@@ -1,62 +1,65 @@
 <template>
 	<div class="wrap">
+		<div class="exp">
+			<div class="title">实例</div>
+			<div class="tip">请输入以下信息：</div>
+			<rTelephone :attrs="config" :ref="config.name"></rTelephone>
+			<rTelephone :attrs="config0" @oninput="oninput" @onclear="onclear" @onconfirm="onconfirm" :ref="config0.name"></rTelephone>
+			<div class="btn" @click="doSubmit">提交</div>
+		</div>		
+		<div class="cb">
+			<div class="cb0">思聪老公手机号输入时，触发事件的操作返回结果：</div>
+			<div class="cb1" v-text="phone"></div>
+		</div>
+		<div class="cb">
+			<div class="cb0">思聪老公手机号清空时，触发事件的操作返回结果：</div>
+			<div class="cb1" v-text="txt"></div>
+		</div>
 	<div class="title">说明</div>
 	<div class="content">
-		<div class="row">组件参数继承rNumber组件，限定type=idcard,attrs里{maxlength:18,unit:""}</div>
+		<div class="row">组件参数继承rNumber组件，限定type=int,attrs里{maxlength:11,unit:""}</div>
 	</div>
 	<div class="title">示例代码</div>
-	<textarea name="" id="ta" cols="50" rows="3">
-		<rIDCard :attrs="config" @oninput="oninput" @onclear="onclear" @onconfirm="verifyIDCard"></rIDCard>
+	<textarea name="" id="ta" cols="50" rows="5">
+		<rTelephone :attrs="config0" @oninput="oninput" @onclear="onclear" @onconfirm="onconfirm" :ref="config0.name"></rTelephone>
 	</textarea>
-	<div class="exp">
-		<div class="title">实例</div>
-		<div class="tip">请输入以下信息：</div>
-		<rIDCard :attrs="config" :ref="config.name"></rIDCard>
-		<rIDCard :attrs="config0" @oninput="oninput" @onclear="onclear" @onconfirm="verifyIDCard" :ref="config0.name"></rIDCard>
-		<div class="btn" @click="doSubmit">提交</div>
-	</div>		
-	<div class="cb">
-		<div class="cb0">思聪身份证号码输入时，触发事件的操作返回结果：</div>
-		<div class="cb1" v-text="phone"></div>
-	</div>
-	<div class="cb">
-		<div class="cb0">思聪身份证号码清空时，触发事件的操作返回结果：</div>
-		<div class="cb1" v-text="txt"></div>
-	</div>
 	</div>
 </template>
 <script>
 	export default{
-		name: "rIDCardExp",
+		name: "rTelephoneExp",
 		data(){
 			return {
 				phone: "",
 				count: 0,
 				txt: "",
 				config: {
-					title: "马云爸爸身份证号码(不校验)",
-					name: 'fatherID',
+					title: "马云爸爸手机号码(不校验)",
+					name: 'fatherPhone',
 					value: "",
 					placeholder: "请输入",
 					disabled: false,
 					readonly: false,
-					autofocus: false,
 					unit: '',
-					canDelete: false,
 					needVerify: false
 				},
 				config0: {
-					title: "思聪老公身份证号码(键盘确认时校验)",
-					name: 'sonID',
+					title: "思聪老公的手机号码(键盘确定时校验)",
+					name: 'sonPhone',
 					value: "",
 					placeholder: "请输入",
 					disabled: false,
 					readonly: false,
-					autofocus: false,
-					unit: '',
-					canDelete: true
+					unit: ''
 				}
 			}
+		},
+		created(){
+			var self = this;
+			setTimeout(function(){
+				self.config.value = '1328888888';
+				self.config.readonly = true;
+			}, 2000)
 		},
 		methods:{
 			oninput(val){
@@ -70,8 +73,8 @@
 				})
 				this.txt = "执行清空操作次数："+ (++this.count);
 			},
-			verifyIDCard(code, codeStr, component){
-				//this.$refs.sonID.verify();
+			onconfirm(code, codeStr, component){
+				//this.$refs.sonPhone.verify();
 				component.verify();
 			},
 			doSubmit(){
@@ -84,7 +87,7 @@
 					}
 				}
 
-				if(pass){
+				if(pass) {
 					let s = [],
 						sa = {};
 					for(var key in this.$refs){

@@ -1,22 +1,5 @@
 <template>
 	<div class="wrap">
-		<div class="title">说明</div>
-		<div class="content">
-			<div class="row">组件参数继承rNumber组件，限定type=float, <br/>floatFixed属性限定小数点后保留位数，默认不限制</div>
-		</div>
-		<div class="title">示例代码</div>
-		<textarea name="" id="ta" cols="50" rows="3" style="height:200px">
-			<rFloat 
-				:attrs="config2" 
-				:ref="config2.name"
-				@oninput="oninput" 
-				@onclear="onclear" 
-				@onconfirm="onconfirm"
-				@onclickLabelIcon="onclickLabelIcon"
-				@onclickInputIcon="onclickInputIcon"
-			>
-			</rFloat>
-		</textarea>
 		<div class="exp">
 			<div class="title">实例</div>
 			<div class="tip">请输入以下信息：</div>
@@ -34,6 +17,23 @@
 			<div class="cb0">小矮人清空时，触发事件的操作返回结果：</div>
 			<div class="cb1" v-text="txt"></div>
 		</div>
+		<div class="title">说明</div>
+		<div class="content">
+			<div class="row">组件参数继承rNumber组件，限定type=float, <br/>floatFixed属性限定小数点后保留位数，默认不限制</div>
+		</div>
+		<div class="title">示例代码</div>
+		<textarea name="" id="ta" cols="50" rows="3" style="height:200px">
+			<rFloat 
+				:attrs="config2" 
+				:ref="config2.name"
+				@oninput="oninput" 
+				@onclear="onclear" 
+				@onconfirm="onconfirm"
+				@onclickLabelIcon="onclickLabelIcon"
+				@onclickInputIcon="onclickInputIcon"
+			>
+			</rFloat>
+		</textarea>
 	</div>
 </template>
 <script>

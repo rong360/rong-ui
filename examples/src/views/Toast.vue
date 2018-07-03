@@ -1,5 +1,13 @@
 <template>
 	<div class="wrap">
+		<!-- <div class="title">实例</div> -->
+		<div class="exp">
+			<div class="btn" @click="showToast0">默认toast</div>
+			<div class="btn" @click="showToast1">消极toast 5s后消失</div>
+			<div class="btn" @click="showToast2">长字符 toast</div>
+			<div class="btn" @click="showToast3">toast回调函数 {{count}}</div>
+		</div>
+
 		<div class="title">Toast 参数说明</div>
 		<div class="content">
 			<div class="row">
@@ -47,13 +55,6 @@
 			}
 		});
 		</textarea>
-		<div class="title" style="margin-top: 50px">实例</div>
-		<div class="exp">
-			<div class="btn" @click="showToast0">默认toast</div>
-			<div class="btn" @click="showToast1">消极toast 5s后消失</div>
-			<div class="btn" @click="showToast2">长字符 toast</div>
-			<div class="btn" @click="showToast3">toast回调函数 {{count}}</div>
-		</div>
 	</div>
 </template>
 <script>

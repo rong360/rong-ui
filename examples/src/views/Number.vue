@@ -1,5 +1,31 @@
 <template>
 	<div class="wrap">
+		<div class="exp">
+			<div class="title">实例</div>
+			<div class="tip">请输入以下信息：</div>
+			<rNumber :attrs="config" :ref="config.name" @onclear="onclear"></rNumber>
+			<rNumber :attrs="config0" :ref="config0.name"></rNumber>
+			<rNumber 
+				:attrs="config1" 
+				:ref="config1.name" 
+				@onconfirm="confrimFatherHand" 
+				@onclickLabelIcon="onclickLabelIcon" 
+				@onclickInputIcon="onclickInputIcon"
+			>
+			</rNumber>
+			<rNumber 
+				:attrs="config2" 
+				:ref="config2.name"
+				@onclickLabelIcon="onclickLabelIcon" 
+			>
+			</rNumber>
+			<rNumber :attrs="config3" :ref="config3.name"></rNumber>
+			<div class="btn" @click="doSubmit">提交</div>
+
+			<div class="tip">以下为输入左对齐</div>
+			<rNumber :attrs="config4"></rNumber>
+			<rNumber :attrs="config5"></rNumber>
+		</div>
 		<div class="title">Number 参数说明</div>
 		<div class="content">
 			<div class="row rowtip">组件说明：这个组件可以当全局组件用，自己传type=int | float | idcard,默认校验函数是非空校验，需要其他校验可以自己传verify函数<br><span class="hl">身份证号码，手机号，浮点数，整数</span>等组件在该组件基础上扩展</div>
@@ -97,30 +123,6 @@
 			}
 		}
 		</textarea>
-		<div class="title">实例</div>
-		<div class="tip">请输入以下信息：</div>
-		<rNumber :attrs="config" :ref="config.name" @onclear="onclear"></rNumber>
-		<rNumber :attrs="config0" :ref="config0.name"></rNumber>
-		<rNumber 
-			:attrs="config1" 
-			:ref="config1.name" 
-			@onconfirm="confrimFatherHand" 
-			@onclickLabelIcon="onclickLabelIcon" 
-			@onclickInputIcon="onclickInputIcon"
-		>
-		</rNumber>
-		<rNumber 
-			:attrs="config2" 
-			:ref="config2.name"
-			@onclickLabelIcon="onclickLabelIcon" 
-		>
-		</rNumber>
-		<rNumber :attrs="config3" :ref="config3.name"></rNumber>
-		<div class="btn" @click="doSubmit">提交</div>
-
-		<div class="tip">以下为输入左对齐</div>
-		<rNumber :attrs="config4"></rNumber>
-		<rNumber :attrs="config5"></rNumber>
 	</div>
 </template>
 <script>

@@ -1,25 +1,5 @@
 <template>
 <div class="wrap">
-	<div class="title">说明</div>
-	<div class="content">
-		<div class="row">组件参数继承rInput组件，attrs新增属性{src: ""//图片地址}</div>
-		<div class="row"></div>
-	</div>
-	<div class="title">示例代码</div>
-	<textarea name="" id="ta" cols="50" rows="13">
-		<rVcode 
-			:attrs="config" 
-			@oninput="oninput" 
-			@onclear="onclear" 
-			@onfocus="onfocus"
-			@onblur="onblur" 
-			@onenter="onenter"
-			@onchange="onchange"
-			@onclickLabelIcon="onclickLabelIcon"
-			@onclickInputIcon="onclickInputIcon"
-			:ref="config.name" 
-		></rVcode>
-	</textarea>
 	<div class="exp">
 		<div class="title">实例</div>
 		<div class="tip">请输入以下信息：</div>
@@ -40,6 +20,26 @@
 		<rVcode :attrs="config2" @onclickInputIcon="onclickInputIcon" :ref="config2.name"></rVcode>
 		<div class="btn" @click="doSubmit">提交</div>
 	</div>
+	<div class="title">说明</div>
+	<div class="content">
+		<div class="row">组件参数继承rInput组件，attrs新增属性{src: ""//图片地址}</div>
+		<div class="row"></div>
+	</div>
+	<div class="title">示例代码</div>
+	<textarea name="" id="ta" cols="50" rows="13">
+		<rVcode 
+			:attrs="config" 
+			@oninput="oninput" 
+			@onclear="onclear" 
+			@onfocus="onfocus"
+			@onblur="onblur" 
+			@onenter="onenter"
+			@onchange="onchange"
+			@onclickLabelIcon="onclickLabelIcon"
+			@onclickInputIcon="onclickInputIcon"
+			:ref="config.name" 
+		></rVcode>
+	</textarea>
 </div>
 </template>
 <script>

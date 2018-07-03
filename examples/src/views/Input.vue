@@ -1,5 +1,22 @@
 <template>
 	<div class="wrap">
+		<div class="exp">
+			<div class="title">实例</div>
+		
+			<form id="form0">
+				<div class="tip">请输入您的信息：</div>
+				<template v-for="item in items">
+					<component :is="item.type" :attrs="item.config" :ref="item.config.name" @onclickLabelIcon="onclickLabelIcon" @onclickInputIcon="onclickInputIcon" @oninput="oninput" ></component>
+				</template>
+				<div class="btn" @click="doSubmit">提交</div>
+			</form>
+			<form id="form1">
+				<div class="tip">以下为输入框左对齐</div>
+				<template v-for="item in items1">
+					<component :is="item.type" :attrs="item.config" :ref="item.config.name"></component>
+				</template>
+			</form>
+		</div>
 	<div class="title">Input 参数说明</div>
 	<div class="content">
 		<div class="row">
@@ -91,21 +108,7 @@
 		verify: function(value){}
 	}
 	</textarea>
-		<div class="title">实例</div>
 		
-		<form id="form0">
-			<div class="tip">请输入您的信息：</div>
-			<template v-for="item in items">
-				<component :is="item.type" :attrs="item.config" :ref="item.config.name" @onclickLabelIcon="onclickLabelIcon" @onclickInputIcon="onclickInputIcon" @oninput="oninput" ></component>
-			</template>
-			<div class="btn" @click="doSubmit">提交</div>
-		</form>
-		<form id="form1">
-			<div class="tip">以下为输入框左对齐</div>
-			<template v-for="item in items1">
-				<component :is="item.type" :attrs="item.config" :ref="item.config.name"></component>
-			</template>
-		</form>
 	</div>
 </template>
 <script>

@@ -1,5 +1,34 @@
 <template>
 	<div class="kb-wrap wrap">
+		<div class="title">示例代码</div>
+		<div class="exp">
+			<div class="infos" @click="createKb" id="infos">123</div>
+			<textarea class="code-content">
+				<div class="infos" @click="createKb" id="infos">123</div>
+
+
+				export default{
+					methods: {
+						createKb(e){
+							var keyboard = this.$keyboard({
+								propsData: {
+									//键盘默认值
+									value: document.getElementById('infos').innerHTML
+								},
+								methods: {
+									typing(code, codeStr){
+										console.log(code + '--' + codeStr);
+
+										document.getElementById('infos').innerHTML = codeStr;
+									}
+								}
+							})
+						}
+					}
+				}
+			</textarea>
+		</div>
+		
 		<div class="title">Keyboard 参数说明</div>
 		<div class="content">
 			<div class="row">
@@ -60,34 +89,6 @@
 				}
 			})
 		</textarea>
-		<div class="title">示例代码</div>
-		<div class="exp">
-			<div class="infos" @click="createKb" id="infos">123</div>
-			<textarea class="code-content">
-				<div class="infos" @click="createKb" id="infos">123</div>
-
-
-				export default{
-					methods: {
-						createKb(e){
-							var keyboard = this.$keyboard({
-								propsData: {
-									//键盘默认值
-									value: document.getElementById('infos').innerHTML
-								},
-								methods: {
-									typing(code, codeStr){
-										console.log(code + '--' + codeStr);
-
-										document.getElementById('infos').innerHTML = codeStr;
-									}
-								}
-							})
-						}
-					}
-				}
-			</textarea>
-		</div>
 	</div>
 </template>
 <script>

@@ -1,5 +1,15 @@
 <template>
 <div class="wrap">
+	<div class="exp">
+		<div class="title">实例</div>
+		<div class="tip">请输入以下信息：</div>
+		<div class="dp-wrap"><rDatepicker :attrs='config' @onconfirm="birthDate"></rDatepicker></div>
+		<div class="dp-wrap"><rDatepicker :attrs='config1' @onconfirm="birthDate"></rDatepicker></div>
+		<div class="dp-wrap"><rDatepicker :attrs='config2' @onconfirm="birthDate"></rDatepicker></div>
+		<div class="dp-wrap"><rDatepicker :attrs='config3'  @onconfirm="birthDate"></rDatepicker></div>
+		<div class="dp-wrap"><rDatepicker :attrs='config4'  @onconfirm="birthDate"></rDatepicker></div>
+	</div>	
+	
 	<div class="title">Datepicker 参数说明</div>
 	<div class="content">
 		<div class="row">
@@ -57,15 +67,7 @@
 	<textarea name="" id="ta" cols="50" rows="3">
 		<rDatepicker :attrs='config' @onconfirm="birthDate"></rDatepicker>
 	</textarea>
-	<div class="exp">
-		<div class="title">实例</div>
-		<div class="tip">请输入以下信息：</div>
-		<div class="dp-wrap"><rDatepicker :attrs='config' @onconfirm="birthDate"></rDatepicker></div>
-		<div class="dp-wrap"><rDatepicker :attrs='config1' @onconfirm="birthDate"></rDatepicker></div>
-		<div class="dp-wrap"><rDatepicker :attrs='config2' @onconfirm="birthDate"></rDatepicker></div>
-		<div class="dp-wrap"><rDatepicker :attrs='config3'  @onconfirm="birthDate"></rDatepicker></div>
-		<div class="dp-wrap"><rDatepicker :attrs='config4'  @onconfirm="birthDate"></rDatepicker></div>
-	</div>		
+		
 </div>
 </template>
 <script>

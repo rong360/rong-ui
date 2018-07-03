@@ -1,16 +1,6 @@
 # rong-ui
 
-> 基于Vue.js 2.0 UI组件库 && 构建npm包.
-
-## 查看组件效果
-
-``` bash
-# install dependencies
-npm install
-
-#examples for components
-npm run dev
-```
+> 基于Vue.js 2.0 UI组件库.
 
 
 ## How to Use
@@ -20,12 +10,11 @@ npm run dev
 npm install rong-ui --save
 
 #use one component
-import Dialog from "rong-ui/lib/dialog"
+import Dialog from "rong-ui/components/dialog"
 Vue.use(Dialog);
 
 #use rong-ui
 import {Dialog, Tip} from "rong-ui"
-import "rong-ui/lib/rong-ui.css"
 let components = [Dialog, Tip];
 components.map(cp => Vue.use(cp));
 
@@ -33,10 +22,10 @@ components.map(cp => Vue.use(cp));
 
 文件命名特别说明：
   Vue.prototype上的组件直接导入，如：
-      import Dialog from "rong-ui/lib/dialog"
+      import Dialog from "rong-ui/components/dialog"
 
   其它非Vue.prototype上的组件导入的时候需在组件名称前加"r",即"number"->"rNumber"，如：
-      import Dialog from "rong-ui/lib/rNumber"
+      import Dialog from "rong-ui/components/rNumber"
 ```
 
 
@@ -110,11 +99,10 @@ Number 数字类型组件
 Dialog 弹框
 ``` bash
 安装：
-  import Dialog from "rong-ui/lib/dialog"
+  import Dialog from "rong-ui/components/dialog"
   Vue.use(Dialog);
 
   或者：
-  import 'rong-ui/lib/rong-ui.css'
   import {Dialog} from 'rong-ui'
   Vue.use(Dialog);
 
@@ -332,11 +320,10 @@ this.$dialog({
 Toast 提示
 ``` bash
 安装：
-  import Toast from "rong-ui/lib/toast"
+  import Toast from "rong-ui/components/toast"
   Vue.use(Toast);
 
   或者：
-  import 'rong-ui/lib/rong-ui.css'
   import {Toast} from 'rong-ui'
   Vue.use(Toast);
 
@@ -372,11 +359,10 @@ this.$toast({
 Loading 加载中
 ``` bash
 安装：
-  import Loading from "rong-ui/lib/loading"
+  import Loading from "rong-ui/components/loading"
   Vue.use(Loading);
 
   或者：
-  import 'rong-ui/lib/rong-ui.css'
   import {Loading} from 'rong-ui'
   Vue.use(Loading);
 
@@ -424,11 +410,10 @@ var timer = setInterval(function(){
 Keyboard 数字虚拟键盘
 ``` bash
 安装：
-  import Keyboard from "rong-ui/lib/keyboard"
+  import Keyboard from "rong-ui/components/keyboard"
   Vue.use(Keyboard);
 
   或者：
-  import 'rong-ui/lib/rong-ui.css'
   import {Keyboard} from 'rong-ui'
   Vue.use(Keyboard);
 
@@ -491,11 +476,10 @@ export default{
 Titlebar 标题栏
 ``` bash
 安装：
-  import rTitlebar from 'rong-ui/lib/rTitlebar'
+  import rTitlebar from 'rong-ui/components/rTitlebar'
   Vue.use(rTitlebar);
 
   或者：
-  import 'rong-ui/lib/rong-ui.css'
   import {rTitlebar} from 'rong-ui'
   Vue.use(rTitlebar);
 
@@ -547,11 +531,10 @@ export default{
 Button 按钮
 ``` bash
 安装：
-  import rButton from "rong-ui/lib/rButton"
+  import rButton from "rong-ui/components/rButton"
   Vue.use(rButton);
 
   或者：
-  import 'rong-ui/lib/rong-ui.css'
   import {rButton} from 'rong-ui'
   Vue.use(rButton);
 
@@ -618,11 +601,10 @@ export default{
 Select 下拉列表
 ``` bash
 安装：
-  import rSelect from 'rong-ui/lib/rSelect'
+  import rSelect from 'rong-ui/components/rSelect'
   Vue.use(rSelect);
 
   或者：
-  import 'rong-ui/lib/rong-ui.css'
   import {rSelect} from 'rong-ui'
   Vue.use(rSelect);
 
@@ -900,11 +882,10 @@ export default{
 Datepicker 日期选择
 ``` bash
 安装：
-  import rDatepicker from 'rong-ui/lib/rDatepicker'
+  import rDatepicker from 'rong-ui/components/rDatepicker'
   Vue.use(rDatepicker);
 
   或者：
-  import 'rong-ui/lib/rong-ui.css'
   import {rDatepicker} from 'rong-ui'
   Vue.use(rDatepicker);
 
@@ -985,11 +966,10 @@ export default{
 Icon 图标
 ``` bash
 安装：
-  import rIcon from 'rong-ui/lib/rIcon'
+  import rIcon from 'rong-ui/components/rIcon'
   Vue.use(rIcon);
 
   或者：
-  import 'rong-ui/lib/rong-ui.css'
   import {rIcon} from 'rong-ui'
   Vue.use(rIcon);
 
@@ -1015,11 +995,10 @@ iconClick                   function                   回调函数，点击icon
 Tabs 标签切换
 ``` bash
 安装：
-  import rTabs from 'rong-ui/lib/rTabs'
+  import rTabs from 'rong-ui/components/rTabs'
   Vue.use(rTabs);
 
   或者：
-  import 'rong-ui/lib/rong-ui.css'
   import {rTabs} from 'rong-ui'
   Vue.use(rTabs);
 
@@ -1109,11 +1088,10 @@ onclick                  function                  回调函数，点击tab时�
 Input 输入框
 ``` bash
 安装：
-  import rInput from 'rong-ui/lib/rInput'
+  import rInput from 'rong-ui/components/rInput'
   Vue.use(rInput);
 
   或者：
-  import 'rong-ui/lib/rong-ui.css'
   import {rInput} from 'rong-ui'
   Vue.use(rInput);
 
@@ -1395,11 +1373,10 @@ export default{
 vcode 图片验证码
 ``` bash
 安装：
-  import rVcode from 'rong-ui/lib/rVcode'
+  import rVcode from 'rong-ui/components/rVcode'
   Vue.use(rVcode);
 
   或者：
-  import 'rong-ui/lib/rong-ui.css'
   import {rVcode} from 'rong-ui'
   Vue.use(rVcode);
 
@@ -1575,11 +1552,10 @@ export default{
 Email 邮箱
 ``` bash
 安装：
-  import rEmail from 'rong-ui/lib/rEmail'
+  import rEmail from 'rong-ui/components/rEmail'
   Vue.use(rEmail);
 
   或者：
-  import 'rong-ui/lib/rong-ui.css'
   import {rEmail} from 'rong-ui'
   Vue.use(rEmail);
 
@@ -1723,11 +1699,10 @@ export default{
 Number 数字类型组件
 ``` bash
 安装：
-  import rNumber from 'rong-ui/lib/rNumber'
+  import rNumber from 'rong-ui/components/rNumber'
   Vue.use(rNumber);
 
   或者：
-  import 'rong-ui/lib/rong-ui.css'
   import {rNumber} from 'rong-ui'
   Vue.use(rNumber);
 
@@ -1942,11 +1917,10 @@ export default{
 Int 整数组件
 ``` bash
 安装：
-  import rInt from 'rong-ui/lib/rInt'
+  import rInt from 'rong-ui/components/rInt'
   Vue.use(rInt);
 
   或者：
-  import 'rong-ui/lib/rong-ui.css'
   import {rInt} from 'rong-ui'
   Vue.use(rInt);
 
@@ -2104,11 +2078,10 @@ export default{
 Float 浮点数组件
 ``` bash
 安装：
-  import rFloat from 'rong-ui/lib/rFloat'
+  import rFloat from 'rong-ui/components/rFloat'
   Vue.use(rFloat);
 
   或者：
-  import 'rong-ui/lib/rong-ui.css'
   import {rFloat} from 'rong-ui'
   Vue.use(rFloat);
 
@@ -2285,11 +2258,10 @@ export default{
 Telephone 手机号码
 ``` bash
 安装：
-  import rTelephone from 'rong-ui/lib/rTelephone'
+  import rTelephone from 'rong-ui/components/rTelephone'
   Vue.use(rTelephone);
 
   或者：
-  import 'rong-ui/lib/rong-ui.css'
   import {rTelephone} from 'rong-ui'
   Vue.use(rTelephone);
 
@@ -2390,11 +2362,10 @@ export default{
 Mvcode 短信验证码
 ``` bash
 安装：
-  import rMvcode from 'rong-ui/lib/rMvcode'
+  import rMvcode from 'rong-ui/components/rMvcode'
   Vue.use(rMvcode);
 
   或者：
-  import 'rong-ui/lib/rong-ui.css'
   import {rMvcode} from 'rong-ui'
   Vue.use(rMvcode);
 
@@ -2542,11 +2513,10 @@ export default{
 IDCard 身份证号码
 ``` bash
 安装：
-  import rIDCard from 'rong-ui/lib/rIDCard'
+  import rIDCard from 'rong-ui/components/rIDCard'
   Vue.use(rIDCard);
 
   或者：
-  import 'rong-ui/lib/rong-ui.css'
   import {rIDCard} from 'rong-ui'
   Vue.use(rIDCard);
 

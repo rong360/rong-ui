@@ -1,5 +1,17 @@
 <template>
 	<div class="wrap">
+		<div class="title">实例</div>
+		<div class="exp">
+			<rTitlebar theme="a" title="主题a" backurl="https://m.rong360.com" @onback="onBack"></rTitlebar>
+			<rTitlebar theme="b" title="主题b"></rTitlebar>
+			<rTitlebar theme="c" title="主题c"></rTitlebar>
+			<rTitlebar theme="d" title="主题d">
+				<div slot="l" @click="goHome">首页</div>
+				<div slot="r" @click="goCenter">账户</div>
+			</rTitlebar>
+			<rTitlebar theme="e" title="主题e"></rTitlebar>
+			<rTitlebar title="自定义背景" :tbStyle="tbStyle"></rTitlebar>
+		</div>
 		<div class="title">Titlebar 参数说明</div>
 		<div class="content">
 			<div class="row">
@@ -37,19 +49,6 @@
 		<textarea class="code-content" rows='8' cols='40'>
 		<rTitlebar theme="a" title="主题a" backurl="https://m.rong360.com" @onback="onBack"></rTitlebar>		
 		</textarea>
-
-		<div class="title">实例</div>
-		<div class="exp">
-			<rTitlebar theme="a" title="主题a" backurl="https://m.rong360.com" @onback="onBack"></rTitlebar>
-			<rTitlebar theme="b" title="主题b"></rTitlebar>
-			<rTitlebar theme="c" title="主题c"></rTitlebar>
-			<rTitlebar theme="d" title="主题d">
-				<div slot="l" @click="goHome">首页</div>
-				<div slot="r" @click="goCenter">账户</div>
-			</rTitlebar>
-			<rTitlebar theme="e" title="主题e"></rTitlebar>
-			<rTitlebar title="自定义背景" :tbStyle="tbStyle"></rTitlebar>
-		</div>
 
 	</div>
 </template>

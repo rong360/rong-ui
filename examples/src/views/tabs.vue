@@ -1,6 +1,23 @@
 <template>
 <div id="dl-wrap" class="wrap">
-	<div class="title">Tabs 参数说明</div>
+	<div class="exp">
+		<div class="title">示例</div>
+		<rTabs value=0>
+		<rTab label="tab1" @onclick="clickHandle">
+			<p>content1</p>
+		</rTab>
+		<rTab label="tab2" @onclick="clickHandle">
+			<p>content2</p>
+			<p>content2</p>
+		</rTab>
+		<rTab label="tab3" @onclick="clickHandle">
+			<p>content3</p>
+			<p>content3</p>
+			<p>content3</p>
+		</rTab>
+	</rTabs>
+	</div>
+	<div class="title" style="margin-top: 50px">Tabs 参数说明</div>
 	<div class="content">
 		<div class="row">
 			<div class="col">参数</div>
@@ -41,20 +58,6 @@
 		}
 		</div>	
 	</div>
-	<rTabs value=0>
-		<rTab label="tab1" @onclick="clickHandle">
-			<p>content1</p>
-		</rTab>
-		<rTab label="tab2" @onclick="clickHandle">
-			<p>content2</p>
-			<p>content2</p>
-		</rTab>
-		<rTab label="tab3" @onclick="clickHandle">
-			<p>content3</p>
-			<p>content3</p>
-			<p>content3</p>
-		</rTab>
-	</rTabs>
 	<div class="title" style="margin-top: 100px">示例代码 - 常规</div>
 	<textarea class="code-content" style="min-height: 10rem;margin: 0;padding: 0; width: 90%;">
 		<rTabs>

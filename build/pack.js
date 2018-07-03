@@ -8,13 +8,13 @@ var path = require('path')
 var chalk = require('chalk')
 var webpack = require('webpack')
 var config = require('../config')
-var webpackConfig = require('./webpack.one.conf');
+var webpackConfig = require('./webpack.pack.conf');
 
 var spinner = ora('building for production...')
 spinner.start()
 
-// rm(path.join(__dirname,"../dist"), err => {
-  // if (err) throw err
+rm(path.join(__dirname,"../dist"), err => {
+  if (err) throw err
   webpack(webpackConfig, function (err, stats) {
     spinner.stop()
     if (err) throw err
@@ -32,4 +32,4 @@ spinner.start()
       '  Opening index.html over file:// won\'t work.\n'
     ))
   })
-// })
+})

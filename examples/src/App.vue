@@ -1,12 +1,32 @@
 <template>
   <div id="app">
+    <rTitlebar theme="a" :title="Titlebar_title" backurl="#" v-show="showTitlebar"></rTitlebar>
     <router-view></router-view>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'app'
+  name: 'app',
+  data(){
+    return {
+      Titlebar_title: '',
+      showTitlebar: true
+    }
+  },
+  watch: {
+    $route: {
+      handler(){console.log(this.$route)
+        //this.$route.name == 'index'? this.showTitlebar=false : this.showTitlebar=true;
+        if(this.$route.name == 'index'){
+          this.Titlebar_title = 'Demo list'
+        }else{
+          this.Titlebar_title = 'Demo/' + decodeURIComponent(this.$route.query.title);
+        }
+      },
+      immediate: true
+    }
+  }
 }
 </script>
 
@@ -39,7 +59,6 @@ html,body{
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 30px;
 }
 
 .wrap{

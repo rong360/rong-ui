@@ -1,5 +1,18 @@
 <template>
 <div id="tip-wrap" class="wrap">
+	<div class="rg-button" @click="showLoading0">
+		Loading 默认样式
+	</div>
+	<div class="rg-button" @click="showLoading1">
+		Loading 添加文案
+	</div>
+	<div class="rg-button" @click="showLoading2">
+		Loading 倒计时
+	</div>
+	<div class="rg-button" @click="showLoading3">
+		Loading 更改样式
+	</div>
+	
 	<div class="title">Loading 参数说明</div>
 	<div class="content">
 		<div class="row">
@@ -72,18 +85,6 @@ var timer = setInterval(function(){
 	}
 }, 1000)
 	</pre>
-	<div class="rg-button" @click="showLoading0">
-		Loading 默认样式
-	</div>
-	<div class="rg-button" @click="showLoading1">
-		Loading 添加文案
-	</div>
-	<div class="rg-button" @click="showLoading2">
-		Loading 倒计时
-	</div>
-	<div class="rg-button" @click="showLoading3">
-		Loading 更改样式
-	</div>
 </div>
 
 </template>

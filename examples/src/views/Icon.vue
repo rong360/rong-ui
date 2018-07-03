@@ -1,5 +1,35 @@
 <template>
 <div class="wrap">
+	<div class="exp">
+		<div class="title">示例</div>
+		<div class="icon-group">
+			<rIcon type="close"></rIcon>
+			<rIcon type="close-circled"></rIcon>
+			<rIcon type="inform"></rIcon>
+			<rIcon type="addrlist"></rIcon>
+		</div>
+		<div class="icon-group">
+			<rIcon type="check"></rIcon>
+			<rIcon type="uncheck"></rIcon>
+			<rIcon type="check-circled"></rIcon>
+			<rIcon type="return"></rIcon>
+		</div>
+		<div class="icon-group">
+			<rIcon type="triangle-down"></rIcon>
+			<rIcon type="info"></rIcon>
+			<rIcon type="info-neg"></rIcon>
+			<rIcon type="info-pos"></rIcon>
+		</div>
+		<div class="icon-group">
+			<rIcon type="arrow-left" color="#4080e8"></rIcon>
+			<rIcon type="arrow-right"></rIcon>
+			<rIcon type="arrow-up"></rIcon>
+			<rIcon type="arrow-down"></rIcon>
+		</div>
+		<div class="icon-group">
+			<rIcon type="clear"></rIcon>
+		</div>
+	</div>
 	<div class="title">Icon 参数说明</div>
 	<div class="content">
 		<div class="row">
@@ -38,33 +68,6 @@
 	<rIcon type="close-circled"></rIcon>
 	<rIcon type="inform"></rIcon>
 	</textarea>
-	<div class="icon-group">
-		<rIcon type="close"></rIcon>
-		<rIcon type="close-circled"></rIcon>
-		<rIcon type="inform"></rIcon>
-		<rIcon type="addrlist"></rIcon>
-	</div>
-	<div class="icon-group">
-		<rIcon type="check"></rIcon>
-		<rIcon type="uncheck"></rIcon>
-		<rIcon type="check-circled"></rIcon>
-		<rIcon type="return"></rIcon>
-	</div>
-	<div class="icon-group">
-		<rIcon type="triangle-down"></rIcon>
-		<rIcon type="info"></rIcon>
-		<rIcon type="info-neg"></rIcon>
-		<rIcon type="info-pos"></rIcon>
-	</div>
-	<div class="icon-group">
-		<rIcon type="arrow-left" color="#4080e8"></rIcon>
-		<rIcon type="arrow-right"></rIcon>
-		<rIcon type="arrow-up"></rIcon>
-		<rIcon type="arrow-down"></rIcon>
-	</div>
-	<div class="icon-group">
-		<rIcon type="clear"></rIcon>
-	</div>
 </div>
 
 </template>

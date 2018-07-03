@@ -1,5 +1,14 @@
 <template>
 <div class="wrap">
+	<div class="exp">
+		<div class="title">实例</div>
+		<div class="tip">请输入以下信息：</div>
+		<rSelect :attrs="config1" :ref="config1.name"></rSelect>
+		<rSelect :attrs="config2" :ref="config2.name"></rSelect>
+		<rSelect :attrs="config3" :ref="config3.name"></rSelect>
+		<div class="btn" @click="doSubmit">提交</div>
+	</div>	
+	
 	<div class="title">Select 参数说明</div>
 	<div class="content">
 		<div class="row">
@@ -99,14 +108,6 @@ config1: {
 	}
 }
 	</textarea>
-	<div class="exp">
-		<div class="title">实例</div>
-		<div class="tip">请输入以下信息：</div>
-		<rSelect :attrs="config1" :ref="config1.name"></rSelect>
-		<rSelect :attrs="config2" :ref="config2.name"></rSelect>
-		<rSelect :attrs="config3" :ref="config3.name"></rSelect>
-		<div class="btn" @click="doSubmit">提交</div>
-	</div>	
 </div>
 
 </template>

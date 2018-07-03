@@ -1,27 +1,20 @@
 #! /bin/bash
 #
-npm run build
+npm run pack
 
 rm -rf release
 
 mkdir release
 
-cp -r ./dist/ release/lib/
+cp -r ./dist/ release/components/
 
-cp -r ./src/components/ release/lib/
-cp -r ./src/util/ release/util/
-cp -r ./src/assets/ release/assets/
-cp -r ./src/directives/ release/directives/
+cp -r ./src/ release/
 
+cp package.json release/package.json
 
-cp release.package.json release/package.json
-
-cp release.README.md release/README.md
+cp README.md release/README.md
 
 cd release
 
 npm publish
 
-cd ..
-
-rm -rf release
