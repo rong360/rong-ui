@@ -697,7 +697,7 @@ import Decode from "../util/decode.js"
 .exp{
 	p{
 		margin-left: r(30);
-		font-size: r(13);
+		font-size: .8rem;
 		color: #999;
 		margin-left: r(15);
 	}
