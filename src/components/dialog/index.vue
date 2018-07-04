@@ -24,7 +24,7 @@
 				</svg>
 	        </div>
 	        <slot name="content">
-	        	<div class="r-content" :style="contentStyleObj" v-html="message"></div>
+	        	<div :class="['r-content',!showIcon&&!showTitle?'r-content-top':'']" :style="contentStyleObj" v-html="message"></div>
 		     </slot>
 		     <rContent :rContentData="rContentData" ref="rContent"></rContent>
 	        <div class="r-btn-group" v-if="showCancelBtn || showConfirmBtn">
@@ -153,7 +153,7 @@
 				//配置icon
 				switch(icon){
 					case "changgui"://常规
-						icon = "https://static.rong360.com/upload/png/19/b7/19b71dec99e58190b42dc5a358c1ecf7.png";
+						icon = "https://static.rong360.com/upload/png/9d/20/9d20557ddb328a4f3b47cd1d2e258a3f.png";
 						break;
 					case "shuxie"://书写
 						icon = "https://static.rong360.com/upload/png/92/d3/92d34073abe419d05590abaf410d85e6.png";

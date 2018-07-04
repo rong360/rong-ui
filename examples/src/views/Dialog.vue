@@ -8,14 +8,15 @@
 			<textarea id="b1">
 				this.$dialog({
 					propsData: {
-						message: 'sf<br>sdsf<br>sdsf<br>sdsf<br>sdsf<br>sdsf<br>sd'
+						message: '生如夏花之绚烂，死如秋叶之静美<br>泰戈尔《生如夏花》'
 					},
 					methods: {
 						onCancel(){
 							this.remove();
 						},
 						onConfirm(){
-							alert('点击了确认按钮');
+							self.$toast('这是点击确认按钮的自定义回调');
+							this.remove();
 						}
 					}
 				});
@@ -26,7 +27,7 @@
 			<div class="rg-button" @click="showDialog2">所有配置项</div>
 			<p data-id="b2" @click="doSource">查看源码</p>
 			<textarea id="b2">
-				var dialog = this.$dialog({
+				this.$dialog({
 					propsData: {
 						//标题
 						showTitle: true,
@@ -38,32 +39,29 @@
 						showIcon: true,
 						icon: 'beiju',
 						//内容(普通文本或简单html)
-						message: 'hello',
+						message: '泰戈尔',
 						contentStyleObj: {fontSize:'30px'},
 						//内容(rContent组件数据)
 						rContentData: {
-							message: "test rContentData",
-							list: [1,2,3,4,5,6,7,8,9]
+							message: "飞鸟集",
+							list: ['只有经历过地狱般的磨砺','才能练就创造天堂的力量', '只有流过血的手指','才能弹出世间的绝响']
 						},
 						//取消按钮
 						cancelBtnText: "取消",
 						showCancelBtn: true,
 						cancelBtnStyleObj: {color:'white', background:'#4080e8'},
 						//确认按钮
-						confirmBtnText: "秀一把",
+						confirmBtnText: "确认",
 						showConfirmBtn: true,
 						confirmBtnStyleObj: {color:'white', background:'#4080e8'},
 						//遮罩层
 						CliperStyleObj: {background:'rgba(14, 14, 14, 0.5)'},
 						//dialog框
-						dlgStyleObj: {background:'darkcyan', width:'15rem'},
+						dlgStyleObj: {background:'#fff', width:'15rem'},
 						//动画
 						animate: true,
 						//显示位置
 						position: {x:'center', y:'center'}
-				    },
-				    mounted: function(){
-				    	
 				    },
 				    //rContent为内容区域组件，通过rContentData接收外部数据
 				    components: {
@@ -77,12 +75,7 @@
 					      			}
 					      		}
 					      	},
-					      	template: `<div @click="clickHandle" style="height:200px;overflow-y:scroll">
-					      			{ {rContentData.message} }
-					      			<ul>
-					      				<li v-for="item in rContentData.list">{ {item} }</li>
-					      			</ul>
-					      		</div>`,
+					      	template: '<div @click="clickHandle" style="height:100px;margin-bottom: 30px;overflow-y:scroll">\{\{rContentData.message\}\}<ul><li v-for="item in rContentData.list">\{\{item\}\}</li></ul></div>',
 					      	methods: {
 					      		clickHandle: function(){
 					      			alert('click content');
@@ -99,10 +92,12 @@
 				    	},
 				    	//确认按钮
 				    	onConfirm: function(){
-				    		alert('点击了确认按钮');
+							self.$toast('这是点击确认按钮的自定义回调');
+							this.remove();
 				    	},
 				    	//右上角关闭按钮
 				    	onClose: function(){
+							self.$toast('这是点击关闭按钮的自定义回调');
 				    		this.remove();
 				    	}
 				    }
@@ -114,11 +109,12 @@
 			<div class="rg-button" @click="showDialog3">配置title</div>
 			<p data-id="b3"  @click="doSource">查看源码</p>
 			<textarea id="b3">
-				var dialog = this.$dialog({
+				this.$dialog({
 					propsData: {
 						//标题
 						showTitle: true,
-						title: '标题',
+						title: '飞鸟集',
+						message: "当你为错过太阳而哭泣的时候，你也要再错过群星了。",
 						titleStyleObj: {color:'green'},
 				    },
 				    methods: {
@@ -128,7 +124,7 @@
 				    	},
 				    	//确认按钮
 				    	onConfirm: function(){
-				    		alert('点击了确认按钮');
+							this.remove();
 				    	}
 				    }
 				});
@@ -139,12 +135,12 @@
 			<div class="rg-button" @click="showDialog4">配置右上角关闭按钮</div>
 			<p data-id="b4" @click="doSource">查看源码</p>
 			<textarea id="b4">
-				var dialog = this.$dialog({
+				this.$dialog({
 					propsData: {
 						//右上角关闭按钮
 						showCloseBtn: true,
 						//内容(普通文本或简单html)
-						message: 'hello'
+						message: '我们把世界看错，反说它欺骗了我们。'
 				    },
 				    methods: {
 				    	//取消按钮
@@ -153,7 +149,7 @@
 				    	},
 				    	//确认按钮
 				    	onConfirm: function(){
-				    		alert('点击了确认按钮');
+				    		this.remove();
 				    	},
 				    	//右上角关闭按钮
 				    	onClose: function(){
@@ -168,13 +164,13 @@
 			<div class="rg-button" @click="showDialog5">配置icon</div>
 			<p data-id="b5" @click="doSource">查看源码</p>
 			<textarea id="b5">
-				var dialog = this.$dialog({
+				this.$dialog({
 					propsData: {
 						//Icon
 						showIcon: true,
 						icon: 'beiju',
 						//内容(普通文本或简单html)
-						message: 'hello'
+						message: '世界以痛吻我，要我报之以歌。',
 				    },
 				    methods: {
 				    	//取消按钮
@@ -183,7 +179,7 @@
 				    	},
 				    	//确认按钮
 				    	onConfirm: function(){
-				    		alert('点击了确认按钮');
+				    		this.remove();
 				    	}
 				    }
 				});
@@ -194,16 +190,16 @@
 			<div class="rg-button" @click="showDialog6">配置内容</div>
 			<p data-id="b6" @click="doSource">查看源码</p>
 			<textarea id="b6">
-				var dialog = this.$dialog({
+				this.$dialog({
 					propsData: {
 						//内容(普通文本或简单html)
-						message: 'hello',
-						contentStyleObj: {fontSize:'30px'},
+						message: '飞鸟集节选',
+						contentStyleObj: {fontSize:'24px',color: "#4080e8"},
 						//内容(rContent组件数据)
 						rContentData: {
-							message: "test rContentData",
-							list: [1,2,3,4,5,6,7,8,9]
-						}
+							message: "飞鸟集",
+							list: ['只有经历过地狱般的磨砺','才能练就创造天堂的力量', '只有流过血的手指','才能弹出世间的绝响']
+						},
 				    },
 				    //rContent为内容区域组件，通过rContentData接收外部数据
 				    components: {
@@ -218,14 +214,10 @@
 					      		}
 					      	},
 					      	template: `<div @click="clickHandle" style="height:200px;overflow-y:scroll">
-					      			{ {rContentData.message} }
-					      			<ul>
-					      				<li v-for="item in rContentData.list">{ {item} }</li>
-					      			</ul>
-					      		</div>`,
+					      			\{\{rContentData.message\}\}<ul><li v-for="item in rContentData.list">\{\{item\}\}</li></ul></div>`,
 					      	methods: {
 					      		clickHandle: function(){
-					      			alert('click content');
+					      			self.$toast('泰戈尔的师要美哭了');
 					      		}
 					      	}
 				    	},
@@ -239,7 +231,8 @@
 				    	},
 				    	//确认按钮
 				    	onConfirm: function(){
-				    		alert('点击了确认按钮');
+							self.$toast('这是点击确认按钮的自定义回调');
+				    		this.remove();
 				    	}
 				    }
 				});
@@ -250,17 +243,17 @@
 			<div class="rg-button" @click="showDialog7">配置btn</div>
 			<p data-id="b7" @click="doSource">查看源码</p>
 			<textarea id="b7">
-				var dialog = this.$dialog({
+				this.$dialog({
 					propsData: {
 						//内容(普通文本或简单html)
-						message: 'hello',
-						contentStyleObj: {fontSize:'30px'},
+						message: '眼睛为她下着雨，心却为她打着伞，这就是爱情',
+						contentStyleObj:  {fontSize:'24px',color: "#4080e8"},
 						//取消按钮
 						cancelBtnText: "取消",
 						showCancelBtn: true,
 						cancelBtnStyleObj: {color:'white', background:'#4080e8'},
 						//确认按钮
-						confirmBtnText: "秀一把",
+						confirmBtnText: "已阅",
 						showConfirmBtn: true,
 						confirmBtnStyleObj: {color:'white', background:'#4080e8'}
 				    },
@@ -271,7 +264,8 @@
 				    	},
 				    	//确认按钮
 				    	onConfirm: function(){
-				    		alert('点击了确认按钮');
+							self.$toast('这是点击确认按钮的自定义回调');
+				    		this.remove();
 				    	}
 				    }
 				});
@@ -281,12 +275,12 @@
 			<div class="rg-button" @click="showDialog8">宽度+位置变化</div>
 			<p data-id="b8" @click="doSource">查看源码</p>
 			<textarea id="b8">
-				var dialog = this.$dialog({
+				this.$dialog({
 					propsData: {
 						//内容(普通文本或简单html)
-						message: 'hello',
+						message: 'Eyes are raining for her,heart is holding umbrella for her,this is love.',
 						//dialog框
-						dlgStyleObj: {background:'darkcyan', width:'150rem'},
+						dlgStyleObj: {background:'#f3cb62', width:'150rem'},
 						//显示位置
 						position: {x:'center', y:'bottom'}
 				    },
@@ -297,7 +291,7 @@
 				    	},
 				    	//确认按钮
 				    	onConfirm: function(){
-				    		alert('点击了确认按钮');
+				    		this.remove();
 				    	}
 				    }
 				});
@@ -345,6 +339,8 @@ import Decode from "../util/decode.js"
 				showDlg: false
 			}
 		},
+		mounted(){
+		},
 		methods: {
 			//常规
 			showDialog1(){
@@ -352,14 +348,15 @@ import Decode from "../util/decode.js"
 
 				this.$dialog({
 					propsData: {
-						message: 'sf<br>sdsf<br>sdsf<br>sdsf<br>sdsf<br>sdsf<br>sd'
+						message: '生如夏花之绚烂，死如秋叶之静美<br>泰戈尔《生如夏花》'
 					},
 					methods: {
 						onCancel(){
 							this.remove();
 						},
 						onConfirm(){
-							alert('点击了确认按钮');
+							self.$toast('这是点击确认按钮的自定义回调');
+							this.remove();
 						}
 					}
 				});
@@ -367,6 +364,7 @@ import Decode from "../util/decode.js"
 			},
 			//所有配置项
 			showDialog2(){
+				var self = this;
 				var dialog = this.$dialog({
 					propsData: {
 						//标题
@@ -379,32 +377,29 @@ import Decode from "../util/decode.js"
 						showIcon: true,
 						icon: 'beiju',
 						//内容(普通文本或简单html)
-						message: 'hello',
+						message: '泰戈尔',
 						contentStyleObj: {fontSize:'30px'},
 						//内容(rContent组件数据)
 						rContentData: {
-							message: "test rContentData",
-							list: [1,2,3,4,5,6,7,8,9]
+							message: "飞鸟集",
+							list: ['只有经历过地狱般的磨砺','才能练就创造天堂的力量', '只有流过血的手指','才能弹出世间的绝响']
 						},
 						//取消按钮
 						cancelBtnText: "取消",
 						showCancelBtn: true,
 						cancelBtnStyleObj: {color:'white', background:'#4080e8'},
 						//确认按钮
-						confirmBtnText: "秀一把",
+						confirmBtnText: "确认",
 						showConfirmBtn: true,
 						confirmBtnStyleObj: {color:'white', background:'#4080e8'},
 						//遮罩层
 						CliperStyleObj: {background:'rgba(14, 14, 14, 0.5)'},
 						//dialog框
-						dlgStyleObj: {background:'darkcyan', width:'15rem'},
+						dlgStyleObj: {background:'#fff', width:'15rem'},
 						//动画
 						animate: true,
 						//显示位置
 						position: {x:'center', y:'center'}
-				    },
-				    mounted: function(){
-				    	
 				    },
 				    //rContent为内容区域组件，通过rContentData接收外部数据
 				    components: {
@@ -418,8 +413,7 @@ import Decode from "../util/decode.js"
 					      			}
 					      		}
 					      	},
-					      	template: `<div @click="clickHandle" style="height:200px;overflow-y:scroll">
-					      			{{rContentData.message}}
+					      	template: `<div @click="clickHandle" style="height:100px;margin-bottom: 30px;overflow-y:scroll">{{rContentData.message}}
 					      			<ul>
 					      				<li v-for="item in rContentData.list">{{item}}</li>
 					      			</ul>
@@ -440,10 +434,12 @@ import Decode from "../util/decode.js"
 				    	},
 				    	//确认按钮
 				    	onConfirm: function(){
-				    		alert('点击了确认按钮');
+							self.$toast('这是点击确认按钮的自定义回调');
+							this.remove();
 				    	},
 				    	//右上角关闭按钮
 				    	onClose: function(){
+							self.$toast('这是点击关闭按钮的自定义回调');
 				    		this.remove();
 				    	}
 				    }
@@ -451,11 +447,13 @@ import Decode from "../util/decode.js"
 			},
 			//配置title
 			showDialog3(){
+				var self = this;
 				var dialog = this.$dialog({
 					propsData: {
 						//标题
 						showTitle: true,
-						title: '标题',
+						title: '飞鸟集',
+						message: "当你为错过太阳而哭泣的时候，你也要再错过群星了。",
 						titleStyleObj: {color:'green'},
 				    },
 				    methods: {
@@ -465,19 +463,20 @@ import Decode from "../util/decode.js"
 				    	},
 				    	//确认按钮
 				    	onConfirm: function(){
-				    		alert('点击了确认按钮');
+							this.remove();
 				    	}
 				    }
 				});
 			},
 			//配置右上角关闭按钮
 			showDialog4(){
+				var self = this;
 				var dialog = this.$dialog({
 					propsData: {
 						//右上角关闭按钮
 						showCloseBtn: true,
 						//内容(普通文本或简单html)
-						message: 'hello'
+						message: '我们把世界看错，反说它欺骗了我们。'
 				    },
 				    methods: {
 				    	//取消按钮
@@ -486,7 +485,7 @@ import Decode from "../util/decode.js"
 				    	},
 				    	//确认按钮
 				    	onConfirm: function(){
-				    		alert('点击了确认按钮');
+				    		this.remove();
 				    	},
 				    	//右上角关闭按钮
 				    	onClose: function(){
@@ -497,13 +496,15 @@ import Decode from "../util/decode.js"
 			},
 			//配置icon
 			showDialog5(){
+				var self = this;
 				var dialog = this.$dialog({
 					propsData: {
 						//Icon
 						showIcon: true,
+						showCloseBtn: true,
 						icon: 'beiju',
 						//内容(普通文本或简单html)
-						message: 'hello'
+						message: '世界以痛吻我，要我报之以歌。',
 				    },
 				    methods: {
 				    	//取消按钮
@@ -512,23 +513,27 @@ import Decode from "../util/decode.js"
 				    	},
 				    	//确认按钮
 				    	onConfirm: function(){
-				    		alert('点击了确认按钮');
-				    	}
+				    		this.remove();
+				    	},
+				    	onClose: function(){
+				    		this.remove();
+				    	},
 				    }
 				});
 			},
 			//配置内容
 			showDialog6(){
+				var self = this;
 				var dialog = this.$dialog({
 					propsData: {
 						//内容(普通文本或简单html)
-						message: 'hello',
-						contentStyleObj: {fontSize:'30px'},
+						message: '飞鸟集节选',
+						contentStyleObj: {fontSize:'24px',color: "#4080e8"},
 						//内容(rContent组件数据)
 						rContentData: {
-							message: "test rContentData",
-							list: [1,2,3,4,5,6,7,8,9]
-						}
+							message: "飞鸟集",
+							list: ['只有经历过地狱般的磨砺','才能练就创造天堂的力量', '只有流过血的手指','才能弹出世间的绝响']
+						},
 				    },
 				    //rContent为内容区域组件，通过rContentData接收外部数据
 				    components: {
@@ -550,7 +555,7 @@ import Decode from "../util/decode.js"
 					      		</div>`,
 					      	methods: {
 					      		clickHandle: function(){
-					      			alert('click content');
+					      			self.$toast('泰戈尔的师要美哭了');
 					      		}
 					      	}
 				    	},
@@ -564,24 +569,26 @@ import Decode from "../util/decode.js"
 				    	},
 				    	//确认按钮
 				    	onConfirm: function(){
-				    		alert('点击了确认按钮');
+							self.$toast('这是点击确认按钮的自定义回调');
+				    		this.remove();
 				    	}
 				    }
 				});
 			},
 			//配置btn
 			showDialog7(){
+				var self = this;
 				var dialog = this.$dialog({
 					propsData: {
 						//内容(普通文本或简单html)
-						message: 'hello',
-						contentStyleObj: {fontSize:'30px'},
+						message: '眼睛为她下着雨，心却为她打着伞，这就是爱情',
+						contentStyleObj:  {fontSize:'24px',color: "#4080e8"},
 						//取消按钮
 						cancelBtnText: "取消",
 						showCancelBtn: true,
 						cancelBtnStyleObj: {color:'white', background:'#4080e8'},
 						//确认按钮
-						confirmBtnText: "秀一把",
+						confirmBtnText: "已阅",
 						showConfirmBtn: true,
 						confirmBtnStyleObj: {color:'white', background:'#4080e8'}
 				    },
@@ -592,19 +599,21 @@ import Decode from "../util/decode.js"
 				    	},
 				    	//确认按钮
 				    	onConfirm: function(){
-				    		alert('点击了确认按钮');
+							self.$toast('这是点击确认按钮的自定义回调');
+				    		this.remove();
 				    	}
 				    }
 				});
 			},
 			//配置宽度+位置变化
 			showDialog8(){
+				var self = this;
 				var dialog = this.$dialog({
 					propsData: {
 						//内容(普通文本或简单html)
-						message: 'hello',
+						message: 'Eyes are raining for her,heart is holding umbrella for her,this is love.',
 						//dialog框
-						dlgStyleObj: {background:'darkcyan', width:'150rem'},
+						dlgStyleObj: {background:'#f3cb62', width:'150rem'},
 						//显示位置
 						position: {x:'center', y:'bottom'}
 				    },
@@ -615,7 +624,7 @@ import Decode from "../util/decode.js"
 				    	},
 				    	//确认按钮
 				    	onConfirm: function(){
-				    		alert('点击了确认按钮');
+				    		this.remove();
 				    	}
 				    }
 				});
@@ -624,22 +633,23 @@ import Decode from "../util/decode.js"
 				this.showDlg = true;	
 			},
 			onConfirm(){
-				alert('点击了确认按钮');
+				this.showDlg = false;	
 			},
 			onCancel(){
 				this.showDlg = false;	
 			},
 			doRead(){
 				this.showDlg = false;
-				alert("点击不会跳走，给你个提示~");
+				this.$toast('您已阅读');
 			},
 			doSource(e){
 				var divId = e.target.dataset.id,
-					html = e.target.dataset.html,
-					jscode = document.getElementById(divId).innerHTML;
+					html = e.target.dataset.html;
 				if(html == 1){
+					var jscode = document.getElementById(divId).innerHTML;
 					this.$el.querySelector("#code_area .code-body").innerHTML = jscode;
 				}else{
+					var jscode = document.getElementById(divId).innerText;
 					var decode_jscode = Decode(jscode);
 					this.$el.querySelector("#code_area .code-body").innerHTML = decode_jscode.code;
 					// this.$el.querySelector("#code_area .c-content").innerHTML = decode_jscode.code;
@@ -681,17 +691,18 @@ import Decode from "../util/decode.js"
 		background: #fff;
 		z-index: 777;
 		text-align: left;
-		overflow: scroll;
 		border-radius: 6px;
-		font-size: r(12);
+		font-size: r(30);
 		padding: r(30);
+		white-space: nowrap;
+	    overflow: auto;
 	}
 	.close{
 		position: absolute;
 		top: 10%;
-		right: r(50);
+		right: r(30);
 		z-index: 888;
-		padding: r(10);
+		padding: r(20);
 	}
 }
 .exp{
@@ -703,6 +714,7 @@ import Decode from "../util/decode.js"
 	}
 	textarea{
 		display: none;
+
 	}
 }
 .hasread{
