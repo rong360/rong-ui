@@ -24,7 +24,7 @@
 				</svg>
 	        </div>
 	        <slot name="content">
-	        	<div :class="['r-content',!showIcon&&!showTitle?'r-content-top':'']" :style="contentStyleObj" v-html="message"></div>
+	        	<div :class="['r-content',!showIcon&&!showTitle&&showCloseBtn?'r-content-top':'']" :style="contentStyleObj" v-html="message"></div>
 		     </slot>
 		     <rContent :rContentData="rContentData" ref="rContent"></rContent>
 	        <div class="r-btn-group" v-if="showCancelBtn || showConfirmBtn">
