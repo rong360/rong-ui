@@ -52,6 +52,61 @@ html,body{
   -webkit-box-pack: center;
   box-pack: center;
 }
+/**************
+/* 示例
+**************/
+.example{
+  margin: 0 auto;
+  .r-example{
+    p{
+      font-size: .8rem;
+      color: #999;
+      margin-left: r(15);
+    }
+    textarea{
+      display: none;
+
+    }
+  }
+}
+/*******************
+/* 查看源码
+********************/
+#code_area{
+  background: rgba(0,0,0,.78);
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  z-index: 666;
+  .code-body{
+    position: absolute;
+    width: r(640);
+    left: 50%;
+    margin-left: r(-350);
+    height: 80%;
+    top: 10%;
+    background: #fff;
+    z-index: 777;
+    text-align: left;
+    border-radius: 6px;
+    font-size: r(30);
+    padding: r(30);
+    white-space: nowrap;
+      overflow: auto;
+  }
+  .close{
+    position: absolute;
+    top: 10%;
+    right: r(30);
+    z-index: 888;
+    padding: r(20);
+  }
+}
+/*************
+/* 其他通用
+*************/
 .wrap{
     .title{
       margin: r(30);

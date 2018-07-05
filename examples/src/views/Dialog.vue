@@ -1,8 +1,8 @@
 <template>
 <div class="wrap">
-	<rTitlebar theme="a" title="弹框示例"></rTitlebar>
+	<rTitlebar theme="a" title="Dialog 弹框"></rTitlebar>
 	<div class="example">
-		<div class="exp" wrap="box ba_c bp_c">
+		<div class="r-example" wrap="box ba_c bp_c">
 			<div class="rg-button" @click="showDialog1">常规</div>
 			<p data-id="b1" @click="doSource">查看源码</p>
 			<textarea id="b1">
@@ -23,7 +23,7 @@
 			</textarea>
 		</div>
 
-		<div class="exp" wrap="box ba_c bp_c">
+		<div class="r-example" wrap="box ba_c bp_c">
 			<div class="rg-button" @click="showDialog2">所有配置项</div>
 			<p data-id="b2" @click="doSource">查看源码</p>
 			<textarea id="b2">
@@ -105,7 +105,7 @@
 			</textarea>
 		</div>
 
-		<div class="exp" wrap="box ba_c bp_c">
+		<div class="r-example" wrap="box ba_c bp_c">
 			<div class="rg-button" @click="showDialog3">配置title</div>
 			<p data-id="b3"  @click="doSource">查看源码</p>
 			<textarea id="b3">
@@ -131,7 +131,7 @@
 			</textarea>
 		</div>
 
-		<div class="exp" wrap="box ba_c bp_c">
+		<div class="r-example" wrap="box ba_c bp_c">
 			<div class="rg-button" @click="showDialog4">配置右上角关闭按钮</div>
 			<p data-id="b4" @click="doSource">查看源码</p>
 			<textarea id="b4">
@@ -160,7 +160,7 @@
 			</textarea>
 		</div>
 
-		<div class="exp" wrap="box ba_c bp_c">
+		<div class="r-example" wrap="box ba_c bp_c">
 			<div class="rg-button" @click="showDialog5">配置icon</div>
 			<p data-id="b5" @click="doSource">查看源码</p>
 			<textarea id="b5">
@@ -186,7 +186,7 @@
 			</textarea>
 		</div>
 
-		<div class="exp" wrap="box ba_c bp_c">
+		<div class="r-example" wrap="box ba_c bp_c">
 			<div class="rg-button" @click="showDialog6">配置内容</div>
 			<p data-id="b6" @click="doSource">查看源码</p>
 			<textarea id="b6">
@@ -239,7 +239,7 @@
 			</textarea>
 		</div>
 
-		<div class="exp" wrap="box ba_c bp_c">
+		<div class="r-example" wrap="box ba_c bp_c">
 			<div class="rg-button" @click="showDialog7">配置btn</div>
 			<p data-id="b7" @click="doSource">查看源码</p>
 			<textarea id="b7">
@@ -271,7 +271,7 @@
 				});
 			</textarea>
 		</div>
-		<div class="exp" wrap="box ba_c bp_c">
+		<div class="r-example" wrap="box ba_c bp_c">
 			<div class="rg-button" @click="showDialog8">宽度+位置变化</div>
 			<p data-id="b8" @click="doSource">查看源码</p>
 			<textarea id="b8">
@@ -298,7 +298,7 @@
 			</textarea>
 		</div>
 
-		<div class="exp" wrap="box ba_c bp_c">
+		<div class="r-example" wrap="box ba_c bp_c">
 			<div class="rg-button" @click="showDialog9">slot内容变化</div>
 			<p data-id="b9" @click="doSource" data-html="1">查看源码</p>
 			<textarea id="b9">
@@ -673,50 +673,7 @@ import Decode from "../util/decode.js"
 .rg-button{
 	margin: r(30) 0;
 }
-#code_area{
-	background: rgba(0,0,0,.78);
-	position: fixed;
-	top: 0;
-	bottom: 0;
-	right: 0;
-	left: 0;
-	z-index: 666;
-	.code-body{
-		position: absolute;
-		width: r(640);
-		left: 50%;
-		margin-left: r(-350);
-		height: 80%;
-		top: 10%;
-		background: #fff;
-		z-index: 777;
-		text-align: left;
-		border-radius: 6px;
-		font-size: r(30);
-		padding: r(30);
-		white-space: nowrap;
-	    overflow: auto;
-	}
-	.close{
-		position: absolute;
-		top: 10%;
-		right: r(30);
-		z-index: 888;
-		padding: r(20);
-	}
-}
-.exp{
-	p{
-		margin-left: r(30);
-		font-size: .8rem;
-		color: #999;
-		margin-left: r(15);
-	}
-	textarea{
-		display: none;
 
-	}
-}
 .hasread{
 	margin: r(30) auto;
 }

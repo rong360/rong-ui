@@ -74,7 +74,7 @@
 	.desc{
 		font-size: r(16);
 		color: #666;
-		font-weight: bold;
+		font-weight: 400;
 	}
 }
 

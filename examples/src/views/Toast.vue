@@ -1,119 +1,122 @@
 <template>
-	<div class="wrap">
-		<!-- <div class="title">实例</div> -->
-		<div class="exp">
-			<div class="btn" @click="showToast0">默认toast</div>
-			<div class="btn" @click="showToast1">消极toast 5s后消失</div>
-			<div class="btn" @click="showToast2">长字符 toast</div>
-			<div class="btn" @click="showToast3">toast回调函数 {{count}}</div>
+	<div class="wrap example">
+		<rTitlebar theme="a" title="Toast 提示"></rTitlebar>
+		<div class="r-example" wrap="box ba_c bp_c">
+			<div class="toast-btn" @click="showToast0">默认</div>
+			<p data-id="0" @click="doSource">查看源码</p>
 		</div>
-
-		<div class="title">Toast 参数说明</div>
-		<div class="content">
-			<div class="row">
-				<div class="col">参数</div>
-				<div class="col">默认值</div>
-				<div class="col">说明</div>
-			</div>
-			<div class="row">
-				<div class="col">message</div>
-				<div class="col">string</div>
-				<div class="col">toast文案</div>
-			</div>
-			<div class="row">
-				<div class="col">type</div>
-				<div class="col">string: positive</div>
-				<div class="col">toast类型，positive积极文案,negetive消极文案,long长文本</div>
-			</div>
-			<div class="row">
-				<div class="col">time</div>
-				<div class="col">Number: 2000</div>
-				<div class="col">多少ms后toast消失</div>
-			</div>
-			<div class="row">
-				<div class="col">callback</div>
-				<div class="col">function</div>
-				<div class="col">toast消失时回调函数</div>
-			</div>				
+		<div class="r-example" wrap="box ba_c bp_c">
+			<div class="toast-btn" @click="showToast1">消极文案</div>
+			<p data-id="1" @click="doSource">查看源码</p>
 		</div>
-		<div class="title">示例代码1</div>
-		<textarea class="code-content" rows='2' cols='40'>
-		this.$toast('Hello World!');
-		</textarea>
-		<div class="title">示例代码2</div>
-		<textarea class="code-content" rows='10' cols='40'>
-		this.$toast({
-			propsData: {
-				message: 'Hello World!',
-				type: 'negetive',
-				time: 5000
-			},
-			methods: {
-				callback(){
-					self.count++;
-				}
-			}
-		});
-		</textarea>
+		<div class="r-example" wrap="box ba_c bp_c">
+			<div class="toast-btn" @click="showToast2">积极文案</div>
+			<p data-id="2" @click="doSource">查看源码</p>
+		</div>
+		<div class="r-example" wrap="box ba_c bp_c">
+			<div class="toast-btn" @click="showToast3">自定义</div>
+			<p data-id="3" @click="doSource">查看源码</p>
+		</div>
+		
+		<div id="code_area" v-show="showSource">
+        <!-- <div class="code-body" wrap="box ba_c">
+			<div class="c-lines"></div>
+			<div class="c-content"></div>
+		</div> -->
+			<div class="code-body"></div>
+			<div class="close" @click="hideSource"><rIcon type="close-circled"></rIcon></div>
+		</div>
 	</div>
 </template>
 <script>
+import Decode from "../util/decode.js"
+
 	export default{
 		name: "toastExp",
 		data(){
 			return {
-				count: 0
+				showSource: false,
+				f0: 'this.$toast("纵然伤心，也不要愁眉不展，因为你不知是谁会爱上你的笑容")',
+				f1: `this.$toast({
+						propsData: {
+							message: '天空没有翅膀的痕迹，而我已飞过。',
+							type: 'negetive'
+						}
+					})`,
+				f2: `this.$toast({
+						propsData: {
+							message: '我的心是旷野的鸟，在你的眼睛里找到了它的天空。',
+							type: 'positive'
+						}
+					})`,
+				f3: `this.$toast({
+					propsData: {
+						message: '有时候爱情不是因为看到了才相信，而是因为相信才看得到。',
+						type: "positive",
+						time: 4000,
+						wrapStyleObj: {
+							bottom: "25%",
+							color: "#5cb43f",
+							background: "#000"
+						}
+					},
+					methods: {
+						callback(){
+							alert("这是toast消失的回调");
+						}
+					}
+				})`
 			}
 		},
 		methods:{
 			showToast0(){
-				var self = this;
-
-				this.$toast({
-					propsData: {
-						message: 'Hello World!'
-					}
-				});
+				this.$toast("纵然伤心，也不要愁眉不展，因为你不知是谁会爱上你的笑容");
 			},
 			showToast1(){
-				var self = this;
-
 				this.$toast({
 					propsData: {
-						message: 'Hello World Again~',
-						type: 'negetive',
-						time: 5000
-					},
-					methods: {
-						callback(){
-							self.count++;
-						}
+						message: '天空没有翅膀的痕迹，而我已飞过。',
+						type: 'negetive'
 					}
 				});
 			},
 			showToast2(){
-				var self = this;
-
 				this.$toast({
 					propsData: {
-						message: '愿你出走半生，归来仍是少年~',
-						type: 'long'
+						message: '我的心是旷野的鸟，在你的眼睛里找到了它的天空。',
+						type: 'positive'
 					}
 				});
 			},
 			showToast3(){
-				var self = this;
-
 				this.$toast({
 					propsData: {
-						message: 'hello'
+						message: '有时候爱情不是因为看到了才相信，而是因为相信才看得到。',
+						type: "positive",
+						time: 4000,
+						wrapStyleObj: {
+							bottom: "25%",
+							color: "#5cb43f",
+							background: "#000"
+						}
 					},
 					methods: {
 						callback(){
-							self.count++;
+							alert("这是toast消失的回调");
 						}
 					}
 				});
+			},
+			doSource(e){
+				var id = e.target.dataset.id;				
+				var jscode = this["f"+id];
+				var decode_jscode = Decode(jscode);
+				this.$el.querySelector("#code_area .code-body").innerHTML = decode_jscode.code;
+					
+				this.showSource = true;
+			},
+			hideSource(){
+				this.showSource = false;
 			}
 		}
 	}
@@ -124,15 +127,15 @@
 	@return $px/18.75*1rem;
 }
 
-.btn{
-	margin: r(50) auto;
-	width: r(300);
+.toast-btn{
+	margin: 1.333rem 0;
+	width: r(150);
 	height: r(45);
 	line-height: r(45);
 	text-align: center;
 	font-size: r(20);
 	background: #4080e8;
 	color: #fff;
-	border-radius: 20px;
-}	
+	border-radius: r(10);
+}
 </style>

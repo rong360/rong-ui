@@ -1,107 +1,86 @@
 <template>
-<div id="tip-wrap" class="wrap">
-	<div class="rg-button" @click="showLoading0">
-		Loading 默认样式
+<div class="wrap example">
+	<rTitlebar theme="a" title="Loading 加载中"></rTitlebar>
+	<div class="r-example" wrap="box ba_c bp_c">
+		<div class="rg-button" @click="showLoading0">默认</div>
+		<p data-id="0" @click="doSource">查看源码</p>
 	</div>
-	<div class="rg-button" @click="showLoading1">
-		Loading 添加文案
+	<div class="r-example" wrap="box ba_c bp_c">
+		<div class="rg-button" @click="showLoading1">添加文案</div>
+		<p data-id="1" @click="doSource">查看源码</p>
 	</div>
-	<div class="rg-button" @click="showLoading2">
-		Loading 倒计时
+	<div class="r-example" wrap="box ba_c bp_c">
+		<div class="rg-button" @click="showLoading2">倒计时</div>
+		<p data-id="2" @click="doSource">查看源码</p>
 	</div>
-	<div class="rg-button" @click="showLoading3">
-		Loading 更改样式
+	<div class="r-example" wrap="box ba_c bp_c">
+		<div class="rg-button" @click="showLoading3">自定义</div>
+		<p data-id="3" @click="doSource">查看源码</p>
 	</div>
-	
-	<div class="title">Loading 参数说明</div>
-	<div class="content">
-		<div class="row">
-			<div class="col">参数</div>
-			<div class="col">默认值</div>
-			<div class="col">说明</div>
-		</div>
-		<div class="row">
-			<div class="col">text</div>
-			<div class="col">string: ""</div>
-			<div class="col">加载文案提示</div>
-		</div>
-		<div class="row">
-			<div class="col">width</div>
-			<div class="col">Number: 100</div>
-			<div class="col">loading区的长度（750px设计图下）</div>
-		</div>
-		<div class="row">
-			<div class="col">cwidth</div>
-			<div class="col">Number: 30</div>
-			<div class="col">loading区圆圈的大小（750px设计图下）</div>
-		</div>
-		<div class="row">
-			<div class="col">textInside</div>
-			<div class="col">Boolean: false</div>
-			<div class="col">文案位置是否在圆圈内</div>
-		</div>
-		<div class="row">
-			<div class="col">color</div>
-			<div class="col">String: "#4080e8"</div>
-			<div class="col">loading圆圈的颜色</div>
-		</div>
-		<div class="row">
-			<div class="col">textColor</div>
-			<div class="col">String: "#fff"</div>
-			<div class="col">文案的颜色</div>
-		</div>
-		<div class="row">
-			<div class="col">textFontSize</div>
-			<div class="col">Number: 28</div>
-			<div class="col">文案的字体大小（750px设计图下）</div>
-		</div>
+	<div id="code_area" v-show="showSource">
+		<div class="code-body"></div>
+		<div class="close" @click="hideSource"><rIcon type="close-circled"></rIcon></div>
 	</div>
-	<div class="title">示例代码</div>
-	<pre class="code-content">
-//常规
-var loading = this.$loading();
-
-setTimeout(function(){
-	loading.remove();
-}, 2000)
-
-
-//倒计时效果
-var loading = this.$loading({
-	propsData: {
-		text: '10s',
-		textInside: true
-	}
-});
-
-var count = 10;
-
-var timer = setInterval(function(){
-	count--;
-	if(count == 0){
-		loading.remove();
-	}else{
-		loading.text = count + 's';
-	}
-}, 1000)
-	</pre>
 </div>
 
 </template>
 <script>
-	// import emitter from "../../src/mixins/emitter"
+import Decode from "../util/decode.js"
+
 	export default{
 		name: "loadingExample",
-		// mixins: [emitter],
 		data(){
 			return {
-				txt: ""
+				showSource: false,
+				f0: `var loading = this.$loading();
+
+				setTimeout(function(){
+					loading.remove();
+				}, 2000)`,
+				f1: `var loading = this.$loading({
+					propsData: {
+						text: '灰太狼快跑！'
+					}
+				});
+
+				setTimeout(function(){
+					loading.remove();
+				}, 2000)`,
+				f2: `var loading = this.$loading({
+					propsData: {
+						text: '3s',
+						textInside: true
+					}
+				});
+
+				var count = 3;
+
+				var timer = setInterval(function(){
+					count--;
+					if(count == 0){
+						loading.remove();
+					}else{
+						loading.text = count + 's';
+					}
+				}, 1000)`,
+				f3:`var loading = this.$loading({
+					propsData: {
+						text: 'Hello World，disappear in 2s',
+						width: 140,
+						cwidth: 40,
+						textFontSize: 32,
+						color: '#e0a711',
+						textColor: '#e0a711'
+					}
+				});
+
+				setTimeout(function(){
+					loading.remove();
+				},2000)`
 			}
 		},
 		methods: {
 			showLoading0(){
-				var self = this;
-
 				var loading = this.$loading();
 
 				setTimeout(function(){
@@ -109,8 +88,6 @@ var timer = setInterval(function(){
 				}, 2000)
 			},
 			showLoading1(){
-				var self = this;
-
 				var loading = this.$loading({
 					propsData: {
 						text: '灰太狼快跑！'
@@ -122,16 +99,14 @@ var timer = setInterval(function(){
 				}, 2000)
 			},
 			showLoading2(){
-				var self = this;
-
 				var loading = this.$loading({
 					propsData: {
-						text: '10s',
+						text: '3s',
 						textInside: true
 					}
 				});
 
-				var count = 10;
+				var count = 3;
 
 				var timer = setInterval(function(){
 					count--;
@@ -143,17 +118,32 @@ var timer = setInterval(function(){
 				}, 1000)
 			},
 			showLoading3(){
-				var self = this;
-
 				var loading = this.$loading({
 					propsData: {
-						text: 'Hello World',
+						text: 'Hello World，disappear in 2s',
+						width: 140,
+						cwidth: 40,
 						textFontSize: 32,
 						color: '#e0a711',
 						textColor: '#e0a711'
 					}
 				})
+
+				setTimeout(function(){
+					loading.remove();
+				},2000)
 				
+			},
+			doSource(e){
+				var id = e.target.dataset.id;				
+				var jscode = this["f"+id];
+				var decode_jscode = Decode(jscode);
+				this.$el.querySelector("#code_area .code-body").innerHTML = decode_jscode.code;
+					
+				this.showSource = true;
+			},
+			hideSource(){
+				this.showSource = false;
 			}
 		}
 	}
@@ -162,11 +152,7 @@ var timer = setInterval(function(){
 @function r($px){
 	@return $px/2/18.75* 1rem;
 }
-	#tip-wrap{
-		.d3{
-			margin: r(60);
-			color: #4080e8;
-			font-size: r(30);
-		}
-	}
+.rg-button{
+	margin: r(30) 0;
+}
 </style>
