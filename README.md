@@ -2103,7 +2103,7 @@ export default{
   Vue.use(rFloat);
 
 
-组件参数继承rNumber组件，参数可查看rNumber组件。限定type=float。floatFixed属性限定小数点后保留位数，默认不限制。
+组件参数继承rNumber组件，参数可查看rNumber组件。限定type=float。fixed属性限定小数点后保留位数，默认不限制。
 
 
 示例代码：
@@ -2145,7 +2145,7 @@ export default{
         disabled: false,
         readonly: false,
         unit: '',
-        floatFixed: 3,
+        fixed: 3,
         showInputIcon: true,
         inputIconType: 'info',
         verify: function(val){

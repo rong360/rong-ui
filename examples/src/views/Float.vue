@@ -19,7 +19,7 @@
 		</div>
 		<div class="title">说明</div>
 		<div class="content">
-			<div class="row">组件参数继承rNumber组件，限定type=float, <br/>floatFixed属性限定小数点后保留位数，默认不限制</div>
+			<div class="row">组件参数继承rNumber组件，限定type=float, <br/>fixed属性限定小数点后保留位数，默认不限制</div>
 		</div>
 		<div class="title">示例代码</div>
 		<textarea name="" id="ta" cols="50" rows="3" style="height:200px">
@@ -69,7 +69,7 @@
 					disabled: false,
 					readonly: false,
 					unit: '',
-					floatFixed: 3,
+					fixed: 3,
 					showInputIcon: true,
 					inputIconType: 'info',
 					verify: function(val){

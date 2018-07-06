@@ -2,15 +2,6 @@
 	@return $px/18.75 * 1rem;
 }
 .r-keyboard{
-	.r-keyboard-cliper{
-		position: fixed;
-		top: 0;
-		left: 0;
-		right: 0;
-		bottom: 0;
-		background: rgba(14, 14, 14, 0.1);
-		z-index: 888;
-	}
 	.r-keyboard-content{
 		position: fixed;
 		left: 0;
@@ -23,7 +14,7 @@
 		visibility: visible;
 		transform: translate3d(0, 0, 0);
 		transition-property: transform visibility;
-		transition-duration: .2s;
+		transition-duration: .3s;
 		border-top: 1px solid #D8D9DC;
 		background: #fff;
 		&-hidden{
@@ -35,7 +26,6 @@
 			border-bottom: 1px solid #D8D9DC;
 			.confirm{
 				display: inline-block;
-				// width: 2em;
 				padding: 0 r(15);
 				line-height: r(44);
 				height: r(44);
@@ -65,16 +55,19 @@
 				&:nth-child(3){
 					border-right: none;
 				}
-				&.active{
-					background: #bebebe;
-				}
 				&[active=true]{
-					background: #bebebe;
+					background: #F3F4F7;
 				}
 			}
 			.d{
 				background: #D1D4DB;
 				font-size: 1rem;
+				&[active=true]{
+					background: #fff;
+				}
+			}
+			&:last-child{
+				border-bottom: none;
 			}
 		}
 	}

@@ -10,7 +10,7 @@
 					@iconClick="onclickLabelIcon"
 				></rIcon>
 			</label>
-			<div class="input-wrap">
+			<div class="input-wrap" :data-keyboardid="kid">
 			    <div :class="iClsName" @click="doInput"><span>{{ currentValue ? currentValue : conf.placeholder }}</span></div>
 				<input type="text" :name="conf.name" v-model="currentValue" style="display:none;">
 		        <rIcon 
@@ -18,7 +18,7 @@
 		        	size="0.8rem" 
 					v-show="showInputIcon"
 					@iconClick="onclickInputIcon"
-		        ></rIcon>
+		        ></rIcon>		
 			</div>			
     		<slot>
 	    		<div class="r-input-unit" v-if="conf.unit">{{conf.unit}}</div>
@@ -36,8 +36,10 @@
 		},
 		data(){
 			return {
+				kid: 0, //keyboard id
+				kb: null, //键盘，document下每次只存在一个键盘
 				currentValue: this.attrs.value || "",
-				showKb: false
+				showKb: false //控制光标
 			}
 		},
 		computed:{
@@ -50,7 +52,7 @@
 						name: '',
 						value: "",
 						type: 'float',
-						floatFixed: -1,
+						fixed: -1,
 						lr: "right",
 						placeholder: "请输入",
 						maxlength: -1,
@@ -110,40 +112,66 @@
 
 				if(this.conf.readonly || this.conf.disabled) return;
 
-				var keyboard = this.$keyboard({
+				//document下每次只存在一个键盘
+				//键盘为当前组件的，不创建新的
+				if(this.kb) return; 
+				//键盘为其他组件的，触发其他组件的键盘收起
+				this.clearKeyboard();
+
+				this.showKb = true;	
+		        //初始化当前组件的键盘
+				this.initKeyboard(e);
+
+			},
+			clearKeyboard(){
+				if(document.querySelector(".r-keyboard")){
+					var triggeredEvent = document.createEvent('Events');
+		        	triggeredEvent.initEvent('touchstart', true, true); 
+		        	document.querySelector(".r-keyboard [data-code='ok']").dispatchEvent(triggeredEvent)
+		        }
+			},
+			initKeyboard(e){
+				let self = this;
+				let kid = new Date().getTime();
+				this.kid = kid;
+				this.kb = this.$keyboard({
 					propsData: {
+						kid: kid,
 						//键盘类型 float、int、idcard
-						type: this.conf.type,
+						type: self.conf.type,
 						//键盘类型为float时，小数点后面保留位数
-						floatFixed: this.conf.floatFixed,
+						fixed: self.conf.fixed,
 						//键盘默认值
-						value: this.currentValue,
+						value: self.currentValue,
 						//codeStr最大长度
-						maxlength: this.conf.maxlength,
-						//点击目标对象时的事件对象
-						e: e
+						maxlength: self.conf.maxlength
 					},
 					methods: {
 						typing(code, codeStr){
 							self.currentValue = codeStr;
 
 							if(code == 'ok'){
+								self.kb = null;
 								self.showKb = false;
 								self.$emit('onconfirm', code, codeStr, self);
 							}
 						}
 					}
 				})
-
-				this.showKb = true;		
 			},
 			onclickLabelIcon(e){
 				this.$emit("onclickLabelIcon", e, this);
 			},
 		    onclickInputIcon(e){
 		    	if(this.conf.inputIconType == 'close-circled'){
-		    		this.$el.querySelector("input").focus();
 		    		this.currentValue = "";
+		    		if(this.kb){ //有键盘-清空当前组件的数据，键盘数据清空
+		    			this.kb.currentValue = "";
+		    		} else { //无键盘-清掉其他键盘，focus当前输入框，为当前组件初始化一个键盘
+		    			this.clearKeyboard();
+		    			this.showKb = true;
+		    			this.initKeyboard();
+		    		}
 		    		this.$emit("onclear", e, this);
 		    	}else{
 		    		this.$emit("onclickInputIcon", e, this);

@@ -1,6 +1,5 @@
 <template>
-	<div :class="['r-keyboard']" >
-		<div class="r-keyboard-cliper" v-show="show"></div>
+	<div class="r-keyboard">
 		<div :class="['r-keyboard-content',show?'':'r-keyboard-content-hidden']" @touchstart="doTouch" @touchend="endTouch">
 			<div class="r-keyboard-head">
 				<div data-code="ok" class="confirm">确定</div>
@@ -42,6 +41,10 @@ import rIcon from "../rIcon/rIcon";
 			}
 		},
 		props: {
+			kid: {
+				type: Number,
+				default: new Date().getTime()
+			},
 			type: {
 				type: String,
 				default: "float"
@@ -56,17 +59,13 @@ import rIcon from "../rIcon/rIcon";
 				default: -1
 			},
 			//小数点后保留几位，"-1"表示不限制
-			floatFixed: {
+			fixed: {
 				type: Number,
 				default: -1
-			},
-			e: {
-				type: MouseEvent
 			}
 		},
 		computed: {
 			typeStr(){
-				//let str = "";
 				let obj = {};
 				switch(this.type){
 					case "float":
@@ -88,16 +87,21 @@ import rIcon from "../rIcon/rIcon";
 		mounted(){
 			var self = this;
 
-			if(!this.e) this.e = window.event;
-
 			this.show = true;
 			this.$nextTick(function(){
-					self.dealKeyboardOcclusion();
-				})
+				if(!document.querySelector("[data-keyboardid='" + this.kid + "']")){
+					console.warn("当前键盘未被绑定！")
+				}
+				self.dealKeyboardOcclusion();
+				//点击非键盘部分，收起键盘
+				document.addEventListener("touchstart",self.docTouchStart)
+			})
 
+			//键盘遮挡时，加长页面，便于滚动
 			this.keyboardSeat = document.createElement('div');
 			document.body.appendChild(this.keyboardSeat);
 
+			//页面路由变化时移除组件
 			window.addEventListener('hashchange', this.remove);
 		},
 		methods: {
@@ -109,6 +113,9 @@ import rIcon from "../rIcon/rIcon";
 				e.preventDefault();
 
 				if(code){
+					//点击样式
+					this.$el.querySelector("div[data-code='"+code+"']").setAttribute('active', true);
+
 					if(code == 'd'){
 						this.currentValue = this.currentValue.substr(0, this.currentValue.length-1);
 					}else{
@@ -125,7 +132,7 @@ import rIcon from "../rIcon/rIcon";
 								//有小数点输入了
 								if(this.currentValue.indexOf(".") > -1){
 									//超过小数点后保留位数
-									if(this.floatFixed > 0 && this.currentValue.split(".")[1].length >= this.floatFixed){
+									if(this.fixed > 0 && this.currentValue.split(".")[1].length >= this.fixed){
 										return;
 									}
 									//已经有一个点了，就不要再输"."了
@@ -145,31 +152,17 @@ import rIcon from "../rIcon/rIcon";
 							}
 							this.currentValue += code;
 						}
-					}
-
-					if(code != 'ok'){
-						if(target.nodeName.toLocaleLowerCase() == 'span'){
-							target = target.parentNode;
-						}
-
-						target.setAttribute('active', true);
-					}
+					}					
 
 					this.typing(code, this.currentValue);
 				}
 			},
 			endTouch(e){
+				//移除点击样式
 				e.preventDefault();
-				let target = e.target,
-					code = target.dataset.code;
+				let code = e.target.dataset.code;
 				if(code){
-					if(code != 'ok'){
-						if(target.nodeName.toLocaleLowerCase() == 'span'){
-							target = target.parentNode;
-						}
-
-						target.setAttribute('active', false);
-					}
+					this.$el.querySelector("div[data-code='"+code+"']").removeAttribute('active');
 				}
 			},
 			typing(code, codeStr){
@@ -181,15 +174,25 @@ import rIcon from "../rIcon/rIcon";
 					this.$el.remove();
 					this.$destroy();
 					window.removeEventListener('hashchange', this.remove);
+					document.removeEventListener("touchstart",this.docTouchStart)
 				}
 				if(this.keyboardSeat){
-					this.keyboardSeat.parentNode.removeChild(this.keyboardSeat);
+					this.keyboardSeat.parentNode && this.keyboardSeat.parentNode.removeChild(this.keyboardSeat);
 				}
+			},
+			docTouchStart(e){
+				//键盘上的touchstart事件，不执行
+				if(e.target.closest(".r-keyboard")) return;
+				//跟当前关联的输入组件，不做收起操作
+				if(e.target.closest("[data-keyboardid='" + this.kid + "']")) return;
+
+				var triggeredEvent = document.createEvent('Events');
+	        	triggeredEvent.initEvent('touchstart', true, true); 
+	        	this.$el.querySelector("[data-code='ok']").dispatchEvent(triggeredEvent)					
 			},
 			//处理键盘遮挡问题
 			dealKeyboardOcclusion(){
-				var e = this.e;
-				var target = e&&e.target;
+				var target = document.querySelector("[data-keyboardid='" + this.kid + "']");
 
 				if(target){
 					var scrollTop = document.documentElement.scrollTop || document.body.scrollTop,
