@@ -1,5 +1,5 @@
 <template>
-	<rNumber :attrs="conf" @oninput="oninput" @onclear="onclear" @onconfirm="onconfirm"></rNumber>
+	<rNumber :attrs="conf" @oninput="oninput" @onclear="onclear" @onconfirm="onconfirm" @onclickLabelIcon="onclickLabelIcon" @onclickInputIcon="onclickInputIcon"></rNumber>
 </template>
 <script>
 	import rNumber from "../rNumber/rNumber"
@@ -27,12 +27,18 @@
 			oninput(val){
 				this.$emit("oninput", val);
 			},
-			onclear(e){
-				this.$emit("onclear", e);
+			onclear(){
+				this.$emit("onclear", this);
 			},
 			onconfirm(code, codeStr){
 				this.$emit('onconfirm', code, codeStr, this);
 			},
+			onclickLabelIcon(){
+				this.$emit("onclickLabelIcon", this);
+			},
+		    onclickInputIcon(){
+		    	this.$emit("onclickInputIcon", this);
+		    },
 			verify(){
 				return this.$children[0].verify();
 			},

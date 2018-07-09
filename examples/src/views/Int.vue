@@ -1,39 +1,14 @@
 <template>
 	<div class="wrap">
 		<div class="exp">
-			<div class="title">实例</div>
+			<rTitlebar theme="a" title="Int 整数"></rTitlebar>
 			<div class="tip">请输入以下信息：</div>
 			<rInt :attrs="config" :ref="config.name" @onclear="onclear"></rInt>
 			<rInt :attrs="config0" :ref="config0.name" @onclickInputIcon="onclickInputIcon"></rInt>
 			<rInt :attrs="config1" :ref="config1.name" @onclickLabelIcon="onclickLabelIcon"></rInt>
 			<rInt :attrs="config2" @oninput="oninput"  @onconfirm="onconfirm" :ref="config2.name"></rInt>
 			<div class="btn" @click="doSubmit">提交</div>
-		</div>		
-		<div class="cb">
-			<div class="cb0">小矮人输入时，触发事件的操作返回结果：</div>
-			<div class="cb1" v-text="num"></div>
-		</div>
-		<div class="cb">
-			<div class="cb0">小矮人清空时，触发onclear事件弹出toast</div>
-			<div class="cb1" v-text="txt"></div>
-		</div>
-		<div class="title">说明</div>
-		<div class="content">
-			<div class="row">组件参数继承rNumber组件，限定type=int</div>
-		</div>
-		<div class="title">示例代码</div>
-		<textarea class="code-content" style="height: 300px">
-			<rInt 
-				:attrs="config" 
-				@oninput="oninput" 
-				@onclear="onclear" 
-				@onconfirm="onconfirm" 
-				@onclickLabelIcon="onclickLabelIcon"
-				@onclickInputIcon="onclickInputIcon"
-			>
-			</rInt>
-		</textarea>
-		
+		</div>				
 	</div>
 </template>
 <script>
@@ -45,7 +20,7 @@
 				count: 0,
 				txt: "",
 				config: {
-					title: "天上的✨有几颗(默认非空校验)",
+					title: "天上的✨有几颗(非空校验)",
 					name: 'stars',
 					value: "",
 					placeholder: "请输入",
@@ -67,7 +42,7 @@
 					needVerify: false
 				},
 				config1: {
-					title: "海里的🐟有几种(自定义校验规则)",
+					title: "海里的🐟有几种(自定义校验)",
 					name: 'fish',
 					value: "",
 					placeholder: "请输入",
@@ -90,7 +65,7 @@
 					}
 				},
 				config2: {
-					title: "白雪和几个小矮人(点键盘确认时触发校验)",
+					title: "白雪和几个小矮人(键盘收起时触发校验)",
 					name: 'sand',
 					value: "",
 					placeholder: "请输入",
@@ -115,7 +90,8 @@
 		},
 		methods:{
 			oninput(val){
-				this.num = val;console.log(val)
+				this.num = val;
+				// console.log(val)
 			},
 			onclear(){
 				this.$toast({
@@ -128,26 +104,17 @@
 				//this.$refs.sand.verify();
 				component.verify();
 			},
-			onclickInputIcon(e, component){
-				this.$toast({
-					propsData: {
-						message: component.attrs.title + ' --- 提示信息'
-					}
-				})
+			onclickInputIcon(component){
+				this.$toast(component.attrs.title + ' --- InputIcon click')
 			},
-			onclickLabelIcon(e, component){
-				this.$toast({
-					propsData: {
-						message: component.attrs.title+ ' --- 提示信息'
-					}
-				})
+			onclickLabelIcon(component){
+				this.$toast(component.attrs.title+ ' --- LabelIcon click')
 			},
 			doSubmit(){
 				let pass;
 				for(var key in this.$refs){
 					pass = this.$refs[key].verify();
 					if(!pass){
-						// this.$tip(this.$refs[key].attrs.title + "格式错误~");
 						break;
 					}
 				}
@@ -161,12 +128,12 @@
 					}
 					this.$dialog({
 						propsData: {
-							message:"验证通过！ 序列化数据为："+s.join("&")
+							showCancelBtn: false,
+							message:"验证通过！ 序列化数据为："+s.join("<br>&")
 						},
 						methods: {
 							onConfirm: function(){
 								this.remove();
-								alert("序列化数组："+JSON.stringify(sa));
 							}
 						}
 					});

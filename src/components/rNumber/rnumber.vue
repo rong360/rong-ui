@@ -160,7 +160,7 @@
 				})
 			},
 			onclickLabelIcon(e){
-				this.$emit("onclickLabelIcon", e, this);
+				this.$emit("onclickLabelIcon", this);
 			},
 		    onclickInputIcon(e){
 		    	if(this.conf.inputIconType == 'close-circled'){
@@ -172,9 +172,9 @@
 		    			this.showKb = true;
 		    			this.initKeyboard();
 		    		}
-		    		this.$emit("onclear", e, this);
+		    		this.$emit("onclear", this);
 		    	}else{
-		    		this.$emit("onclickInputIcon", e, this);
+		    		this.$emit("onclickInputIcon", this);
 		    	}
 		    },
 			/**

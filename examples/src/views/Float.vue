@@ -1,39 +1,14 @@
 <template>
 	<div class="wrap">
 		<div class="exp">
-			<div class="title">实例</div>
+			<rTitlebar theme="a" title="Float 浮点数"></rTitlebar>
 			<div class="tip">请输入以下信息：</div>
 			<rFloat :attrs="config" :ref="config.name" @onclear="onclear"></rFloat>
 			<rFloat :attrs="config0" :ref="config0.name" @onclickInputIcon="onclickInputIcon"></rFloat>
 			<rFloat :attrs="config1" :ref="config1.name" @onclickLabelIcon="onclickLabelIcon"></rFloat>
 			<rFloat :attrs="config2" @oninput="oninput"  @onconfirm="onconfirm" :ref="config2.name"></rFloat>
 			<div class="btn" @click="doSubmit">提交</div>
-		</div>		
-		<div class="cb">
-			<div class="cb0">小矮人输入时，触发事件的操作返回结果：</div>
-			<div class="cb1" v-text="num"></div>
 		</div>
-		<div class="cb">
-			<div class="cb0">小矮人清空时，触发事件的操作返回结果：</div>
-			<div class="cb1" v-text="txt"></div>
-		</div>
-		<div class="title">说明</div>
-		<div class="content">
-			<div class="row">组件参数继承rNumber组件，限定type=float, <br/>fixed属性限定小数点后保留位数，默认不限制</div>
-		</div>
-		<div class="title">示例代码</div>
-		<textarea name="" id="ta" cols="50" rows="3" style="height:200px">
-			<rFloat 
-				:attrs="config2" 
-				:ref="config2.name"
-				@oninput="oninput" 
-				@onclear="onclear" 
-				@onconfirm="onconfirm"
-				@onclickLabelIcon="onclickLabelIcon"
-				@onclickInputIcon="onclickInputIcon"
-			>
-			</rFloat>
-		</textarea>
 	</div>
 </template>
 <script>
@@ -54,8 +29,8 @@
 					unit: '',
 					showInputIcon: true,
 					verify: function(val){
-						if(!val){
-							this.$toast("天上的星星大小？答案：天知道");
+						if(!val || val==0){
+							this.$toast("天上的星星大小？答案：随意输入，不为零即可");
 							return false;
 						}
 						return true;
@@ -100,7 +75,7 @@
 							this.$toast({
 								propsData: {
 									type: "negetive",
-									message: "🐟的大小不量！"
+									message: "请输入大于100的数！"
 								}
 							})
 							return false;
@@ -142,25 +117,16 @@
 						message: '数据为空了，你可以把button置灰'
 					}
 				})
-				this.txt = "执行清空操作次数："+ (++this.count);
 			},
 			onconfirm(code, codeStr, component){
 				//this.$refs.sand.verify();
 				component.verify();
 			},
-			onclickInputIcon(e, component){
-				this.$toast({
-					propsData: {
-						message: component.attrs.title + ' --- 提示信息'
-					}
-				})
+			onclickInputIcon(component){
+				this.$toast(component.attrs.title + ' --- InputIcon click')
 			},
-			onclickLabelIcon(e, component){
-				this.$toast({
-					propsData: {
-						message: component.attrs.title+ ' --- 提示信息'
-					}
-				})
+			onclickLabelIcon(component){
+				this.$toast(component.attrs.title+ ' --- LabelIcon click')
 			},
 			doSubmit(){
 				let pass;
@@ -181,12 +147,13 @@
 					}
 					this.$dialog({
 						propsData: {
-							message:"验证通过！ 序列化数据为："+s.join("&")
+							showCancelBtn: false,
+							message:"验证通过！ 序列化数据为："+s.join("<br>&")
 						},
 						methods: {
 							onConfirm: function(){
 								this.remove();
-								alert("序列化数组："+JSON.stringify(sa));
+								// alert("序列化数组："+JSON.stringify(sa));
 							}
 						}
 					});

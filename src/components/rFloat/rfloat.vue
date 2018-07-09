@@ -29,17 +29,17 @@
 			oninput(val){
 				this.$emit("oninput", val);
 			},
-			onclear(e){
-				this.$emit("onclear", e);
+			onclear(){
+				this.$emit("onclear", this);
 			},
 			onconfirm(code, codeStr){
 				this.$emit('onconfirm', code, codeStr, this);
 			},
-			onclickLabelIcon(e){
-				this.$emit("onclickLabelIcon", e, this);
+			onclickLabelIcon(){
+				this.$emit("onclickLabelIcon", this);
 			},
-			onclickInputIcon(e){
-		    	this.$emit("onclickInputIcon", e, this);
+			onclickInputIcon(){
+		    	this.$emit("onclickInputIcon", this);
 		    },
 			verify(){
 				return this.$children[0].verify();

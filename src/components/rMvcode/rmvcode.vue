@@ -30,7 +30,7 @@
 		computed: {
 			conf(){
 				if(!this.attrs.type) this.attrs.type = 'int';
-				if(!this.attrs.counter) this.attrs.counter = 10;
+				if(!this.attrs.counter) this.attrs.counter = 60;
 				if(!this.attrs.params) this.attrs.params = {};
 				return this.attrs;
 			}
@@ -71,17 +71,17 @@
 		    oninput(val){
 				this.$emit("oninput", val);
 			},
-			onclear(e){
-				this.$emit("onclear", e);
+			onclear(){
+				this.$emit("onclear", this);
 			},
 			onconfirm(code, codeStr){
 				this.$emit('onconfirm', code, codeStr, this);
 			},
-			onclickLabelIcon(e){
-				this.$emit("onclickLabelIcon", e, this);
+			onclickLabelIcon(){
+				this.$emit("onclickLabelIcon", this);
 			},
-		    onclickInputIcon(e){
-		    	this.$emit("onclickInputIcon", e, this);
+		    onclickInputIcon(){
+		    	this.$emit("onclickInputIcon", this);
 		    },
 			verify(){
 				return this.$children[0].verify();

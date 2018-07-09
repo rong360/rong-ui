@@ -1,8 +1,8 @@
 <template>
 	<div class="wrap">
+		<rTitlebar theme="a" title="Number 数字"></rTitlebar>
 		<div class="exp">
-			<div class="title">实例</div>
-			<div class="tip">请输入以下信息：</div>
+			<div class="tip">以下输入点击提交后会进行校验：</div>
 			<rNumber :attrs="config" :ref="config.name" @onclear="onclear"></rNumber>
 			<rNumber :attrs="config0" :ref="config0.name"></rNumber>
 			<rNumber 
@@ -20,109 +20,14 @@
 			>
 			</rNumber>
 			<rNumber :attrs="config3" :ref="config3.name"></rNumber>
+			<rNumber :attrs="config6"></rNumber>
 			<div class="btn" @click="doSubmit">提交</div>
 
 			<div class="tip">以下为输入左对齐</div>
 			<rNumber :attrs="config4"></rNumber>
 			<rNumber :attrs="config5"></rNumber>
-		</div>
-		<div class="title">Number 参数说明</div>
-		<div class="content">
-			<div class="row rowtip">组件说明：这个组件可以当全局组件用，自己传type=int | float | idcard,默认校验函数是非空校验，需要其他校验可以自己传verify函数<br><span class="hl">身份证号码，手机号，浮点数，整数</span>等组件在该组件基础上扩展</div>
-			<div class="row">
-				<div class="col">参数</div>
-				<div class="col">默认值</div>
-				<div class="col">说明</div>
-			</div>
-			<div class="row">
-				<div class="col">attrs</div>
-				<div class="col">Object</div>
-				<div class="col">输入框的配置</div>
-			</div>
-			<div class="row rowsp">
-				attrs下各项配置说明：<br>
-				{
-				title: "表单名称"<span class="comment">&emsp; //表单名称 label</span><br>
-				lblWidth: ""<span class="comment">&emsp; //预留字段，label的长度，便于用户手动修改，可以设置为几个字长，eg. "4em"</span><br>
-				name: ''<span class="comment">&emsp; //input name属性</span><br>
-				value: ""<span class="comment">&emsp; //input value属性</span><br>
-				type: 'int'<span class="comment">&emsp; //键盘类型，int, float, idcard</span><br>
-				placeholder: "请输入"<span class="comment">&emsp; //input placeholder</span><br>
-				lr: "right"<span class="comment">&emsp; //input text-align</span><br>
-				maxlength: null<span class="comment">&emsp; //input maxlength</span><br>
-				disabled: false<span class="comment">&emsp; //input disabled</span><br>
-				readonly: false<span class="comment">&emsp; //input readonly</span><br>
-				unit: ''<span class="comment">&emsp; //标单输入的单位，eg. 元</span><br>
-				showInputIcon: true<span class="comment">&emsp; //是否显示表单input后的icon</span><br>
-				inputIconType: "info"<span class="comment">&emsp; //表单input后icon的类型，取值为rIcon组件的type，eg. info</span><br>
-				showLabelIcon: true<span class="comment">&emsp; //是否显示表单名称后的icon</span><br>
-				labelIconType: "info"<span class="comment">&emsp; //表单名称后icon的类型，取值为rIcon组件的type，eg. info</span><br>
-				needVerify: true<span class="comment">&emsp; //是否需要校验</span><br>
-				verify: function<span class="comment">&emsp; //自定义校验函数，需有明确的返回（true | false）</span><br>
-				};
-			</div>
-			<div class="row">
-			Number组件有个不具名slot,便于用户拓展，比如拓展成短信验证码组件
-			</div>
-			<div class="row">
-				<div class="col">@oninput</div>
-				<div class="col">function(value)</div>
-				<div class="col">输入框输入输入值有变化时的操作</div>
-			</div>
-			<div class="row">
-				<div class="col">@onconfirm</div>
-				<div class="col">function(code, codeStr, component)</div>
-				<div class="col">点键盘确认按钮</div>
-			</div>
-			<div class="row">
-				<div class="col">@onclear</div>
-				<div class="col">function(e, component)</div>
-				<div class="col">清空输入框时触发的操作（可用于清空数据时把button置灰等效果）</div>
-			</div>
-			<div class="row">
-				<div class="col">@onclickLabelIcon</div>
-				<div class="col">function(e, component)</div>
-				<div class="col">点击表单名称后的icon</div>
-			</div>
-			<div class="row">
-				<div class="col">@onclickInputIcon</div>
-				<div class="col">function(e, component)</div>
-				<div class="col">点击表单input后的icon</div>
-			</div>
-		</div>
-		<div class="title">示例代码</div>
-		<textarea class="code-content" rows='18' cols='40'>
-		<rNumber 
-			:attrs="config1" 
-			:ref="config1.name" 
-			@onconfirm="confrimFatherHand" 
-			@onclickLabelIcon="onclickLabelIcon" 
-			@onclickInputIcon="onclickInputIcon"
-		>
-		</rNumber>
-		config: {
-			title: "马云爸爸有多少钱(覆盖默认校验)",
-			name: 'fatherName',
-			value: "3000",
-			maxlength: 5,
-			placeholder: "请输入几个亿",
-			disabled: false,
-			readonly: false,
-			unit: '亿',
-			verify(val){
-				if(val < 10000){
-					this.$toast({
-						propsData: {
-							message: '你也太小看马玉爸爸了'
-						}
-					})
-					return false;
-				}else{
-					return true;
-				}
-			}
-		}
-		</textarea>
+			<rNumber :attrs="config7"></rNumber>
+		</div>		
 	</div>
 </template>
 <script>
@@ -141,11 +46,7 @@
 					unit: '亿',
 					verify(val){
 						if(val < 10000){
-							this.$toast({
-								propsData: {
-									message: '你也太小看马玉爸爸了'
-								}
-							})
+							this.$toast('马云爸爸钱数小于10000亿元')
 							return false;
 						}else{
 							return true;
@@ -193,21 +94,30 @@
 					placeholder: "请输入",
 					disabled: false,
 					readonly: true,
-					autofocus: false,
 					unit: '(readonly)个',
 					showLabelIcon: true,
 					labelIconType: 'info'
 				},
 				config3: {
-					title: "马云爸爸的身份证号(键盘类型idcard)",
+					title: "身份证号(键盘类型idcard)",
 					type: 'idcard',
 					name: 'fatherID',
 					value: "",
 					placeholder: "请输入",
 					disabled: false,
 					readonly: false,
-					autofocus: false,
 					unit: ''
+				},
+				config6: {
+					title: "爸爸家的面积",
+					type: 'float',
+					name: 'area',
+					value: "",
+					fixed: 3,
+					placeholder: "请输入别墅面积",
+					disabled: false,
+					readonly: false,
+					unit: '平方米'
 				},
 				config4: {
 					title: "每月工资收入",
@@ -217,7 +127,6 @@
 					placeholder: "请输入",
 					disabled: false,
 					readonly: false,
-					autofocus: false,
 					unit: '元',
 					lr: "left",
 					lblWidth: "6em"
@@ -230,8 +139,19 @@
 					placeholder: "请输入",
 					disabled: false,
 					readonly: true,
-					autofocus: false,
 					unit: '万元',
+					lr: "left",
+					lblWidth: "6em"
+				},
+				config7: {
+					title: "每月保险支出",
+					type: 'float',
+					name: 'funds',
+					value: "",
+					placeholder: "请输入",
+					disabled: false,
+					readonly: false,
+					unit: '元',
 					lr: "left",
 					lblWidth: "6em"
 				},
@@ -268,40 +188,28 @@
 					}
 					this.$dialog({
 						propsData: {
-							message:"验证通过！ 序列化数据为："+s.join("&")
+							showCancelBtn: false,
+							message:"验证通过！ 序列化数据为："+s.join("<br>&")
 						},
 						methods: {
-							onConfirm: function(){
+							onConfirm(){
 								this.remove();
-								alert("序列化数组："+JSON.stringify(sa));
 							}
 						}
 					});
 				}
 			},
 			onclear(){
-				this.$toast({
-					propsData: {
-						message: '数据为空了，你可以把button置灰'
-					}
-				})
+				this.$toast('数据清空后的回调函数，eg. 你可以把button置灰')
 			},
 			confrimFatherHand(){
 				this.$refs.fatherHand.verify();
 			},
 			onclickInputIcon(e, component){
-				this.$toast({
-					propsData: {
-						message: component.attrs.title + ' --- 提示信息'
-					}
-				})
+				this.$toast(component.attrs.title + ' --- 点击InputIcon的回调')
 			},
 			onclickLabelIcon(e, component){
-				this.$toast({
-					propsData: {
-						message: component.attrs.title+ ' --- 提示信息'
-					}
-				})
+				this.$toast(component.attrs.title+ ' --- 点击labelIcon的回调')
 			}
 		}
 	}

@@ -1,28 +1,12 @@
 <template>
 	<div class="wrap">
 		<div class="exp">
-			<div class="title">实例</div>
+			<rTitlebar theme="a" title="Telephone 手机号码"></rTitlebar>
 			<div class="tip">请输入以下信息：</div>
-			<rTelephone :attrs="config" :ref="config.name"></rTelephone>
+			<rTelephone :attrs="config" :ref="config.name" @onclickLabelIcon="labelClick"></rTelephone>
 			<rTelephone :attrs="config0" @oninput="oninput" @onclear="onclear" @onconfirm="onconfirm" :ref="config0.name"></rTelephone>
 			<div class="btn" @click="doSubmit">提交</div>
-		</div>		
-		<div class="cb">
-			<div class="cb0">思聪老公手机号输入时，触发事件的操作返回结果：</div>
-			<div class="cb1" v-text="phone"></div>
 		</div>
-		<div class="cb">
-			<div class="cb0">思聪老公手机号清空时，触发事件的操作返回结果：</div>
-			<div class="cb1" v-text="txt"></div>
-		</div>
-	<div class="title">说明</div>
-	<div class="content">
-		<div class="row">组件参数继承rNumber组件，限定type=int,attrs里{maxlength:11,unit:""}</div>
-	</div>
-	<div class="title">示例代码</div>
-	<textarea name="" id="ta" cols="50" rows="5">
-		<rTelephone :attrs="config0" @oninput="oninput" @onclear="onclear" @onconfirm="onconfirm" :ref="config0.name"></rTelephone>
-	</textarea>
 	</div>
 </template>
 <script>
@@ -37,6 +21,7 @@
 					title: "马云爸爸手机号码(不校验)",
 					name: 'fatherPhone',
 					value: "",
+					showLabelIcon: true,
 					placeholder: "请输入",
 					disabled: false,
 					readonly: false,
@@ -62,6 +47,9 @@
 			}, 2000)
 		},
 		methods:{
+			labelClick(){
+				this.$toast("LabelIcon Click: 需要输入11位手机号码")
+			},
 			oninput(val){
 				this.phone = val;
 			},
@@ -71,7 +59,6 @@
 						message: '数据为空了，你可以把button置灰'
 					}
 				})
-				this.txt = "执行清空操作次数："+ (++this.count);
 			},
 			onconfirm(code, codeStr, component){
 				//this.$refs.sonPhone.verify();
@@ -96,12 +83,13 @@
 					}
 					this.$dialog({
 						propsData: {
-							message:"验证通过！ 序列化数据为："+s.join("&")
+							showCancelBtn: false,
+							message:"验证通过！ 序列化数据为："+s.join("<br>&")
 						},
 						methods: {
 							onConfirm: function(){
 								this.remove();
-								alert("序列化数组："+JSON.stringify(sa));
+								// alert("序列化数组："+JSON.stringify(sa));
 							}
 						}
 					});

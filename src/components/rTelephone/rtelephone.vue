@@ -1,5 +1,5 @@
 <template>
-	<rNumber :attrs="conf" @oninput="oninput" @onclear="onclear" @onconfirm="onconfirm"></rNumber>
+	<rNumber :attrs="conf" @oninput="oninput" @onclear="onclear" @onconfirm="onconfirm" @onclickLabelIcon="onclickLabelIcon" @onclickInputIcon="onclickInputIcon"></rNumber>
 </template>
 <script>
 	import rNumber from "../rNumber/rNumber"
@@ -28,13 +28,19 @@
 			oninput(val){
 				this.$emit("oninput", val);
 			},
-			onclear(e){
-				this.$emit("onclear", e);
+			onclear(){
+				this.$emit("onclear", this);
 			},
 			onconfirm(code, codeStr){
 				this.$emit('onconfirm', code, codeStr, this);
 			},
-			verify(){
+			onclickLabelIcon(){
+				this.$emit("onclickLabelIcon", this);
+			},
+		    onclickInputIcon(){
+		    	this.$emit("onclickInputIcon", this);
+		    },
+		    verify(){
 				return this.$children[0].verify();
 			},
 			/*获取表单数据*/
@@ -49,12 +55,7 @@
 				if(/^[1][3,4,5,7,8][0-9]{9}$/.test(phone)){
 					return true;
 				}else{
-					this.$toast && this.$toast({
-		        		propsData: {
-		        			message: this.attrs.title+"格式错误！",
-		        			type: "negetive"
-		        		}
-		        	})
+					this.$toast && this.$toast(this.attrs.title+"格式错误！")
 					return false;
 				}
 			}
