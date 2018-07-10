@@ -15,7 +15,7 @@
 				</div>
 			</slot>
 		</div>
-		<slot>		
+		<slot name="c">		
 			<div>{{title}}</div>
 		</slot>
 		<div class="r-operate">
@@ -38,8 +38,6 @@
 				type: Object
 			},
 			backurl: String,
-			loperation: String,
-			roperation: String,
 			title: String
 		},
 		methods: {

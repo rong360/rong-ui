@@ -1,21 +1,37 @@
 <template>
-<div id="dl-wrap" class="wrap">
+<div class="wrap">
+	<rTitlebar theme="a" title="Tabs 标签页"></rTitlebar>
+
 	<div class="exp">
-		<div class="title">示例</div>
 		<rTabs value=0>
-		<rTab label="tab1" @onclick="clickHandle">
-			<p>content1</p>
-		</rTab>
-		<rTab label="tab2" @onclick="clickHandle">
-			<p>content2</p>
-			<p>content2</p>
-		</rTab>
-		<rTab label="tab3" @onclick="clickHandle">
-			<p>content3</p>
-			<p>content3</p>
-			<p>content3</p>
-		</rTab>
-	</rTabs>
+			<rTab label="最近三天">
+				<p>content1</p>
+			</rTab>
+			<rTab label="最近一个月">
+				<p>content2</p>
+				<p>content2</p>
+			</rTab>
+			<rTab label="更多">
+				<p>content3</p>
+				<p>content3</p>
+				<p>content3</p>
+			</rTab>
+		</rTabs>
+		<rTabs value=2>
+			<rTab label="未使用" @onclick="clickHandle">
+				<div class="un-used">
+					未使用的优惠券
+				</div>
+			</rTab>
+			<rTab label="已使用">
+				<div class="used">
+					暂时没有
+				</div>
+			</rTab>
+			<rTab label="已过期">
+				<div class="expired">已过期的优惠券</div>
+			</rTab>
+		</rTabs>
 	</div>
 	<div class="title" style="margin-top: 50px">Tabs 参数说明</div>
 	<div class="content">
@@ -73,7 +89,7 @@
 				<p>content3</p>
 				<p>content3</p>
 			</rTab>
-		</rTabs
+		</rTabs>
 	</textarea>
 
 	<div class="title">示例代码 - 通过value指定默认tab</div>
@@ -140,14 +156,12 @@
 <script>
 	export default{
 		name: "tabsExample",
-		data(){
-			return {
-			}
-			
-		},
 		methods:{
 			clickHandle(index){
-				console.log(index)
+				let self = this;
+				this.$nextTick(function(){
+					self.$el.querySelector(".un-used").style.color = "red";
+				})
 			}
 		}
 	}

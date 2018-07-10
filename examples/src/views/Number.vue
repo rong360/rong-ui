@@ -205,10 +205,10 @@
 			confrimFatherHand(){
 				this.$refs.fatherHand.verify();
 			},
-			onclickInputIcon(e, component){
+			onclickInputIcon(component){
 				this.$toast(component.attrs.title + ' --- 点击InputIcon的回调')
 			},
-			onclickLabelIcon(e, component){
+			onclickLabelIcon(component){
 				this.$toast(component.attrs.title+ ' --- 点击labelIcon的回调')
 			}
 		}

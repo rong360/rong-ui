@@ -114,9 +114,6 @@
 			onChange(e){
 				this.$emit("onchange",e, this);
 			},
-			onIconClick(){
-				this.$eimit("oniconclick", this);
-			},
 			onclickLabelIcon(e){
 				this.$emit("onclickLabelIcon", e, this);
 			},
