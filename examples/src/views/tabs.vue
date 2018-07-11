@@ -1,13 +1,46 @@
 <template>
 <div class="wrap">
 	<rTitlebar theme="a" title="Tabs 标签页"></rTitlebar>
-
-	<div class="exp">
-		<rTabs value=0>
-			<rTab label="最近三天">
-				<p>content1</p>
+	<div class="tip">默认样式标签页,type=nail</div>
+	<div class="exp exp1">
+		<rTabs value=2 @onclick="doClick">
+			<rTab label="极速贷" >
+				<div class="tab-txt">
+					<ul>
+						<li>拍拍贷</li>
+						<li>积木盒子</li>
+						<li>链链金融</li>
+					</ul>
+				</div>
 			</rTab>
-			<rTab label="最近一个月">
+			<rTab label="银行贷" index=2>
+				<div class="tab-txt" v-html="htmlString"></div>
+			</rTab>
+		</rTabs>
+		<rTabs>
+			<rTab label="未使用">
+				<div class="tab-txt">
+					未使用的优惠券
+				</div>
+			</rTab>
+			<rTab label="已使用">
+				<div class="tab-txt">
+					暂时没有
+				</div>
+			</rTab>
+			<rTab label="已过期">
+				<div class="tab-txt">已过期的优惠券</div>
+			</rTab>
+		</rTabs>
+	</div>
+
+	<div class="tip">type=line</div>
+	<div class="exp exp0">
+		<rTabs value=2 type="line">
+			<rTab label="最近三天" >
+				<p>ajax 获取数据</p>
+			</rTab>
+			<rTab label="最近一个月" index=2>
 				<p>content2</p>
 				<p>content2</p>
 			</rTab>
@@ -17,151 +50,75 @@
 				<p>content3</p>
 			</rTab>
 		</rTabs>
-		<rTabs value=2>
-			<rTab label="未使用" @onclick="clickHandle">
-				<div class="un-used">
-					未使用的优惠券
-				</div>
+		<rTabs value=0 type="line">
+			<rTab label="充值记录">
+				<div class="tab-txt">没有充值记录</div>
 			</rTab>
-			<rTab label="已使用">
-				<div class="used">
-					暂时没有
+			<rTab label="提现记录">
+				<div class="tab-txt">
+					没有提现记录
 				</div>
-			</rTab>
-			<rTab label="已过期">
-				<div class="expired">已过期的优惠券</div>
 			</rTab>
 		</rTabs>
 	</div>
-	<div class="title" style="margin-top: 50px">Tabs 参数说明</div>
-	<div class="content">
-		<div class="row">
-			<div class="col">参数</div>
-			<div class="col">默认值</div>
-			<div class="col">说明</div>
-		</div>
-		<div class="row">
-			<div class="col">value</div>
-			<div class="col">string: "0"</div>
-			<div class="col">默认选中项，已"0"开始。也可给每个rTab设置不同的index,然后value与之匹配即可</div>
-		</div>
-		<div class="row">
-			<div class="col">label</div>
-			<div class="col">String</div>
-			<div class="col">标签tab文字。标签也可以通过slot形式添加:&lsaquo;span slot="label"&rsaquo;tab2&lsaquo;/sapn&rsaquo;</div>
-		</div>
-		<div class="row">
-			<div class="col">@onclick</div>
-			<div class="col">function</div>
-			<div class="col">事件：点击tab。返回参数是index</div>
-		</div>
-		<div class="row">
-			默认tabs是不带样式的，可在外部自定义。选中状态的样式是"active"。如：
-			<textarea style="min-height: 10rem;margin: 0;padding: 0; width: 90%;">
-.rTabs-header{ 
-	-webkit-box-pack: justify;
-	box-pack: justify;
-	background: -webkit-linear-gradient(to top, #fcccc4 1px, rgba(24, 24, 24, 0) 1px);
-	background: linear-gradient(to top, #fcccc4 1px, rgba(24, 24, 24, 0) 1px);
-	li{
-		padding: 10px 15px;
-		&.active{
-			border-bottom: 2px solid red;
-		}
-	}
-}
-			</textarea>
-		}
-		</div>	
-	</div>
-	<div class="title" style="margin-top: 100px">示例代码 - 常规</div>
-	<textarea class="code-content" style="min-height: 10rem;margin: 0;padding: 0; width: 90%;">
-		<rTabs>
-			<rTab label="tab1">
-				<p>content1</p>
+
+	<div class="tip">type=card</div>
+	<div class="exp exp0">
+		<rTabs value=2 type="card">
+			<rTab label="最近三天" >
+				<p>ajax 获取数据</p>
 			</rTab>
-			<rTab label="tab2">
+			<rTab label="最近一个月" index=2>
 				<p>content2</p>
 				<p>content2</p>
 			</rTab>
-			<rTab label="tab3">
+			<rTab label="更多">
 				<p>content3</p>
 				<p>content3</p>
 				<p>content3</p>
 			</rTab>
 		</rTabs>
-	</textarea>
-
-	<div class="title">示例代码 - 通过value指定默认tab</div>
-	<textarea class="code-content" style="min-height: 10rem;margin: 0;padding: 0; width: 90%;">
-		<rTabs value="1">
-			<rTab label="tab1">
-				<p>content1</p>
-			</rTab>
-			<rTab label="tab2">
-				<p>content2</p>
-				<p>content2</p>
-			</rTab>
-			<rTab label="tab3">
-				<p>content3</p>
-				<p>content3</p>
-				<p>content3</p>
-			</rTab>
-		</rTabs
-	</textarea>
-
-	<div class="title">示例代码 - 标签tab通过slot形式插入</div>
-	<textarea class="code-content" style="min-height: 10rem;margin: 0;padding: 0; width: 90%;">
-		<rTabs>
-			<rTab label="tab1">
-				<p>content1</p>
-			</rTab>
-			<rTab>
-				<span slot="label" style="padding-left: 10px; padding-right: 10px">tab2</span>
-				<p>content2</p>
-				<p>content2</p>
-			</rTab>
-			<rTab label="tab3">
-				<p>content3</p>
-				<p>content3</p>
-				<p>content3</p>
-			</rTab>
-		</rTabs
-	</textarea>
-
-	<div class="title">示例代码 - 给标签tab绑定事件</div>
-	<textarea class="code-content" style="min-height: 10rem;margin: 0;padding: 0; width: 90%;">
-		<rTabs>
-			<rTab label="tab1"  @onclick="clickHandle">
-				<p>content1</p>
-			</rTab>
-			<rTab label="tab2"  @onclick="clickHandle">
-				<p>content2</p>
-				<p>content2</p>
-			</rTab>
-			<rTab label="tab3"  @onclick="clickHandle">
-				<p>content3</p>
-				<p>content3</p>
-				<p>content3</p>
-			</rTab>
-		</rTabs
-	</textarea>
-
-
 	</div>
 
+	<div class="tip">个性化标签名</div>
+	<rTabs value=0 type="line">
+			<rTab :label="label">
+				<div class="tab-txt">没有充值记录</div>
+			</rTab>
+			<rTab label="提现记录">
+				<div class="tab-txt">
+					没有提现记录
+				</div>
+			</rTab>
+		</rTabs>
 </div>
 
 </template>
 <script>
 	export default{
 		name: "tabsExample",
+		data(){
+			return {
+				label: `充值记录<span class="bubble">0</span>`,
+
+				htmlString: `<ul>
+						<li>中国银行</li>
+						<li>南京银行</li>
+						<li>建设银行</li>
+					</ul>`
+			}
+		},
 		methods:{
-			clickHandle(index){
+			doClick(idx){
+				
 				let self = this;
-				this.$nextTick(function(){
-					self.$el.querySelector(".un-used").style.color = "red";
-				})
+				setTimeout(function(){
+					var t = new Date().getTime();
+					self.htmlString = `<ul>
+						<li>中国银行-${t}</li>
+						
+					</ul>`;
+				},500)
 			}
 		}
 	}
@@ -170,18 +127,26 @@
 @function r($px){
 	@return $px/2/18.75* 1rem;
 }
-	.rTabs-header{
-		-webkit-box-pack: justify;
-		box-pack: justify;
-		background: -webkit-linear-gradient(to top, #fcccc4 1px, rgba(24, 24, 24, 0) 1px);
-		background: linear-gradient(to top, #fcccc4 1px, rgba(24, 24, 24, 0) 1px);
-		li{
-			padding: 10px 15px;
-			&.active{
-				border-bottom: 2px solid red;
-			}
-		}
-	}
+.exp{
+	margin: r(50) r(30); 
+}
+.r-tab-content{
+	min-height: 100px;
+}
+.tab-txt{
+	font-size: r(15);
+	padding: r(20) r(15);
+}
+.bubble{
+	display: inline-block;
+	width: r(30);
+	height: r(30);
+	color: #fff;
+	margin-left: r(5);
+	text-align: center;
+	background: red;
+	border-radius: 50%;
+}
 </style>
 
 
