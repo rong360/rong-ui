@@ -1,7 +1,7 @@
 <template>
 <div class="wrap">
 	<div class="exp">
-		<div class="title">实例</div>
+		<rTitlebar theme="a" title="Vcode 图片验证码"></rTitlebar>		
 		<div class="tip">请输入以下信息：</div>
 		<rVcode 
 			:attrs="config" 
@@ -16,30 +16,11 @@
 			:ref="config.name" 
 		></rVcode>
 		<rVcode :attrs="config0" @oninput="oninput" @onclear="onclear" :ref="config0.name"></rVcode>
-		<rVcode :attrs="config1" @onclickLabelIcon="onclickLabelIcon"  :ref="config1.name"></rVcode>
-		<rVcode :attrs="config2" @onclickInputIcon="onclickInputIcon" :ref="config2.name"></rVcode>
+		<rVcode :attrs="config1"  :ref="config1.name"></rVcode>
+		<rVcode :attrs="config2" :ref="config2.name"></rVcode>
+		<rVcode :attrs="config3" :ref="config3.name"></rVcode>
 		<div class="btn" @click="doSubmit">提交</div>
 	</div>
-	<div class="title">说明</div>
-	<div class="content">
-		<div class="row">组件参数继承rInput组件，attrs新增属性{src: ""//图片地址}</div>
-		<div class="row"></div>
-	</div>
-	<div class="title">示例代码</div>
-	<textarea name="" id="ta" cols="50" rows="13">
-		<rVcode 
-			:attrs="config" 
-			@oninput="oninput" 
-			@onclear="onclear" 
-			@onfocus="onfocus"
-			@onblur="onblur" 
-			@onenter="onenter"
-			@onchange="onchange"
-			@onclickLabelIcon="onclickLabelIcon"
-			@onclickInputIcon="onclickInputIcon"
-			:ref="config.name" 
-		></rVcode>
-	</textarea>
 </div>
 </template>
 <script>
@@ -112,7 +93,20 @@
 					disabled: false,
 					readonly: false,
 					autofocus: false,
-					inputIconType: 'info',
+					unit: '',
+					src: "https://m.rong360.com/mapi/loan/vcodecreate?rongid=0cj50abn4mtc5jv86ouou0s3s7&type=contact_banker"
+				},
+				config3: {
+					lblWidth: "7em",
+					title: "码码左对齐",
+					name: 'vcode5',
+					maxlength: 4,
+					value: "",
+					lr: "left",
+					placeholder: "请输入图片验证码2",
+					disabled: false,
+					readonly: false,
+					autofocus: false,
 					unit: '',
 					src: "https://m.rong360.com/mapi/loan/vcodecreate?rongid=0cj50abn4mtc5jv86ouou0s3s7&type=contact_banker"
 				}
@@ -141,14 +135,14 @@
 			onchange(e, component){
 				console.log("内容发生了变化");
 			},
-			onclickInputIcon(e, component){
+			onclickInputIcon(component){
 				this.$toast({
 					propsData: {
 						message: component.attrs.title + ' --- 提示信息'
 					}
 				})
 			},
-			onclickLabelIcon(e, component){
+			onclickLabelIcon( component){
 				this.$toast({
 					propsData: {
 						message: component.attrs.title+ ' --- 提示信息'
@@ -174,12 +168,13 @@
 					}
 					this.$dialog({
 						propsData: {
-							message:"验证通过！ 序列化数据为："+s.join("&")
+							showCancelBtn: false,
+							message:"验证通过！ 序列化数据为："+s.join("<br>&")
 						},
 						methods: {
 							onConfirm: function(){
 								this.remove();
-								alert("序列化数组："+JSON.stringify(sa));
+								// alert("序列化数组："+JSON.stringify(sa));
 							}
 						}
 					});

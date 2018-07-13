@@ -2,7 +2,7 @@
 <div class="wrap">
 	<rTitlebar theme="a" title="Tabs 标签页"></rTitlebar>
 	<div class="tip">默认样式标签页,type=nail</div>
-	<div class="exp exp1">
+	<div class="exp exp0">
 		<rTabs value=2 @onclick="doClick">
 			<rTab label="极速贷" >
 				<div class="tab-txt">
@@ -127,7 +127,7 @@
 @function r($px){
 	@return $px/2/18.75* 1rem;
 }
-.exp{
+.exp0{
 	margin: r(50) r(30); 
 }
 .r-tab-content{

@@ -49,13 +49,13 @@
 				this.$emit("onchange", e, this);
 			},
 			onclear(e){
-				this.$emit("onclear", e, this);
+				this.$emit("onclear", this);
 			},
-			onclickLabelIcon(e, component){
-				this.$emit("onclickLabelIcon", e, this);
+			onclickLabelIcon(component){
+				this.$emit("onclickLabelIcon", this);
 			},
-			onclickInputIcon(e, component){
-		    	this.$emit("onclickInputIcon", e, this);
+			onclickInputIcon(component){
+		    	this.$emit("onclickInputIcon", this);
 		    },
 			verify(){
 				return this.$children[0].verify();

@@ -115,15 +115,15 @@
 				this.$emit("onchange",e, this);
 			},
 			onclickLabelIcon(e){
-				this.$emit("onclickLabelIcon", e, this);
+				this.$emit("onclickLabelIcon", this);
 			},
 		    onclickInputIcon(e){
 		    	if(this.conf.inputIconType == 'close-circled'){
 		    		this.$el.querySelector("input").focus();
 		    		this.currentValue = "";
-		    		this.$emit("onclear", e, this);
+		    		this.$emit("onclear", this);
 		    	}else{
-		    		this.$emit("onclickInputIcon", e, this);
+		    		this.$emit("onclickInputIcon", this);
 		    	}
 		    },
 			verify(){
