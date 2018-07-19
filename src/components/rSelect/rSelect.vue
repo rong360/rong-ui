@@ -4,7 +4,7 @@
 			<label class="r-select-label" :style="lblStyle">
 				<span>{{conf.title}}</span>
 			</label>
-			<div class="r-select-input" :style="iptStyle" @click="showPicker">{{text?text:conf.placeholder}}</div>
+			<div :class="inputClsName" @click="showPicker">{{text?text:conf.placeholder}}</div>
 			<rIcon type="arrow-right" @iconClick="showPicker"></rIcon>
 		</div>			
 		<div class="r-select-children" v-if="children && children.length">
@@ -45,14 +45,28 @@ import rIcon from "../rIcon/rIcon"
 						verify: function(){ return true }
 					};
 				Object.assign(defaultConfig,this.attrs);
-				//设置默认选择项
-				for(var i = 0; i < defaultConfig.data.length; i++){
-					var option = defaultConfig.data[i];
-					if(option.value == defaultConfig.value){
-						this.selectedIndex = i;
-						break;
+
+				if(!defaultConfig.name) console.warn("select组件name未赋值！");
+
+				if(parseInt(defaultConfig.value)===0 || defaultConfig.value ){
+				//有默认值时，修改text，对应value下有子组件时，子组件需挂上
+					let option = defaultConfig.data,
+						idx = -1,
+						selectedOption = option.filter(function(item,index){
+							if(item.value==defaultConfig.value){
+								idx = index;
+							}
+							return item.value == defaultConfig.value;
+						});
+
+					if(selectedOption.length){
+						this.selectedIndex = idx;
 					}
+
+				}else{
+					this.selectedIndex = -1;
 				}
+
 				return defaultConfig;
 			},
 			text(){
@@ -61,16 +75,30 @@ import rIcon from "../rIcon/rIcon"
 			children(){
 				return this.selectedIndex > -1 ? this.conf.data[this.selectedIndex].children : [];
 			},
-			iptStyle(){
-				return {
-					"text-align": this.conf.lr,
-					"color": (this.text=="" || this.conf.readonly) ? "#C8C7CC": "#333"
-				}
+			inputClsName(){
+				let cls = "r-select-input ";
+				cls += (this.conf.lr=="right" ? " ta-right" : " ta-left");
+				cls += ((this.conf.readonly || this.conf.disabled || this.text=="") ? " c-grey" : "");
+				return cls;
 			},
 			lblStyle(){
 				return {
 					width: this.conf.lblWidth
 				}
+			}
+		},
+		watch: {
+			attrs: {
+				handler(){
+					let self = this;
+
+					if(self.picker){ //picker存在，清原来的picker,创建新的
+						var pickerEl = self.picker.panelEl.parentNode;
+						pickerEl.parentNode.removeChild(pickerEl);
+						self.picker = null;
+					}
+				},
+				deep: true
 			}
 		},
 		mounted(){

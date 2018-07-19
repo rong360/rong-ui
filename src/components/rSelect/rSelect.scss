@@ -35,6 +35,15 @@
 		.r-select-input{
 			-webkit-box-flex: 1;
 			margin-right: r(7);
+			&.ta-left{
+				text-align: left;
+			}
+			&.ta-right{
+				text-align: right;
+			}
+			&.c-grey{
+				color: #c8c7cc;
+			}
 		}
 		.r-iconfont-arrow-right{
 			display: block;

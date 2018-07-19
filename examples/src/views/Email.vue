@@ -1,7 +1,7 @@
 <template>
 	<div class="wrap">
+		<rTitlebar theme="a" title="Email 邮箱"></rTitlebar>
 		<div class="exp">
-			<!-- <div class="title">示例</div> -->
 			<div class="tip">请输入以下信息：</div>
 			<rEmail :attrs="configs" :ref="configs.name" @onchange="onchange"></rEmail>
 			<rEmail 
@@ -9,7 +9,7 @@
 				@oninput="oninput" 
 				@onclear="onclear" 
 				@onfocus="onfocus"
-				@onblur="onblur" 
+				@onset="onset" 
 				@onenter="onenter"
 				@onchange="onchange"
 				@onclickLabelIcon="onclickLabelIcon"
@@ -18,54 +18,6 @@
 			></rEmail>
 			<div class="btn" @click="doSubmit">提交</div>
 		</div>
-
-		<div class="title">Email 说明</div>
-		<div class="content">
-			<div class="row">
-				<div class="col">参数</div>
-				<div class="col">默认值</div>
-				<div class="col">说明</div>
-			</div>
-			<div class="row">组件参数继承rInput组件，attrs新增邮箱列表属性{emailList:[]}</div>
-			<div class="row">已知bug: 滑动穿透，邮箱列表滑动时会会滚动body,解决方案都不太完美。目前只有抓取用，目测不会出这个bug,搁置</div>
-		</div>
-
-		<div class="title">代码示例</div>
-		<textarea rows="30">
-			<rEmail 
-				:attrs="configs1" 
-				@oninput="oninput" 
-				@onclear="onclear" 
-				@onfocus="onfocus"
-				@onblur="onblur" 
-				@onenter="onenter"
-				@onchange="onchange"
-				@onclickLabelIcon="onclickLabelIcon"
-				@onclickInputIcon="onclickInputIcon"
-				:ref="configs1.name"
-			></rEmail>
-
-			configs1: {
-				title: "二哈的邮箱地址",
-				lr: "right",
-				placeholder: "请输入您狗狗的邮箱地址",
-				name: "dog-email",
-				showLabelIcon: true,
-				emailList:[
-					"qq.com",
-					"sina.com",
-					"sohu.com",
-					"163.com",
-					"foxmail.com",
-					"gmail.com",
-					"rong360.com",
-					"edu.cn",
-					"outlook.com",
-					"vip.qq.com",
-					"126.com"
-				]
-			}
-		</textarea>
 					
 	</div>
 </template>
@@ -133,7 +85,7 @@
 			onfocus(e, component){
 				console.log("获得焦点");
 			},
-			onblur(e, component){
+			onset( component){
 				component.verify();
 			},
 			onenter(e, component){
@@ -175,12 +127,13 @@
 					}
 					this.$dialog({
 						propsData: {
-							message:"验证通过！ 序列化数据为："+s.join("&")
+							showCancelBtn: false,
+							message:"验证通过！ 序列化数据为："+s.join("<br>&")
 						},
 						methods: {
 							onConfirm: function(){
 								this.remove();
-								alert("序列化数组："+JSON.stringify(sa));
+								// alert("序列化数组："+JSON.stringify(sa));
 							}
 						}
 					});

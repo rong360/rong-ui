@@ -6,7 +6,6 @@
 			@onclear="onclear"
 			@onenter="onenter"
 			@onfocus="onfocus"
-			@onblur="onblur"
 			@onchange="onchange"
 			@onclickLabelIcon="onclickLabelIcon"
 			@onclickInputIcon="onclickInputIcon"
@@ -84,6 +83,9 @@ import rInput from "../rInput/rInput"
 			setEmail(e){
 				this.showPad = false; 
 				this.$children[0].currentValue = e.target.innerText;
+
+				//点击邮箱列表面板后触发blur事件
+				this.$emit("onset", this);
 			},
 		
 			onenter(e, component){
