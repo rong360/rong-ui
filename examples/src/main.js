@@ -14,7 +14,6 @@ require("./util/rem.js");
 //   Loading, 
 //   rProgress, 
 //   rButton, 
-//   rRadio, 
 //   rIcon, 
 //   rInput, 
 //   rInt, 
@@ -33,7 +32,6 @@ import Dialog from "@/components/dialog"
 import Toast from "@/components/toast"
 import Loading from "@/components/loading"
 import rButton from "@/components/rButton"
-//import rRadio from "@/components/rRadio"
 import rIcon from "@/components/rIcon"
 import rTitlebar from "@/components/rTitlebar"
 import rInput from "@/components/rInput"
@@ -57,7 +55,6 @@ const components = [
   Toast,
 	Loading,
   rButton,
-  //rRadio,
   rIcon,
   rTitlebar,
   rInput,

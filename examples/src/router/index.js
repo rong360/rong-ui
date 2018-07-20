@@ -4,11 +4,10 @@ import Router from 'vue-router'
 import Index from "../views/index"
 import DialogExp from "../views/Dialog"
 import ToastExp from "../views/Toast"
-import TipExp from '../views/Tip'
+// import TipExp from '../views/Tip'
 import LoadingExp from "../views/Loading"
-import ProgressExp from "../views/Progress"
+// import ProgressExp from "../views/Progress"
 import ButtonExp from "../views/Button"
-import rRadioExp from "../views/Radio"
 import rIconExp from "../views/Icon"
 import rTitlebarExp from "../views/Titlebar"
 import rInputExp from "../views/Input"
@@ -17,7 +16,6 @@ import rNumberExp from "../views/Number"
 import KeyboardExp from "../views/Keyboard"
 import rTelephoneExp from "../views/Telephone"
 import rIDCardExp from "../views/IDCard"
-import RadioExp from "../views/Radio"
 import rIntExp from "../views/Int"
 import rFloatExp from "../views/Float"
 import rMvcodeExp from "../views/Mvcode"
@@ -47,30 +45,25 @@ export default new Router({
       name: 'toast',
       component: ToastExp
     },
-    {
-      path: '/tip',
-      name: 'tip',
-      component: TipExp
-    },
+    // {
+    //   path: '/tip',
+    //   name: 'tip',
+    //   component: TipExp
+    // },
     {
       path: '/loading',
       name: 'loading',
       component: LoadingExp
     },
-    {
-      path: '/progress',
-      name: 'progress',
-      component: ProgressExp
-    },
+    // {
+    //   path: '/progress',
+    //   name: 'progress',
+    //   component: ProgressExp
+    // },
     {
       path: '/button',
       name: 'button',
       component: ButtonExp
-    },
-    {
-      path: '/radio',
-      name: 'radio',
-      component: rRadioExp
     },
     {
       path: '/icon',
