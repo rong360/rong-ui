@@ -15,7 +15,7 @@
 	</div>
 </template>
 <script>
-import Picker from 'better-picker'
+import Picker from '../../util/picker.js'
 import rIcon from "../rIcon/rIcon"
 	export default{
 		name: "rSelect",
