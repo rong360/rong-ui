@@ -5,7 +5,7 @@
 </template>
 <script>
 import { ajax } from '../../util/ajax';
-import Picker from '../../util/picker';
+import Picker from 'better-picker'
 export default {
   name: 'rRegion',
   data: function() {

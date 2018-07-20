@@ -4,7 +4,7 @@
 	</div>
 </template>
 <script>
-import Picker from '../../util/picker.js';
+import Picker from 'better-picker'
 	export default{
 		name: "rDatepicker",
 		props:{

@@ -17,7 +17,11 @@
 
 ### 安装
 
+```bash
+
 npm install rong-ui --save-dev
+
+```
 
 ### 引入
 
