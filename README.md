@@ -71,7 +71,7 @@ Dialog提示框、Toast弹框、Loading加载中、Keyboard虚拟数字键盘 �
 
 | 组件      | 文档地址    | 
 |---------- |-------- 
-| Dialog 弹框 | [点击查看](https://github.com/rong360/rong360.github.io/blob/master/rong-ui/doc/button.md)|
+| Dialog 弹框 | [点击查看](https://github.com/rong360/rong360.github.io/blob/master/rong-ui/doc/dialog.md)|
 | Toast 提示 | [点击查看](https://github.com/rong360/rong360.github.io/blob/master/rong-ui/doc/toast.md)|
 | Loading 加载中 | [点击查看](https://github.com/rong360/rong360.github.io/blob/master/rong-ui/doc/loading.md)|
 |Keyborad 数字虚拟键盘| [点击查看](https://github.com/rong360/rong360.github.io/blob/master/rong-ui/doc/keyboard.md)|
