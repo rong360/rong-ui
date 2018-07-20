@@ -37,18 +37,17 @@ Vue.use(Dialog);
 #### 引入多个组件
 
 ```js
-
+import "rong-ui/lib/rong-ui.css"
 import {Dialog, Toast} from "rong-ui"
 let components = [Dialog, Toast];
 components.map(cp => Vue.use(cp));
-
+```
 or
-
+```js
 import Dialog from "rong-ui/components/dialog"
 import Toast from "rong-ui/components/toast"
 let components = [Dialog, Toast];
 components.map(cp => Vue.use(cp));
-
 ```
 
 ### 使用
