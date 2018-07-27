@@ -69,7 +69,7 @@
 						top: 50%;
 						margin-top: -.5rem;
 						content: " ";
-						width: 2px;
+						width: 1px;
 						height: 1rem;
 						background: #4080e8;
 						animation: shinning .65s infinite;
@@ -101,12 +101,16 @@
 		}
 	}
 	@keyframes shinning{
-		0%{opacity: 1};
-		100%{opacity: 0};
+		0%{opacity: 1}; 
+	    50%{opacity: 1};
+	    51%{opacity: 0};
+	    100%{opacity: 0};
 	}
 	@-webkit-keyframes shinning{
-		0%{opacity: 1};
-		100%{opacity: 0};
+		0%{opacity: 1}; 
+	    50%{opacity: 1};
+	    51%{opacity: 0};
+	    100%{opacity: 0};
 	}
     
 }
