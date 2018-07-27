@@ -29,10 +29,16 @@
 		},
 		computed: {
 			conf(){
-				if(!this.attrs.type) this.attrs.type = 'int';
-				if(!this.attrs.counter) this.attrs.counter = 60;
-				if(!this.attrs.params) this.attrs.params = {};
-				return this.attrs;
+				let defaultConfig = {
+					type: 'int',
+					counter: 10,
+					params: {}
+				}
+				Object.assign(defaultConfig, this.attrs)
+				this.disabled = this.attrs.disabled || this.attrs.readonly || false
+				defaultConfig.disabled = false //只禁用按钮，不禁用输入框
+				defaultConfig.readonly = false
+				return defaultConfig
 			}
 		},
 		methods:{
