@@ -13,6 +13,7 @@
 			<div class="input-wrap" :data-keyboardid="kid">
 			    <div :class="iClsName" @click="doInput"><span>{{ currentValue ? currentValue : conf.placeholder }}</span></div>
 				<input type="text" :name="conf.name" v-model="currentValue" style="display:none;">
+				<div class="r-input-unit" v-if="conf.unit">{{conf.unit}}</div>
 		        <rIcon 
 		        	:type="conf.inputIconType" 
 		        	size="0.8rem" 
@@ -20,9 +21,7 @@
 					@iconClick="onclickInputIcon"
 		        ></rIcon>		
 			</div>			
-    		<slot>
-	    		<div class="r-input-unit" v-if="conf.unit">{{conf.unit}}</div>
-    		</slot>
+    		<slot></slot>
 		</div>
 	</div>
 </template>
