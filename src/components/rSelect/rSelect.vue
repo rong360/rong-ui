@@ -1,7 +1,9 @@
 <template>
 	<div class="r-select">
 		<div class="r-select-txt-wrap">
-			<label class="r-select-label" :style="lblStyle" v-html="conf.title"></label>
+			<label class="r-select-label" :style="lblStyle">
+				<slot name="label">{{conf.title}}</slot>
+			</label>
 			<div :class="inputClsName" @click="showPicker">{{text?text:conf.placeholder}}</div>
 			<rIcon type="arrow-right" @iconClick="showPicker"></rIcon>
 		</div>			

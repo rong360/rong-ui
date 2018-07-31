@@ -11,7 +11,10 @@
 		name: "rIcon",
 		props: {
 			size: [String,Number],
-			color: String,
+			color: {
+				type: String,
+				default: '#4080e8'
+			},
 			type: String
 		},
 		computed:{
