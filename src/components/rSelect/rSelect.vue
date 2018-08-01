@@ -5,7 +5,7 @@
 				<slot name="label">{{conf.title}}</slot>
 			</label>
 			<div :class="inputClsName" @click="showPicker">{{text?text:conf.placeholder}}</div>
-			<rIcon type="arrow-right" @iconClick="showPicker"></rIcon>
+			<rIcon type="arrow-right" :color="conf.readonly||conf.disabled?'#999':'#4080e8'" @iconClick="showPicker"></rIcon>
 		</div>			
 		<div class="r-select-children" v-if="children && children.length">
 			<template v-for="(child,index) in children">
@@ -61,6 +61,8 @@ import rIcon from "../rIcon/rIcon"
 
 					if(selectedOption.length){
 						this.selectedIndex = idx;
+					}else{
+						this.selectedIndex = -1;
 					}
 
 				}else{
@@ -122,7 +124,7 @@ import rIcon from "../rIcon/rIcon"
 						//self.selectedIndex = selectedIndex;
 					});
 					this.picker.on('picker.select', function (selectedVal, selectedIndex) {
-						self.selectedIndex = selectedIndex[0];
+						self.selectedIndex = pickerData.length?selectedIndex[0]:-1;
 						self.pickerSeat.style.height = "0px";
 						self.$emit("onconfirm", self.conf.data[self.selectedIndex]);
 					});
