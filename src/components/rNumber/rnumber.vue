@@ -1,7 +1,7 @@
 <template>
 	<div class="r-number">
 		<div class="r-txt-wrap">
-			<label class="r-input-label" :style="lblStyle">
+			<label class="r-input-label" :style="lblStyle" v-show="conf.title">
 				<span>{{conf.title}}</span>
 				<rIcon 
 					:type="conf.labelIconType" 

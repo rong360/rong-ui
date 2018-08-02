@@ -47,17 +47,20 @@
 				if(this.disabled) return;
 				this.disabled = true;
 				this.startTimer();
-				ajax({
-					url: self.conf.action,
-					method: "post",
-					data: self.conf.params,
-					success: function(res){
-						self.$emit("success",res);
-					},
-					error: function(res){
-						self.$emit("fail",res);
-					}
-				})
+				if(self.conf.action){
+					ajax({
+						url: self.conf.action,
+						method: "post",
+						data: self.conf.params,
+						success: function(res){
+							self.$emit("success",res);
+						},
+						error: function(res){
+							self.$emit("fail",res);
+						}
+					})
+				}
+				this.$emit("onclickSendBtn")
 			},
 			startTimer(){
 				let self = this,

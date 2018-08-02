@@ -28,8 +28,8 @@
 		     </slot>
 		     <rContent :rContentData="rContentData" ref="rContent"></rContent>
 	        <div class="r-btn-group" v-if="showCancelBtn || showConfirmBtn">
-	        	<div class="r-btn-cancel" v-if="showCancelBtn" :style="cancelBtnStyleObj" @click="onCancel">{{cancelBtnText}}</div>
-				<div class="r-btn-confirm" v-if="showConfirmBtn" :style="confirmBtnStyleObj" @click="onConfirm">{{confirmBtnText}}</div>
+	        	<div class="r-btn-cancel" v-if="showCancelBtn" :style="cancelBtnStyleObj" @click="onCancel" v-html="cancelBtnText"></div>
+				<div class="r-btn-confirm" v-if="showConfirmBtn" :style="confirmBtnStyleObj" @click="onConfirm" v-html="confirmBtnText"></div>
 	        </div>
 	    </div>
 	    </transition>
