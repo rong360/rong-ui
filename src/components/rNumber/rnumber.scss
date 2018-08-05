@@ -34,10 +34,6 @@
 			-webkit-box-flex: 1;
 			display: inline-block;
 			text-align: left;
-			&>*{
-				display: inline-block;
-				vertical-align: middle;
-			}
 			span:nth-child(2){
 				padding-left: r(3);
 			}
@@ -52,14 +48,9 @@
 			justify-content: space-around;			
 			.rinput{
 				-webkit-box-flex: 1;
-			    // text-align: right;
-			    height: r(45);
-				line-height: r(49);
-				font-size: r(14);
 				overflow: hidden;
 				text-overflow: ellipsis;
 				white-space: nowrap;
-				position: relative;
 			}
 			.rinput-value-right, .rinput-value-left{
 				span{
@@ -82,13 +73,7 @@
 			.rinput-value-left span:after{
 				left: 0;
 			}
-			span.r-iconfont-close-circled,
-			span.r-iconfont-ask{
-				display: inline-block;
-				vertical-align: middle;
-				-webkit-box-flex: 1;
-				width: r(15);
-				height: r(15);
+			span.r-iconfont-close-circled{
 				margin-left: r(7);
 			}
 			.ta-left{ text-align: left;}
@@ -99,6 +84,14 @@
 		}	
 		.r-input-unit{
 			margin-left: r(7);
+			&.read-only{
+				color: #999;
+			}
+		}
+		span.r-iconfont-close-circled,
+		span.r-iconfont-ask{
+			display: inline-block;
+			transform: translateY(0.05rem);
 		}
 	}
 	@keyframes shinning{
