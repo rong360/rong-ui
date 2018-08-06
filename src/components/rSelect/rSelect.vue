@@ -168,7 +168,7 @@ import rIcon from "../rIcon/rIcon"
 			**/
 			defaultVerify(){
 				if(this.selectedIndex < 0){
-					this.$toast && this.$toast({
+					this.conf.title && this.$toast && this.$toast({
 						propsData: {
 							message:this.conf.title + "不能为空！",
 							type:"negetive"
