@@ -5,7 +5,7 @@
 				<slot name="label">{{conf.title}}</slot>
 			</label>
 			<div :class="inputClsName" @click="showPicker">{{text?text:conf.placeholder}}</div>
-			<rIcon type="arrow-right" :color="conf.readonly||conf.disabled?'#999':'#4080e8'" @iconClick="showPicker"></rIcon>
+			<rIcon type="arrow-right" :color="conf.readonly||conf.disabled?'#999':'#C8C7CC'" @iconClick="showPicker"></rIcon>
 		</div>			
 		<div class="r-select-children" v-if="children && children.length">
 			<template v-for="(child,index) in children">
