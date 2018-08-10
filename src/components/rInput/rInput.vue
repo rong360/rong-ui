@@ -1,5 +1,5 @@
 <template>
-	<div class="r-input">
+	<div :class="['r-input', !conf.showBottomBorder?'r-border--off':'']">
 		<div class="r-txt-wrap">
 			<label class="r-input-label" :style="lblStyle">
 				<span>{{conf.title}}</span><!--
@@ -60,6 +60,8 @@
 						disabled: false,
 						readonly: false,
 						unit: '',
+						//显示底部border
+						showBottomBorder: true,
 						//显示input后面icon
 						showInputIcon: true,
 						//input后面icon的类型

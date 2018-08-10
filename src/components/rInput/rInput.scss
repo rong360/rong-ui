@@ -20,6 +20,11 @@
 	    transform: scale(0.5);
 	    margin-left: r(15);
 	}
+	&.r-border--off{
+		&:after{
+			display: none;
+		}
+	}
 	.r-txt-wrap{
 		height: r(45);
 		display: -webkit-box;

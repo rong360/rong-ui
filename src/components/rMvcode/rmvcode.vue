@@ -45,7 +45,6 @@
 			doSendMvcode(){
 				let self = this;
 				if(this.disabled) return;
-				this.disabled = true;
 				this.startTimer();
 				if(self.conf.action){
 					ajax({
@@ -66,6 +65,7 @@
 				let self = this,
 					counter = this.conf.counter,
 					timer = null;
+				this.disabled = true;
 				this.btnText = counter + "s后获取";
 				timer = setInterval(function(){
 					counter--;
