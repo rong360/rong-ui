@@ -23,9 +23,10 @@
 				    </g>
 				</svg>
 	        </div>
-	        <slot name="content">
-	        	<div :class="['r-content',!showIcon&&!showTitle&&showCloseBtn?'r-content-top':'']" :style="contentStyleObj" v-html="message"></div>
-		     </slot>
+	        <div :class="['r-content',!showIcon&&!showTitle&&showCloseBtn?'r-content-top':'']" :style="contentStyleObj">
+	        	<div v-html="message"></div>
+	        	<slot name="content"></slot>
+	        </div>
 		     <rContent :rContentData="rContentData" ref="rContent"></rContent>
 	        <div class="r-btn-group" v-if="showCancelBtn || showConfirmBtn">
 	        	<div class="r-btn-cancel" v-if="showCancelBtn" :style="cancelBtnStyleObj" @click="onCancel" v-html="cancelBtnText"></div>
@@ -170,6 +171,9 @@
 			'rContent': {
 				template: '<div></div>'
 			}
+		},
+		updated(){
+			this.resetPos();
 		},	
 		mounted(){
 			var self= this;
@@ -187,7 +191,7 @@
 		        this.$emit("onCancel");
 			},
 			onConfirm(){
-		        this.$emit("onConfirm");
+		        this.$emit("onConfirm", this);
 			},
 			onClose(){
 				this.$emit("onClose");

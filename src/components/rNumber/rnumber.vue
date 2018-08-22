@@ -1,7 +1,7 @@
 <template>
 	<div :class="['r-number', !conf.showBottomBorder?'r-border--off':'']">
 		<div class="r-txt-wrap">
-			<label class="r-input-label" :style="lblStyle" v-show="conf.title">
+			<label class="r-input-label" :style="lblStyle" v-show="conf.showLabel">
 				<span>{{conf.title}}</span>
 				<rIcon 
 					:type="conf.labelIconType" 
@@ -67,7 +67,9 @@
 						//label后面icon的类型
 						labelIconType: 'info',
 						needVerify: true,
-						verify: function(){ return true }
+						verify: function(){ return true },
+						needVerifyToast: true,
+						showLabel: true
 					};
 				return this.extendObj(defaultConfig,this.attrs);
 			},
@@ -203,7 +205,7 @@
 			**/
 			defaultVerify(){
 				if(!this.currentValue){
-					this.$toast && this.$toast({
+					this.conf.needVerifyToast&&this.$toast && this.$toast({
 						propsData: {
 							message:this.conf.title + "不能为空！",
 							type:"negetive"

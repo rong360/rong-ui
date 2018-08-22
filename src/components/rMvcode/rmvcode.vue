@@ -31,8 +31,10 @@
 			conf(){
 				let defaultConfig = {
 					type: 'int',
-					counter: 10,
-					params: {}
+					counter: 60,
+					params: {},
+					start: false,
+					onclickSendBtn: function(){}
 				}
 				Object.assign(defaultConfig, this.attrs)
 				this.disabled = this.attrs.disabled || this.attrs.readonly || false
@@ -41,10 +43,14 @@
 				return defaultConfig
 			}
 		},
+		mounted(){
+			if(this.conf.start) this.startTimer()
+		},
 		methods:{
 			doSendMvcode(){
 				let self = this;
 				if(this.disabled) return;
+				this.conf.onclickSendBtn()
 				this.startTimer();
 				if(self.conf.action){
 					ajax({
