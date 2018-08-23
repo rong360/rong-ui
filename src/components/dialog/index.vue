@@ -1,5 +1,5 @@
 <template>
-	<div class="r-dialog" v-show="show">
+	<div class="r-dialog" v-show="show"  @touchmove.prevent="function(){}">
 		<transition name="dialog-fade">
 	    <div class="r-dlg-cliper" :style="CliperStyleObj"  v-show="animateShow"></div>
 	    </transition>
