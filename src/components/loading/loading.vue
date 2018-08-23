@@ -13,10 +13,13 @@
 			<div class="r-arc3" :style="arcStyle"></div>
 			<div class="r-arc4" :style="arcStyle"></div>
 		</div>
-		<div :class="['r-content3',
-					textInside ? 'inside':'outside']
-			" v-if="text!=''" :style="txtStyle">{{text}}</div>
-	</div>	
+	</div>
+	<div 
+		:class="['r-content3', textInside ? 'inside':'outside']" 
+		v-if="text!=''" 
+		:style="txtStyle" 
+		v-html="text"
+	/>	
 </div>
 </template>
 <script>
@@ -76,11 +79,7 @@
 			txtStyle(){
 				let obj = {
 					color: this.textColor,
-					"font-size": this.textFontSize / 2 / 18.75 + "rem",
-					"margin-left": -1 * this.txtLen/4 + "em"
-				};
-				if(this.textInside){
-					obj["margin-top"] = -1 * this.textFontSize/4/18.75 + "rem";
+					"font-size": this.textFontSize / 2 / 18.75 + "rem"
 				}
 				return obj;
 			}

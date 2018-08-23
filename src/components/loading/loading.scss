@@ -80,14 +80,11 @@
     .r-content3{
         position: absolute;
         width: 100%;
-        left: 50%;
-        white-space: nowrap;
+        top: 50%;
+        left: 0;
+        text-align: center;
         &.inside{
-            top: 50%;
-
-        }
-        &.outside{
-            bottom: -40px;
+            top: 42%;
         }
     }
 }
