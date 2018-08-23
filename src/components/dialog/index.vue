@@ -1,7 +1,7 @@
 <template>
-	<div class="r-dialog" >
+	<div class="r-dialog" v-show="show">
 		<transition name="dialog-fade">
-	    <div class="r-dlg-cliper" :style="CliperStyleObj"  v-show="show"></div>
+	    <div class="r-dlg-cliper" :style="CliperStyleObj"  v-show="animateShow"></div>
 	    </transition>
 	    <transition 
 	    	name="dialog-slide"
@@ -9,7 +9,7 @@
 	    	v-on:before-enter="beforeEnter"
 	        v-on:after-leave="afterLeave"
 	    >
-	    <div class="r-dlg-content" :style="dlgStyleObj" ref="dlgContent" v-show="show">
+	    <div class="r-dlg-content" :style="dlgStyleObj" ref="dlgContent" v-show="animateShow">
 	    	<div class="r-title" v-if="showTitle" :style="titleStyleObj">
 	    		<div class="r-title-wrap">{{title}}</div>
 	    	</div>
@@ -42,7 +42,8 @@
 		name: "rDialog",
 		data: function(){
 			return {
-				show: !this.animate
+				animateShow: !this.animate,
+				fromDlgCst: false
 			}
 		},
 		props:{
@@ -137,6 +138,10 @@
 				type: Boolean,
 				default: false
 			},
+			show: {
+				type: Boolean,
+				default: true
+			},
 			rContentData: {
 				type: Object,
 				default: function(){
@@ -178,13 +183,15 @@
 		mounted(){
 			var self= this;
 
-			this.show = true;
+			this.animateShow = true;
 
 			this.$nextTick(function(){
 				this.resetPos();
 			})
 
-			window.addEventListener('hashchange', this.remove);
+			if(this.fromDlgCst){
+				window.addEventListener('hashchange', this.remove);
+			}
 		},
 		methods:{
 			onCancel(){
@@ -198,13 +205,13 @@
 			},
 			remove(){
 				if(this.animate){
-					this.show = false;
+					this.animateShow = false;
 				}else{
 					this._remove();
 				}
 			},
 			_remove(){
-				if(this.$el&&this.$el.parentNode){
+				if(this.fromDlgCst&&this.$el&&this.$el.parentNode){
 					this.$el.parentNode.removeChild(this.$el);
 					this.$destroy();
 					window.removeEventListener('hashchange', this.remove);

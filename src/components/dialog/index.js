@@ -26,6 +26,7 @@ var dlgCst = function (options) {
   return instance;*/
 
   let instance = new dlgConstructor(options);
+  instance.$data.fromDlgCst = true
   document.body.appendChild(instance.$mount().$el);
 
   return instance;
