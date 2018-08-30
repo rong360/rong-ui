@@ -1,6 +1,7 @@
 <template>
 	<div class="r-datepicker" :style="dStyle" @click="showPicker">
 		<span>{{date ? date : conf.placeholder}}</span>
+		<slot name="icon"></slot>
 	</div>
 </template>
 <script>
@@ -120,7 +121,7 @@ import Picker from '../../util/picker.js'
 						if((index == 0 || index == 1) && self.conf.type == 'date'){
 							self.refillDates();
 						}
-						self.generateResult();
+						//self.generateResult();
 					});
 					this.picker.on('picker.select', function (index, selectedIndex) {
 						self.generateResult();
