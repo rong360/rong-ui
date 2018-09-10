@@ -121,6 +121,9 @@ import rIcon from "../rIcon/rIcon";
 					}else{
 						if(code == 'ok'){
 							this.show = false;
+							if(this.type == 'float'){
+								this.currentValue = parseFloat(this.currentValue);
+							}
 							setTimeout(function(){
 								self.remove();
 							}, 100)
