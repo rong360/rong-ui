@@ -122,7 +122,12 @@ import rIcon from "../rIcon/rIcon";
 						if(code == 'ok'){
 							this.show = false;
 							if(this.type == 'float'){
-								this.currentValue = parseFloat(this.currentValue);
+								if(this.currentValue == "."){
+									this.currentValue = ""
+								}
+								if(this.currentValue!="" && this.currentValue!="0"){
+									this.currentValue = parseFloat(this.currentValue*1) + ""
+								}
 							}
 							setTimeout(function(){
 								self.remove();

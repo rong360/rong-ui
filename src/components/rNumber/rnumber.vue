@@ -35,7 +35,7 @@
 			return {
 				kid: 0, //keyboard id
 				kb: null, //键盘，document下每次只存在一个键盘
-				currentValue: this.attrs.value || "",
+				currentValue: typeof this.attrs.value!='undefined' ? this.attrs.value+"" : "",
 				showKb: false //控制光标
 			}
 		},
@@ -101,7 +101,7 @@
 		},
 		watch:{
 			conf(){
-				this.currentValue = this.conf.value;
+				this.currentValue = typeof this.conf.value!='undefined' ? this.conf.value+"" : ""
 			},
 			currentValue: function(){
 				this.$emit("oninput",this.currentValue);

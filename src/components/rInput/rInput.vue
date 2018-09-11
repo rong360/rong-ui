@@ -11,7 +11,7 @@
 				:placeholder="conf.placeholder"
 				:maxlength="conf.maxlength"
 	            :disabled="conf.disabled"
-	            :readonly="conf.readonly"
+	            :readonly="!!conf.readonly"
 	            @keyup.enter="onEnter"
 	            @focus="onFocus"
 	            @blur="onBlur"
