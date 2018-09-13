@@ -25,6 +25,8 @@ import rEmailExp from "../views/Email"
 import rSelectExp from "../views/Select"
 import rDatepickerExp from "../views/Datepicker"
 import rTabs from "../views/tabs.vue"
+import rHidden from "../views/hidden.vue"
+import rFixed from "../views/fixed.vue"
 
 Vue.use(Router)
 
@@ -149,6 +151,16 @@ export default new Router({
       path: '/tabs',
       name: 'tabs',
       component: rTabs
+    },
+    {
+      path: '/hidden',
+      name: 'hidden',
+      component: rHidden
+    },
+    {
+      path: '/fixed',
+      name: 'fixed',
+      component: rFixed
     }
   ]
 })

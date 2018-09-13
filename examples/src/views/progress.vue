@@ -1,6 +1,5 @@
 <template>
 <div id="tip-wrap" class="wrap">
-	<div class="title">Progress 参数说明</div>
 	<div class="title" style="color: #f63;">暂时完成了line形进度条，circle形待开发</div>
 	<div class="content">
 		<div class="row">

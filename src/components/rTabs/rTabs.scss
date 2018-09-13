@@ -4,10 +4,8 @@
 
 .r-tabs{
 	.r-tabs-nav-nail{
-		display: -webkit-box;
-		display: box;
-		-webkit-box-pack: justify;
-		box-pack: justify;
+		display: flex;
+		justify-content: space-between;
 		font-size: r(13);
 		background: #fff;
 		border: 1px solid #4080E8;
@@ -16,8 +14,7 @@
 			padding: r(8) 0;
 			color: #4080E8;
 			border-right: 1px solid #4080E8;
-			-webkit-box-flex: 1;
-			box-flex: 1;
+			flex: 1;
 			text-align: center;
 			&-active{
 				color: #fff;
@@ -33,17 +30,14 @@
 		}
 	}
 	.r-tabs-nav-line{
-			display: -webkit-box;
-			display: box;
-			-webkit-box-pack: justify;
-			box-pack: justify;
+			display: flex;
+			justify-content: space-between;
 			font-size: r(13);
 			//border-bottom: 1px solid #d5d5dd;
 			background-image: -webkit-linear-gradient(to top, #d5d5dd 1px, rgba(24, 24, 24, 0) 1px);
 			background-image: linear-gradient(to top, #d5d5dd 1px, rgba(24, 24, 24, 0) 1px);
 			.r-tab-nav{
-				-webkit-box-flex: 1;
-				box-flex: 1;
+				flex: 1;
 				padding: r(8) 0;
 				color: #666;
 				text-align: center;

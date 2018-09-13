@@ -1,0 +1,29 @@
+.r-fixed{
+	height: 100%;
+	main{
+		position: absolute;
+	    width: 100%;
+	    left: 0;
+	    right: 0;
+	    top: 0rem;
+	    bottom: 0rem;
+	    overflow-y: scroll;
+	    -webkit-overflow-scrolling: touch;/* 解决ios滑动不流畅问题 */
+	    box-sizing: border-box;
+	}
+	header,
+	footer{
+		position: fixed;
+		left: 0;
+		width: 100%;
+		height: auto;
+		transform: translateZ(0);
+		z-index: 100;
+	}
+	header{
+		top: 0;
+	}
+	footer{
+		bottom: 0;
+	}
+}

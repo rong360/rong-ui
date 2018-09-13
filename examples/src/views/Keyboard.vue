@@ -1,6 +1,5 @@
 <template>
 	<div class="wrap">
-		<rTitlebar theme="a" title="Keyboard 数字虚拟键盘"></rTitlebar>
 		<div class="r-example" wrap="box ba_c bp_c">
 			<div class="kb-input" wrap="box ba_c bp_j" @click="createKb0">
 				<div class="kb-lbl">默认键盘</div>

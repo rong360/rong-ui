@@ -2,6 +2,7 @@
 node_modules/
 dist/
 release/
+.svn/
 
 npm-debug.log*
 yarn-debug.log*

@@ -1,6 +1,5 @@
 <template>
 <div class="wrap">
-	<rTitlebar theme="a" title="Tabs 标签页"></rTitlebar>
 	<div class="tip">默认样式标签页,type=nail</div>
 	<div class="exp exp0">
 		<rTabs value=2 @onclick="doClick">

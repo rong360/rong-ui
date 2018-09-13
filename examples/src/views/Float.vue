@@ -1,7 +1,6 @@
 <template>
 	<div class="wrap">
 		<div class="exp">
-			<rTitlebar theme="a" title="Float 浮点数"></rTitlebar>
 			<div class="tip">请输入以下信息：</div>
 			<rFloat :attrs="config" :ref="config.name" @onclear="onclear"></rFloat>
 			<rFloat :attrs="config0" :ref="config0.name" @onclickInputIcon="onclickInputIcon"></rFloat>

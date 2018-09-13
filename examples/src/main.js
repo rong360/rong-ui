@@ -49,6 +49,8 @@ import rEmail from "@/components/rEmail"
 import rSelect from "@/components/rSelect"
 import rDatepicker from "@/components/rDatepicker"
 import rTabs from '@/components/rTabs'
+import rHidden from '@/components/rHidden'
+import rFixed from '@/components/rFixed'
 
 const components = [
 	Dialog,
@@ -71,7 +73,9 @@ const components = [
   rEmail,
   rSelect,
   rDatepicker,
-  rTabs
+  rTabs,
+  rHidden,
+  rFixed
 ]
 
 

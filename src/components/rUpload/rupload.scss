@@ -3,13 +3,11 @@
 }
 .r-upload{
 	.r-upload-input-wrap{
-		display: -webkit-box;
-		display: box;
-		-webkit-box-align: center;
-		box-align: center;
+		display: flex;
+		align-items: center;
 	}
 	.r-uptxt{
-		-webkit-box-flex: 1;
+		flex: 1;
 		font-size: r(14);
 		color: #333;
 	}

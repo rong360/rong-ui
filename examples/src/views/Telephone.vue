@@ -1,7 +1,6 @@
 <template>
 	<div class="wrap">
 		<div class="exp">
-			<rTitlebar theme="a" title="Telephone 手机号码"></rTitlebar>
 			<div class="tip">请输入以下信息：</div>
 			<rTelephone :attrs="config" :ref="config.name" @onclickLabelIcon="labelClick"></rTelephone>
 			<rTelephone :attrs="config0" @oninput="oninput" @onclear="onclear" @onconfirm="onconfirm" :ref="config0.name"></rTelephone>

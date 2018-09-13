@@ -1,6 +1,5 @@
 <template>
 	<div class="wrap">
-		<rTitlebar theme="a" title="Email 邮箱"></rTitlebar>
 		<div class="exp">
 			<div class="tip">请输入以下信息：</div>
 			<rEmail :attrs="configs" :ref="configs.name" @onchange="onchange"></rEmail>

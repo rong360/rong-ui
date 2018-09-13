@@ -1,6 +1,5 @@
 <template>
 <div class="wrap">
-	<rTitlebar theme="a" title="Select 下拉列表"></rTitlebar>
 	<div class="exp select-exp">
 		<div class="tip">请选择以下信息：</div>
 		<rSelect :attrs="config" :ref="config.name"></rSelect>

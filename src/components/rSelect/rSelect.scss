@@ -10,18 +10,15 @@
 	font-size: r(14);
 	.r-select-txt-wrap{
 		height: r(45);
-		display: -webkit-box;
-		display: box;
-		-webkit-box-align: center;
-		box-align: center;
-		-webkit-justify-content: space-around;
+		display: flex;
+		align-items: center;
 		justify-content: space-around;
 		margin-left: r(15);
 		padding-right: r(15);
 		position: relative;
 		.r-select-label{
 			padding-right: r(20);
-			-webkit-box-flex: 1;
+			flex: 1;
 			display: inline-block;
 			text-align: left;
 			span:nth-child(2){
@@ -29,7 +26,7 @@
 			}
 		}
 		.r-select-input{
-			-webkit-box-flex: 1;
+			flex: 1;
 			margin-right: r(7);
 			&.ta-left{
 				text-align: left;

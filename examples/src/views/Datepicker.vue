@@ -1,6 +1,5 @@
 <template>
 <div class="wrap dtp-wrap">
-	<rTitlebar theme="a" title="Datepicker 日期选择"></rTitlebar>
 	<div class="exp">
 		<div class="tip">请选择以下信息：</div>
 		<div class="dp-wrap" wrap="box bp_j ba_c">

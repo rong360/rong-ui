@@ -19,7 +19,7 @@
 
 ```bash
 
-npm install rong-ui --save-dev
+npm install rong-ui --save
 
 ```
 
@@ -32,12 +32,18 @@ npm install rong-ui --save-dev
 import Dialog from "rong-ui/components/dialog"
 Vue.use(Dialog);
 
+引用单个组件时babel-loader需添加 resolve('node_modules/rong-ui/components')，即：
+{
+test: /\.js$/,
+loader: 'babel-loader',
+include: [resolve('node_modules/rong-ui/components')]
+}
 ```
 
 #### 引入多个组件
 
 ```js
-import "rong-ui/lib/rong-ui.css"
+import "rong-ui/components/rong-ui.css"
 import {Dialog, Toast} from "rong-ui"
 let components = [Dialog, Toast];
 components.map(cp => Vue.use(cp));
@@ -89,4 +95,6 @@ Dialog提示框、Toast弹框、Loading加载中、Keyboard虚拟数字键盘 �
 |IDCard 身份证号码| [点击查看](https://github.com/rong360/rong360.github.io/blob/master/rong-ui/doc/idcard.md)|
 |Select 下拉列表| [点击查看](https://github.com/rong360/rong360.github.io/blob/master/rong-ui/doc/select.md)|
 |Datepicker 日期选择| [点击查看](https://github.com/rong360/rong360.github.io/blob/master/rong-ui/doc/datepicker.md)|
+|Hidden 隐藏域| [点击查看](https://github.com/rong360/rong360.github.io/blob/master/rong-ui/doc/hidden.md)|
+|Fixed 吸顶或吸底| [点击查看](https://github.com/rong360/rong360.github.io/blob/master/rong-ui/doc/fixed.md)|
 

@@ -1,6 +1,5 @@
 <template>
 <div class="wrap">
-	<rTitlebar theme="a" title="Dialog 弹框"></rTitlebar>
 	<div class="example">
 		<div class="r-example" wrap="box ba_c bp_c">
 			<div class="rg-button" @click="showDialog1">常规</div>

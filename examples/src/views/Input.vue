@@ -1,7 +1,6 @@
 <template>
 	<div class="wrap">
-		<div class="exp">
-			<rTitlebar theme="a" title="Input 输入框"></rTitlebar>		
+		<div class="exp">		
 			<form id="form0">
 				<div class="tip">请输入您的信息：</div>
 				<template v-for="item in items">

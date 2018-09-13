@@ -1,7 +1,6 @@
 <template>
 <div class="wrap">
-	<div class="exp">
-		<rTitlebar theme="a" title="Vcode 图片验证码"></rTitlebar>		
+	<div class="exp">	
 		<div class="tip">请输入以下信息：</div>
 		<rVcode 
 			:attrs="config" 

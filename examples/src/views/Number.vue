@@ -1,6 +1,5 @@
 <template>
 	<div class="wrap">
-		<rTitlebar theme="a" title="Number 数字"></rTitlebar>
 		<div class="exp">
 			<div class="tip">以下输入点击提交后会进行校验：</div>
 			<rNumber :attrs="config" :ref="config.name" @onclear="onclear"></rNumber>

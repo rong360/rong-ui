@@ -34,11 +34,8 @@
 			}
 		}
 		.r-keyboard-row{
-			display: -webkit-box;
-			display: box;
-			-webkit-box-align: center;
-			box-align: center;
-			-webkit-justify-content: space-around;
+			display: flex;
+			align-items: center;
 			justify-content: space-around;
 			width: 100%;
 			height: r(216/4);

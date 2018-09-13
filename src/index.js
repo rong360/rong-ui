@@ -24,6 +24,9 @@ import rVcode from './components/rVcode'
 import rTabs from './components/rTabs'
 // import Tip from './components/tip'
 
+import rHidden from './components/rHidden'
+import rFixed from './components/rFixed'
+
 export {
   Dialog,
   Loading,
@@ -50,4 +53,6 @@ export {
   rVcode,
   rTabs,
   // Tip,
+  rHidden,
+  rFixed
 }

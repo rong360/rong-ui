@@ -65,21 +65,18 @@
 			height: r(90px);
 			line-height: r(90px);
 			border-top: 1px solid #e5e5e5;
-			display: -webkit-box;
-			display: box;
-			-webkit-box-align: center;
-			box-align: center;
-			-webkit-justify-content: space-around;
+			display: flex;
+			align-items: center;
 			justify-content: space-around;
 			.r-btn-cancel{
 				color: #333;
-				-webkit-box-flex: 1;
+				flex: 1;
 				border-right: 1px solid #e5e5e5;
 				border-bottom-left-radius: 4px;
 			}
 			.r-btn-confirm{
 				color: #333;
-				-webkit-box-flex: 1;
+				flex: 1;
 				border-bottom-right-radius: 4px;
 			}
 		}

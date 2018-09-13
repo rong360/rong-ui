@@ -1,6 +1,5 @@
 <template>
 <div class="wrap">
-	<rTitlebar theme="a" title="Button 按钮"></rTitlebar>
 	<rButton >默认按钮 default</rButton>
 	<rButton type="default" fill="off">空心默认按钮</rButton>
 

@@ -1,19 +1,12 @@
 .r-progress{
 	width: 100%;
 	position: relative;
-	display: -webkit-box;
-	display: box;
 	display: flex;
-	-webkit-box-align: center;
-	box-align: center;
-	-webkit-box-pack: justify;
-	box-pack: justify;
-	-webkit-justify-content: space-between;
+	align-items: center;
 	justify-content: space-between;
 	align-items: center;
 	font-size: 0;
 	.r-prog-outer-wrap{
-		-webkit-box-flex: 1;
 		flex: 1;
 	}
 	.r-prog-outer{

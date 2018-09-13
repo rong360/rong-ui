@@ -1,7 +1,6 @@
 <template>
 	<div class="wrap">
 		<div class="exp">
-			<rTitlebar theme="a" title="Int 整数"></rTitlebar>
 			<div class="tip">请输入以下信息：</div>
 			<rInt :attrs="config" :ref="config.name" @onclear="onclear"></rInt>
 			<rInt :attrs="config0" :ref="config0.name" @onclickInputIcon="onclickInputIcon"></rInt>

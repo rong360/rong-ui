@@ -27,16 +27,13 @@
 	}
 	.r-txt-wrap{
 		height: r(45);
-		display: -webkit-box;
-		display: box;
-		-webkit-box-align: center;
-		box-align: center;
-		-webkit-justify-content: space-around;
+		display: flex;
+		align-items: center;
 		justify-content: space-around;
 		margin: 0 r(15);
 		.r-input-label{
 			padding-right: r(20);
-			-webkit-box-flex: 1;
+			flex: 1;
 			display: inline-block;
 			text-align: left;
 			span:nth-child(2){
@@ -44,16 +41,13 @@
 			}
 		}
 		.input-wrap{
-			-webkit-box-flex: 1;
-			display: -webkit-box;
-			display: box;
-			-webkit-box-align: center;
-			box-align: center;
-			-webkit-justify-content: space-around;
+			flex: 1;
+			display: flex;
+			align-items: center;
 			justify-content: space-around;			
 			input{
 				display: block;
-				-webkit-box-flex: 1;
+				flex: 1;
 				outline: none;
 				border: none;
 				height: r(25);

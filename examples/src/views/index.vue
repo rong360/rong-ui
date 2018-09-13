@@ -27,10 +27,14 @@
 			<li data-id="telephone"class="comp-child" @click="goCp">Telephone 手机号码</li>
 			<li data-id="mvcode"class="comp-child" @click="goCp">Mvcode 短信验证码</li>
 			<li data-id="idcard"class="comp-child" @click="goCp">IDCard 身份证号码</li>
+			<li data-id="hidden"class="comp-child" @click="goCp">hidden 隐藏域</li>
 		</ul>
 		<ul>
 		  	<li data-id="select" @click="goCp">Select 下拉列表</li>
 		  	<li data-id="datepicker" @click="goCp">Datepicker 日期选择</li>
+	    </ul>
+	    <ul>
+		  	<li data-id="fixed" @click="goCp">Fixed 吸顶或吸底</li>
 	    </ul>
     </div>
  </div>	    

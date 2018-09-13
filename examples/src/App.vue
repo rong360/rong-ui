@@ -1,12 +1,33 @@
 <template>
     <div id="app">
+        <rTitlebar theme="a" :title="title" backurl="#" v-show="showTitlebar"></rTitlebar>
         <router-view></router-view>
+        <a href="https://github.com/rong360/rong360.github.io/tree/master/rong-ui/doc" target="_blank">查看文档</a>
     </div>
 </template>
 
 <script>
 export default {
-  name: 'app'
+  name: 'app',
+  data(){
+    return {
+      title: '',
+      showTitlebar: true
+    }
+  },
+  watch: {
+    $route: {
+      handler(){
+        this.$route.name == 'index'? this.showTitlebar=false : this.showTitlebar=true;
+        if(this.$route.name == 'index'){
+          //this.title = 'Demo list'
+        }else{
+          this.title = 'Demo/' + decodeURIComponent(this.$route.query.title);
+        }
+      },
+      immediate: true
+    }
+  }
 }
 </script>
 

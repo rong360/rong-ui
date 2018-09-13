@@ -1,6 +1,5 @@
 <template>
 	<div class="wrap">
-		<rTitlebar theme="a" title="Titlebar 标题栏"></rTitlebar>
 		<div class="exp">
 			<rTitlebar theme="a" title="主题a" backurl="/" @onback="onBack"></rTitlebar>
 			<rTitlebar theme="b" title="主题b"></rTitlebar>

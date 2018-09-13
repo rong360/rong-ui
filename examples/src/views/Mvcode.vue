@@ -1,7 +1,6 @@
 <template>
 <div class="wrap">
 	<div class="exp">
-		<rTitlebar theme="a" title="Mvcode 短信验证码"></rTitlebar>
 		<div class="tip">请输入以下信息：</div>
 		<rMvcode 
 			:attrs="config" 

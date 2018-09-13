@@ -1,7 +1,5 @@
 <template>
 <div class="wrap">
-	<rTitlebar theme="a" title="Icon 图标"></rTitlebar>
-
 	<div class="exp">
 		<div class="icon-group">
 			<rIcon type="sort-inc-blue"></rIcon>

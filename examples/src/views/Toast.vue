@@ -1,6 +1,5 @@
 <template>
 	<div class="wrap example">
-		<rTitlebar theme="a" title="Toast 提示"></rTitlebar>
 		<div class="r-example" wrap="box ba_c bp_c">
 			<div class="toast-btn" @click="showToast0">默认</div>
 			<p data-id="0" @click="doSource">查看源码</p>

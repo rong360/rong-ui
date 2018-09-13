@@ -1,7 +1,6 @@
 <template>
 	<div class="wrap">
 		<div class="exp">
-			<rTitlebar theme="a" title="Idcard 身份证号码"></rTitlebar>
 			<div class="tip">请输入以下信息：</div>
 			<rIDCard :attrs="config" :ref="config.name"></rIDCard>
 			<rIDCard :attrs="config0" @oninput="oninput" @onclear="onclear" @onconfirm="verifyIDCard" :ref="config0.name"></rIDCard>
