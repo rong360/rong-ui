@@ -50,7 +50,8 @@
 			doSendMvcode(){
 				let self = this;
 				if(this.disabled) return;
-				this.conf.onclickSendBtn()
+				//this.conf.onclickSendBtn()
+				if(this.conf.onclickSendBtn.apply(this) == false) return
 				this.startTimer();
 				if(self.conf.action){
 					ajax({

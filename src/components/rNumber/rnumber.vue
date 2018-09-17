@@ -43,6 +43,10 @@
 			conf(){
 				//检测type是否是支持的类型
 				if('int|float|idcard'.indexOf(this.attrs.type)<0) this.attrs.type = 'float';
+				//存储初始化时掩码数据,用于校验时判断掩码是否发生变化
+				if(typeof this.maskCode == 'undefined' && typeof this.attrs.value!='undefined' && (this.attrs.value+"").indexOf("*") > -1){
+					this.maskCode = this.attrs.value
+				}
 				//默认参数
 				let defaultConfig = {
 						title: "表单名称",
@@ -186,7 +190,7 @@
 			verify(){
 				if(this.conf.needVerify){
 					if(this.defaultVerify()){
-						if(this.currentValue == this.attrs.value) return true; //用户没做任何操作，则认为默认值是合法的。如身份证、电话号码有'***'掩码的情况
+						if(this.currentValue == this.maskCode) return true; //用户没做任何操作，则认为默认值是合法的。如身份证、电话号码有'***'掩码的情况
 						var res = this.conf.verify.apply(this,[this.currentValue]);
 						if(typeof res == "undefined"){
 							console.warn(this.conf.title + "组件 自定义校验函数verify中if else 必须有true和false返回值, 如：if(true){ return true } else{ return false }, 否则会忽略自定义校验函数，改为基本的非空校验!");

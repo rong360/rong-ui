@@ -2,7 +2,7 @@
     <div id="app">
         <rTitlebar theme="a" :title="title" backurl="#" v-show="showTitlebar"></rTitlebar>
         <router-view></router-view>
-        <a href="https://github.com/rong360/rong360.github.io/tree/master/rong-ui/doc" target="_blank">查看文档</a>
+        <a href="https://github.com/rong360/rong-ui" target="_blank">查看文档</a>
     </div>
 </template>
 

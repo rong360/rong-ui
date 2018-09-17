@@ -63,7 +63,7 @@ cp README.md release/README.md
 
 cd release
 
-npm publish
+#npm publish
 
 
 
