@@ -34,7 +34,9 @@
 					counter: 60,
 					params: {},
 					start: false,
-					onclickSendBtn: function(){}
+					onclickSendBtn: function(){},
+					success: function(){},
+					fail: function(){}
 				}
 				Object.assign(defaultConfig, this.attrs)
 				this.disabled = this.attrs.disabled || this.attrs.readonly || false
@@ -60,9 +62,11 @@
 						data: self.conf.params,
 						success: function(res){
 							self.$emit("success",res);
+							self.success(res);
 						},
 						error: function(res){
 							self.$emit("fail",res);
+							self.fail(res);
 						}
 					})
 				}
