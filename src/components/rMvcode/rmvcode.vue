@@ -62,11 +62,11 @@
 						data: self.conf.params,
 						success: function(res){
 							self.$emit("success",res);
-							self.success(res);
+							self.conf.success(res);
 						},
 						error: function(res){
 							self.$emit("fail",res);
-							self.fail(res);
+							self.conf.fail(res);
 						}
 					})
 				}
