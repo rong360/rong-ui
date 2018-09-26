@@ -10,7 +10,7 @@
 				></rIcon>
 			</label>
 			<div class="input-wrap" :data-keyboardid="kid">
-			    <div :class="iClsName" @click="doInput"><span>{{ currentValue ? currentValue : conf.placeholder }}</span></div>
+			    <div :class="iClsName" @click="doInput"><span>{{ currentValue ? currentValue : conf.placeholder }}<i></i></span></div>
 				<input type="text" :name="conf.name" v-model="currentValue" style="display:none;">
 		        <rIcon 
 		        	:type="conf.inputIconType" 

@@ -54,7 +54,8 @@
 			.rinput-value-right, .rinput-value-left{
 				span{
 					position: relative;
-					&:after{
+					display: inline-block;
+					i{
 						position: absolute;
 						top: 50%;
 						margin-top: -.5rem;
@@ -66,10 +67,10 @@
 					}
 				}
 			}
-			.rinput-value-right span:after{
+			.rinput-value-right span i{
 				right: 0;
 			}
-			.rinput-value-left span:after{
+			.rinput-value-left span i{
 				left: 0;
 			}
 			span.r-iconfont-close-circled{

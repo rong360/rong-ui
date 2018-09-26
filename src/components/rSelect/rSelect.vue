@@ -1,7 +1,7 @@
 <template>
 	<div class="r-select">
 		<div class="r-select-txt-wrap">
-			<label class="r-select-label" :style="lblStyle">
+			<label class="r-select-label" :style="lblStyle" v-show="conf.showLabel">
 				<slot name="label">{{conf.title}}</slot>
 			</label>
 			<div :class="inputClsName" @click="showPicker">{{text?text:conf.placeholder}}</div>
@@ -42,7 +42,8 @@ import rIcon from "../rIcon/rIcon"
 						disabled: false,
 						readonly: false,
 						needVerify: true,
-						verify: function(){ return true }
+						verify: function(){ return true },
+						showLabel: true
 					};
 				Object.assign(defaultConfig,this.attrs);
 
