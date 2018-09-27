@@ -33,8 +33,9 @@
 					type: 'int',
 					counter: 60,
 					params: {},
-					start: false,
-					onclickSendBtn: function(){},
+					start: false, //默认是否开始倒计时
+					offStartTimer: false, //关闭倒计时， 可通过调用组件的startTimer方法手动启动倒计时, 如success(res){if(res.status==1){this.startTimer()}}
+					onclickSendBtn: function(){return true},
 					success: function(){},
 					fail: function(){}
 				}
@@ -46,31 +47,37 @@
 			}
 		},
 		mounted(){
-			if(this.conf.start) this.startTimer()
+			if(this.conf.start) this.doSendMvcode()
 		},
 		methods:{
 			doSendMvcode(){
 				let self = this;
 				if(this.disabled) return;
 				//this.conf.onclickSendBtn()
-				if(this.conf.onclickSendBtn.apply(this) == false) return
-				this.startTimer();
-				if(self.conf.action){
-					ajax({
-						url: self.conf.action,
-						method: "post",
-						data: self.conf.params,
-						success: function(res){
-							self.$emit("success",res);
-							self.conf.success(res);
-						},
-						error: function(res){
-							self.$emit("fail",res);
-							self.conf.fail(res);
-						}
-					})
+				//if(this.conf.onclickSendBtn.apply(this) == false) return
+				if(this.conf.onclickSendBtn.call(this)){
+					if(self.conf.action){
+						ajax({
+							url: self.conf.action,
+							method: "post",
+							data: self.conf.params,
+							success: function(res){
+								self.$emit("success",res, self);
+								self.conf.success.call(self, res);
+								(!self.conf.offStartTimer)&&self.startTimer()
+								self.$emit("onclickSendBtn")
+							},
+							error: function(res){
+								self.$emit("fail",res, self);
+								self.conf.fail.call(self, res);
+								self.$emit("onclickSendBtn")
+							}
+						})
+					}else{
+						this.startTimer()
+						this.$emit("onclickSendBtn")
+					}
 				}
-				this.$emit("onclickSendBtn")
 			},
 			startTimer(){
 				let self = this,
