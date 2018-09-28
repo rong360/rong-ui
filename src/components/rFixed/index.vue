@@ -53,10 +53,10 @@
 			},
 			startBody(e){
 				this.maxScrollTop = this.$refs.main.scrollHeight - this.$refs.main.clientHeight;
-				this.startY = e.targetTouches[0].pageY
+				this.startY = e.targetTouches && e.targetTouches[0].pageY
 			},
 			scrollBody(e){
-				let currentY = e.targetTouches[0].pageY,
+				let currentY = e.targetTouches && e.targetTouches[0].pageY,
 					scrollTop = this.$refs.main.scrollTop
 				if((currentY > this.startY && scrollTop == 0) || (currentY < this.startY && scrollTop >= this.maxScrollTop)){
 					e.preventDefault()

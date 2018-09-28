@@ -57,6 +57,13 @@
     .r-select-children{
     	margin-left: r(10);
     }
+    &.r-border--off{
+    	.r-select-txt-wrap{
+    		&:after{
+				display: none;
+			}
+    	}
+	}
 }
 /*修改oicker默认样式*/
 .picker .picker-panel .picker-choose{

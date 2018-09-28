@@ -1,5 +1,5 @@
 <template>
-	<div class="r-select">
+	<div :class="['r-select', !conf.showBottomBorder?'r-border--off':'']">
 		<div class="r-select-txt-wrap">
 			<label class="r-select-label" :style="lblStyle" v-show="conf.showLabel">
 				<slot name="label">{{conf.title}}</slot>
@@ -43,7 +43,9 @@ import rIcon from "../rIcon/rIcon"
 						readonly: false,
 						needVerify: true,
 						verify: function(){ return true },
-						showLabel: true
+						showLabel: true,
+						//显示底部border
+						showBottomBorder: true
 					};
 				Object.assign(defaultConfig,this.attrs);
 
