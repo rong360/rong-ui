@@ -30,7 +30,8 @@ s=`cat <<EOF
         "url": "git+https://github.com/rong360/rong-ui.git"
     },
     "main": "components/rong-ui.js",
-    "predependencies": {
+    "dependencies": {
+        "better-picker": "^1.1.3",
         "vue": "^2.3.3"
     },
     "contributors": [

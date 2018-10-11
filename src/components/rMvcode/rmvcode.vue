@@ -47,7 +47,7 @@
 			}
 		},
 		mounted(){
-			if(this.conf.start) this.doSendMvcode()
+			if(this.conf.start) this.startTimer()
 		},
 		methods:{
 			doSendMvcode(){

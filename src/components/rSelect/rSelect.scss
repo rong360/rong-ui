@@ -66,31 +66,8 @@
 	}
 }
 /*修改oicker默认样式*/
-.picker .picker-panel .picker-choose{
-	font-size: r(16);
-	color: #333;
-	height: r(45);
-	border-bottom: 1px solid #efeff4;
-}
-.picker .picker-panel .picker-choose .picker-title{
-	line-height: r(45);
-	font-size: r(18);
-}
-.picker .picker-panel .picker-choose .cancel, .picker .picker-panel .picker-choose .confirm{
-	top: 0;
-	line-height: r(45);
-	padding: 0 0 0 r(15);
-}
-.picker .picker-panel .picker-choose .confirm{
-	padding: 0 r(15) 0 0;
-	color: #4080e8;
-}
-.picker .picker-panel .wheel-wrapper .wheel{
-	font-size: r(16);
-}
-.picker .picker-panel .wheel-wrapper .wheel .wheel-scroll{
-	line-height: r(35);
-}
 .picker .picker-panel .wheel-wrapper .wheel .wheel-scroll .wheel-item{
-	height: r(35);
+	font-size: .8rem;
+	text-overflow:ellipsis;
+	white-space: nowrap;
 }

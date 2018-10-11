@@ -14,7 +14,7 @@
 	    		<div class="r-title-wrap">{{title}}</div>
 	    	</div>
 	        <img :src="iconComputed" alt="" v-if="showIcon">
-	        <div class="r-dlg-close" v-if="showCloseBtn" @click="onClose">
+	        <div class="r-dlg-close" v-if="showCloseBtn" :style="closeStyleObj" @click="onClose">
 	        	<svg width="11px" height="11px" viewBox="0 0 11 11" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 				    <g id="rong360_Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 				        <g transform="translate(-249.000000, -10.000000)" fill="#999999">
@@ -109,6 +109,12 @@
 			showCloseBtn: {
 				type: Boolean,
 				default: false
+			},
+			closeStyleObj: {
+				type: Object,
+				default: function(){
+					return {}
+				}
 			},
 			//遮罩层
 			CliperStyleObj: {
