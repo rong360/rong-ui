@@ -44,7 +44,8 @@
 		},
 		data(){
 			return {
-				currentValue: this.attrs.value || ""
+				currentValue: this.attrs.value || "",
+				showKb: false //控制光标
 			}
 		},
 		computed:{
@@ -82,7 +83,7 @@
 			},
 			showInputIcon(){
 				if(this.conf.inputIconType == "close-circled"){
-					if(this.conf.showInputIcon && this.currentValue && !this.conf.readonly){
+					if(this.conf.showInputIcon && this.currentValue && !this.conf.readonly && this.showKb){
 						return true;
 					}else{
 						return false;
@@ -106,9 +107,11 @@
 			},
 			onFocus(e){
 				this.$emit("onfocus",e, this);
+				this.showKb = true
 			},
 			onBlur(e){
 				this.$emit("onblur",e, this);
+				this.showKb = false
 			},
 			onInput(e){
 				this.currentValue = e.target.value;	

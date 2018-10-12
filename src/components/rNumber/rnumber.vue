@@ -93,7 +93,7 @@
 			},
 			showInputIcon(){
 				if(this.conf.inputIconType == "close-circled"){
-					if(this.conf.showInputIcon && this.currentValue && !this.conf.readonly){
+					if(this.conf.showInputIcon && this.currentValue && !this.conf.readonly && this.showKb){
 						return true;
 					}else{
 						return false;
