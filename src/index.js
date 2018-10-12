@@ -15,7 +15,7 @@ import rMvcode from './components/rMvcode'
 import rNumber from './components/rNumber'
 // import rProgress from './components/rProgress'
 // import rRadio from './components/rRadio'
-import rRegion from './components/rRegion'
+//import rRegion from './components/rRegion'
 import rSelect from './components/rSelect'
 import rTelephone from './components/rTelephone'
 import rTitlebar from './components/rTitlebar'
@@ -45,7 +45,7 @@ export {
   rNumber,
   // rProgress,
   //rRadio,
-  rRegion,
+  //rRegion,
   rSelect,
   rTelephone,
   rTitlebar,
