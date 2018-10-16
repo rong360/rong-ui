@@ -174,7 +174,7 @@ import rIcon from "../rIcon/rIcon"
 				if(this.selectedIndex < 0){
 					this.$toast && this.$toast({
 						propsData: {
-							message:this.conf.title || this.attrs.placeholder  + "不能为空！",
+							message:(this.conf.title || this.attrs.placeholder)  + "不能为空！",
 							type:"negetive"
 						}
 					});
