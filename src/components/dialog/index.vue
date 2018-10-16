@@ -9,7 +9,7 @@
 	    	v-on:before-enter="beforeEnter"
 	        v-on:after-leave="afterLeave"
 	    >
-	    <div class="r-dlg-content" :style="dlgStyleObj" ref="dlgContent" v-show="animateShow">
+	    <div class="r-dlg-content" :style="dlgStyleObj" ref="dlgContent" v-show="animateShow" @touchstart="clickDlg" @touchmove="moveDlg">
 	    	<div class="r-title" v-if="showTitle" :style="titleStyleObj">
 	    		<div class="r-title-wrap">{{title}}</div>
 	    	</div>
@@ -153,7 +153,11 @@
 				default: function(){
 					return {}
 				}
-			}
+			},
+			canDrag: {
+				type: Boolean,
+				default: false
+			},
 			
 		},
 		computed: {
@@ -193,6 +197,10 @@
 
 			this.$nextTick(function(){
 				this.resetPos();
+				this.viewWidth = document.documentElement.clientWidth;
+				this.viewHeight = document.documentElement.clientHeight;
+				this.maxL = this.viewWidth - this.$refs.dlgContent.offsetWidth
+            	this.maxT = this.viewHeight - this.$refs.dlgContent.offsetHeight
 			})
 
 			if(this.fromDlgCst){
@@ -272,6 +280,22 @@
             },
             afterLeave: function (el) {
               this._remove();
+            },
+            clickDlg(e){
+            	if(!this.canDrag) return
+            	this.disX = e.targetTouches[0].clientX - this.$refs.dlgContent.offsetLeft
+            	this.disY = e.targetTouches[0].clientY - this.$refs.dlgContent.offsetTop
+            },
+            moveDlg(e){
+            	if(!this.canDrag) return
+            	let L = e.targetTouches[0].clientX - this.disX,
+            		T = e.targetTouches[0].clientY - this.disY
+            	if(L > this.maxL) L = this.maxL
+            	if(L < 0) L = 0
+            	if(T > this.maxT) T = this.maxT
+            	if(T < 0) T = 0;
+            	this.$refs.dlgContent.style.marginLeft = L + 'px'
+            	this.$refs.dlgContent.style.top = T + 'px'
             }
 		}
 	}

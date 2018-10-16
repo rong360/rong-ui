@@ -22,15 +22,28 @@
 		    transform: translate3d(0, 100%, 0);
 		}
 		.r-keyboard-head{
-			text-align: right;
+			display: flex;
 			border-bottom: 1px solid #D8D9DC;
-			.confirm{
+			.title{
+				flex: 1;
+				text-align: center;
+				line-height: r(44);
+				height: r(44);
+				font-size: r(13);
+				text-overflow:ellipsis;
+				white-space: nowrap;
+			}
+			.confirm,
+			.cancel{
 				display: inline-block;
 				padding: 0 r(15);
 				line-height: r(44);
 				height: r(44);
 				color: #4080E8;
 				font-size: r(16);
+			}
+			.cancel{
+				visibility: hidden; //取消按钮纯属占位，不用显示
 			}
 		}
 		.r-keyboard-row{
