@@ -32,11 +32,12 @@ npm install rong-ui --save
 import Dialog from "rong-ui/components/dialog"
 Vue.use(Dialog);
 
-引用单个组件时babel-loader需添加 resolve('node_modules/rong-ui/components')，即：
+引用单个组件时babel-loader需配置include和exclude，即：
 {
 test: /\.js$/,
 loader: 'babel-loader',
-include: [resolve('node_modules/rong-ui/components')]
+include: [resolve('node_modules/rong-ui/components')],
+exclude: [resolve('node_modules/rong-ui/components/rong-ui.js')]
 }
 ```
 
