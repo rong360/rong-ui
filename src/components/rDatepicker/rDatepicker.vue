@@ -127,10 +127,15 @@ import Picker from 'better-picker'
 					this.picker.on('picker.select', function (index, selectedIndex) {
 						self.generateResult();
 						self.pickerSeat.style.height = "0px";
+						self.picker&&self.removePiker()
 					});
 					this.picker.on('picker.cancel', function () {
 						self.pickerSeat.style.height = "0px";
+						self.picker&&self.removePiker()
 					});
+					this.picker.maskEl.onclick = function(){
+						self.picker.trigger('picker.cancel')
+					}
 				}
 
 				this.picker.show();
@@ -238,14 +243,22 @@ import Picker from 'better-picker'
 					obj = obj.offsetParent;
 				}
 				return pos;
+			},
+			removePiker(){
+				var self = this
+				setTimeout(function(){
+					if(self.picker && self.picker.pickerEl){
+						self.picker.pickerEl.parentNode.removeChild(self.picker.pickerEl);
+						self.picker = null
+					}
+				}, 200)
 			}
 		},
 		beforeDestroy(){
-			if(this.picker && this.picker.pickerEl){
-				this.picker.pickerEl.parentNode.removeChild(this.picker.pickerEl);
-			}
+			this.removePiker()
 			if(this.pickerSeat){
 				this.pickerSeat.parentNode.removeChild(this.pickerSeat);
+				this.pickerSeat = null
 			}
 		}
 	}

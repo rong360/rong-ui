@@ -43,7 +43,7 @@ import rIDCard from "@/components/rIDCard"
 import rMvcode from "@/components/rMvcode"
 import rNumber from "@/components/rNumber"
 import Keyboard from "@/components/keyboard"
-import rRegion from "@/components/rRegion"
+//import rRegion from "@/components/rRegion"
 import rUpload from "@/components/rUpload"
 import rEmail from "@/components/rEmail"
 import rSelect from "@/components/rSelect"
@@ -67,7 +67,7 @@ const components = [
   rTelephone,
   rMvcode,
   rIDCard,
-  rRegion,
+  //rRegion,
   Keyboard,
   rUpload,
   rEmail,
