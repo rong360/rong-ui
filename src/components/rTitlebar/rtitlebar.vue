@@ -69,7 +69,7 @@
 		right: r(15);
 	}
 	&.r-tb-theme-a{
-		background-image: linear-gradient(90deg, #51C1EC 0%, #4080E8 100%);
+		background-image: linear-gradient(90deg, #39B9FF 0%, #4080E8 100%);
 	}
 	&.r-tb-theme-b{
 		background-image: linear-gradient(-90deg,  #4D78F6 2%,#919FFF 100%);
