@@ -18,13 +18,13 @@
     position: fixed; 
     left: 0; 
     top: 0; 
-    z-index: 888;
+    z-index: 1888;
     background-color: rgba(0,0,0,0.5);
     .r-content{
         position: absolute;
         left: 50%;
         top: 40%;
-        z-index: 889;
+        z-index: 1889;
     }
     .r-content1,.r-content2{ 
         // width: r(40); 
