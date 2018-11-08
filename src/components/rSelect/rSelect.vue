@@ -228,6 +228,17 @@ import rIcon from "../rIcon/rIcon"
 				}
 				return obj;
 			},
+			getSerializeObject(){
+				let s = this.getSerialize(),
+					sarray = s.split("&"),
+					obj = {};
+				for(var i=0; i<sarray.length; i++){
+					let kv = sarray[i].split("=");
+					obj["name"] = kv[0];
+					obj["value"] = kv[1];
+				}
+				return obj;
+			},
 			//处理键盘遮挡问题
 			dealKeyboardOcclusion(e){
 				var e = e || window.event,

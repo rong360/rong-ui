@@ -49,6 +49,9 @@
 			getSerializeArray(){
 				return this.$children[0].getSerializeArray();
 			},
+			getSerializeObject(){
+				return this.$children[0].getSerializeObject();
+			},
 			IDCardVerify(numberComponent){
 				var pass = false;
 		        var area = {

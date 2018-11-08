@@ -228,6 +228,12 @@
 				obj[this.conf.name] = this.currentValue;
 				return obj;
 			},
+			getSerializeObject(){
+				return {
+					"name": this.conf.name,
+					"value": this.currentValue
+				}
+			},
 			extendObj(obj1,obj2){
 		        for(var key in obj2){
 		            obj1[key] = obj2[key];

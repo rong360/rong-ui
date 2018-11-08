@@ -119,6 +119,9 @@
 			},
 			getSerializeArray(){
 				return this.$children[0].getSerializeArray();
+			},
+			getSerializeObject(){
+				return this.$children[0].getSerializeObject();
 			}
 		}
 	}

@@ -67,6 +67,9 @@
 			getSerializeArray(){
 				return this.$children[0].getSerializeArray();
 			},
+			getSerializeObject(){
+				return this.$children[0].getSerializeObject();
+			},
 			extendObj(obj1,obj2){
 		        for(var key in obj2){
 		            obj1[key] = obj2[key];

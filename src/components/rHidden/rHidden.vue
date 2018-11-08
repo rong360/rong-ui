@@ -30,6 +30,12 @@
 				obj[this.conf.name] = this.conf.value;
 				return obj;
 			},
+			getSerializeObject(){
+				return {
+					"name": this.conf.name,
+					"value": this.conf.value
+				}
+			},
 			getSerialize(){
 				return this.conf.name+"="+this.conf.value;
 			},

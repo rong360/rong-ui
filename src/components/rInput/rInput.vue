@@ -166,6 +166,12 @@
 				obj[this.conf.name] = this.currentValue;
 				return obj;
 			},
+			getSerializeObject(){
+				return {
+					"name": this.conf.name,
+					"value": this.currentValue
+				}
+			},
 			getSerialize(){
 				return this.conf.name+"="+this.currentValue;
 			},
