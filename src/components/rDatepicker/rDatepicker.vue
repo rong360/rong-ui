@@ -83,9 +83,17 @@ import Picker from 'better-picker'
 					months = this.generateMonthData(),
 					dates = this.generateDateData();
 
-				let selectedYearIndex = years.findIndex(function(year){
+				/*let selectedYearIndex = years.findIndex(function(year){
 					return year.value == thisYear;
-				});
+				});*/
+
+				var selectedYearIndex = 0
+				for(var i=0; i< years.length; i++){
+					if(years[i].value == thisYear){
+						selectedYearIndex = i;
+						break;
+					}
+				}
 				selectedYearIndex = selectedYearIndex == -1 ? 0 : selectedYearIndex;
 
 				let maxDate = this.getMaxDate(parseInt(thisYear), parseInt(thisMonth));
