@@ -6,7 +6,7 @@
 				--><rIcon :type="conf.labelIconType" size="0.8rem" v-if="conf.showLabelIcon" @iconClick="onclickLabelIcon"></rIcon>
 			</label>
 			<div class="input-wrap">
-				<input type="text" 
+				<input :type="conf.inputType" 
 				:name="conf.name"
 				:placeholder="conf.placeholder"
 				:maxlength="conf.maxlength"
@@ -61,6 +61,7 @@
 						disabled: false,
 						readonly: false,
 						unit: '',
+						inputType: 'text',
 						//显示底部border
 						showBottomBorder: true,
 						//显示input后面icon
