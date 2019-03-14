@@ -34,7 +34,8 @@
 		  	<li data-id="datepicker" @click="goCp">Datepicker 日期选择</li>
 	    </ul>
 	    <ul>
-		  	<li data-id="fixed" @click="goCp">Fixed 吸顶或吸底</li>
+		  	<li data-id="fixed" @click="goCp">Fixed 吸顶或吸底(fixed布局)</li>
+			<li data-id="flexfixed" @click="goCp">FlexFixed 吸顶或吸底(flex布局)</li>
 	    </ul>
     </div>
  </div>	    

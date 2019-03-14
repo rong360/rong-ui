@@ -8,10 +8,8 @@
 			]" :style="tbStyle">
 		<div class="l-operate">
 			<slot name="l">
-				<div @click="onBack" v-if="backurl">
-					<a :href="backurl">
-						<rIcon type="arrow-left" size=".8rem" color="#fff"></rIcon>
-					</a>
+				<div @click="onBack" v-if="showBackto">
+					<rIcon type="arrow-left" size=".8rem" color="#fff"></rIcon>
 				</div>
 			</slot>
 		</div>
@@ -37,12 +35,15 @@
 			tbStyle: {
 				type: Object
 			},
-			backurl: String,
+			showBackto: {
+				type: Boolean,
+				default: true
+			},
 			title: String
 		},
 		methods: {
-			onBack(){
-				this.$emit("onback");
+			onBack(e){
+				this.$emit("onback", e);
 			}
 		}
 	}

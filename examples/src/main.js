@@ -4,7 +4,7 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 
-require("./util/rem.js");
+require('./util/rem.js')
 
 // import "../dist/rong-ui.css"
 // import {
@@ -28,34 +28,35 @@ require("./util/rem.js");
 // import Dialog from "../dist/js/dialog.js"
 // Vue.use(Dialog);
 
-import Dialog from "@/components/dialog"
-import Toast from "@/components/toast"
-import Loading from "@/components/loading"
-import rButton from "@/components/rButton"
-import rIcon from "@/components/rIcon"
-import rTitlebar from "@/components/rTitlebar"
-import rInput from "@/components/rInput"
-import rVcode from "@/components/rVcode"
-import rInt from "@/components/rInt"
-import rFloat from "@/components/rFloat"
+import Dialog from '@/components/dialog'
+import Toast from '@/components/toast'
+import Loading from '@/components/loading'
+import rButton from '@/components/rButton'
+import rIcon from '@/components/rIcon'
+import rTitlebar from '@/components/rTitlebar'
+import rInput from '@/components/rInput'
+import rVcode from '@/components/rVcode'
+import rInt from '@/components/rInt'
+import rFloat from '@/components/rFloat'
 import rTelephone from '@/components/rTelephone'
-import rIDCard from "@/components/rIDCard"
-import rMvcode from "@/components/rMvcode"
-import rNumber from "@/components/rNumber"
-import Keyboard from "@/components/keyboard"
-//import rRegion from "@/components/rRegion"
-import rUpload from "@/components/rUpload"
-import rEmail from "@/components/rEmail"
-import rSelect from "@/components/rSelect"
-import rDatepicker from "@/components/rDatepicker"
+import rIDCard from '@/components/rIDCard'
+import rMvcode from '@/components/rMvcode'
+import rNumber from '@/components/rNumber'
+import Keyboard from '@/components/keyboard'
+// import rRegion from "@/components/rRegion"
+import rUpload from '@/components/rUpload'
+import rEmail from '@/components/rEmail'
+import rSelect from '@/components/rSelect'
+import rDatepicker from '@/components/rDatepicker'
 import rTabs from '@/components/rTabs'
 import rHidden from '@/components/rHidden'
 import rFixed from '@/components/rFixed'
+import rFlexFixed from '@/components/rFlexFixed'
 
 const components = [
-	Dialog,
+  Dialog,
   Toast,
-	Loading,
+  Loading,
   rButton,
   rIcon,
   rTitlebar,
@@ -67,7 +68,7 @@ const components = [
   rTelephone,
   rMvcode,
   rIDCard,
-  //rRegion,
+  // rRegion,
   Keyboard,
   rUpload,
   rEmail,
@@ -75,11 +76,11 @@ const components = [
   rDatepicker,
   rTabs,
   rHidden,
-  rFixed
+  rFixed,
+  rFlexFixed
 ]
 
-
-components.map(cp => Vue.use(cp));
+components.map(cp => Vue.use(cp))
 
 
 Vue.config.productionTip = false

@@ -1,40 +1,41 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
-import Index from "../views/index"
-import DialogExp from "../views/Dialog"
-import ToastExp from "../views/Toast"
+import Index from '../views/index'
+import DialogExp from '../views/Dialog'
+import ToastExp from '../views/Toast'
 // import TipExp from '../views/Tip'
-import LoadingExp from "../views/Loading"
+import LoadingExp from '../views/Loading'
 // import ProgressExp from "../views/Progress"
-import ButtonExp from "../views/Button"
-import rIconExp from "../views/Icon"
-import rTitlebarExp from "../views/Titlebar"
-import rInputExp from "../views/Input"
-import rVcodeExp from "../views/Vcode"
-import rNumberExp from "../views/Number"
-import KeyboardExp from "../views/Keyboard"
-import rTelephoneExp from "../views/Telephone"
-import rIDCardExp from "../views/IDCard"
-import rIntExp from "../views/Int"
-import rFloatExp from "../views/Float"
-import rMvcodeExp from "../views/Mvcode"
-import rRegionExp from "../views/Region"
-import rUploadExp from "../views/Upload"
-import rEmailExp from "../views/Email"
-import rSelectExp from "../views/Select"
-import rDatepickerExp from "../views/Datepicker"
-import rTabs from "../views/tabs.vue"
-import rHidden from "../views/hidden.vue"
-import rFixed from "../views/fixed.vue"
+import ButtonExp from '../views/Button'
+import rIconExp from '../views/Icon'
+import rTitlebarExp from '../views/Titlebar'
+import rInputExp from '../views/Input'
+import rVcodeExp from '../views/Vcode'
+import rNumberExp from '../views/Number'
+import KeyboardExp from '../views/Keyboard'
+import rTelephoneExp from '../views/Telephone'
+import rIDCardExp from '../views/IDCard'
+import rIntExp from '../views/Int'
+import rFloatExp from '../views/Float'
+import rMvcodeExp from '../views/Mvcode'
+import rRegionExp from '../views/Region'
+import rUploadExp from '../views/Upload'
+import rEmailExp from '../views/Email'
+import rSelectExp from '../views/Select'
+import rDatepickerExp from '../views/Datepicker'
+import rTabs from '../views/tabs.vue'
+import rHidden from '../views/hidden.vue'
+import rFixed from '../views/Fixed.vue'
+import rFlexFixed from '../views/FlexFixed.vue'
 
 Vue.use(Router)
 
 export default new Router({
   routes: [
     {
-      path: "/",
-      name: "index",
+      path: '/',
+      name: 'index',
       component: Index
     },
     {
@@ -73,8 +74,8 @@ export default new Router({
       component: rIconExp
     },
     {
-      path: "/titlebar",
-      name: "titlebar",
+      path: '/titlebar',
+      name: 'titlebar',
       component: rTitlebarExp
     },
     {
@@ -161,6 +162,11 @@ export default new Router({
       path: '/fixed',
       name: 'fixed',
       component: rFixed
+    },
+    {
+      path: '/flexfixed',
+      name: 'flexfixed',
+      component: rFlexFixed
     }
   ]
 })

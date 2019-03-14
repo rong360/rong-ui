@@ -1,31 +1,45 @@
 <template>
     <div id="app">
-        <rTitlebar theme="a" :title="title" backurl="#" v-show="showTitlebar"></rTitlebar>
+        <rTitlebar theme="a" :title="title"  v-if="showTitlebar" @onback="goBack"></rTitlebar>
         <router-view></router-view>
-        <a href="https://github.com/rong360/rong-ui" target="_blank">查看文档</a>
+        <a href="https://github.com/rong360/rong-ui" target="_blank" v-if="showDoc">查看文档</a>
     </div>
 </template>
 
 <script>
 export default {
   name: 'app',
-  data(){
+  data () {
     return {
       title: '',
-      showTitlebar: true
+      showTitlebar: true,
+      showDoc: true
     }
   },
   watch: {
     $route: {
-      handler(){
-        this.$route.name == 'index'? this.showTitlebar=false : this.showTitlebar=true;
-        if(this.$route.name == 'index'){
-          //this.title = 'Demo list'
-        }else{
-          this.title = 'Demo/' + decodeURIComponent(this.$route.query.title);
+      handler () {
+        // this.$route.name == 'index' ? this.showTitlebar = false : this.showTitlebar = true
+        if (this.$route.name == 'index') {
+          this.showTitlebar = false
+          // this.title = 'Demo list'
+        } else {
+          if (this.$route.name === 'fixed' || this.$route.name === 'flexfixed') {
+            this.showTitlebar = false
+            this.showDoc = false
+          } else {
+            this.showTitlebar = true
+            this.showDoc = true
+          }
+          this.title = 'Demo/' + decodeURIComponent(this.$route.query.title)
         }
       },
       immediate: true
+    }
+  },
+  methods: {
+    goBack (e) {
+      this.$router.go(-1)
     }
   }
 }
@@ -51,7 +65,9 @@ a{
 html,body{
   overflow: auto;
   background: #efeff4;
+  height: 100%;
   font-family: PingFangSC-Regular,Microsoft Yahei, sans-serif;
+   -webkit-overflow-scrolling: touch;/* 解决ios滑动不流畅问题 */
 }
 
 #app {
@@ -60,6 +76,7 @@ html,body{
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+  height: 100%;
 }
 [wrap ~= box]{
   display: -webkit-box;

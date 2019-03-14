@@ -1,7 +1,7 @@
 <template>
-	<rFixed>
-		<rTitlebar slot="header" backurl="#" title="Fixed 吸顶或吸底"  @onback="goback"></rTitlebar>	
-		<p>content 1</p>
+	<rFlexFixed>
+		<rTitlebar slot="header"  title="FlexFixed 吸顶或吸底" @onback="goback"></rTitlebar>	
+		<p>content 11111</p>
 		<p>content </p>
 		<p>content </p>
 		<p>content 2</p>
@@ -26,13 +26,13 @@
 		<rButton slot="footer">
 			下一步
 		</rButton>
-	</rFixed>
+	</rFlexFixed>
 </template>
 
 <script>
 export default {
   methods: {
-    goback (e) {
+    goback () {
       this.$router.go(-1)
     }
   }
@@ -44,8 +44,6 @@ export default {
 	@return $px/18.75*1rem;
 }
 p{
-	text-align: left;
-	padding: 1rem .8rem;
-	background: #fff;
+    line-height: 2rem;
 }
 </style>

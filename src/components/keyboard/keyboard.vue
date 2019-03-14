@@ -237,7 +237,7 @@ import rIcon from "../rIcon/rIcon";
 		watch: {
 			show(val){
 				if(val){
-					this.keyboardSeat.style.height = "300px";
+					this.keyboardSeat.style.height = "16rem";
 				}else{
 					this.keyboardSeat.style.height = "0px";
 				}
