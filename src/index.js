@@ -26,6 +26,7 @@ import rTabs from './components/rTabs'
 
 import rHidden from './components/rHidden'
 import rFixed from './components/rFixed'
+import rFlexFixed from './components/rFlexFixed'
 
 export {
   Dialog,
@@ -54,5 +55,6 @@ export {
   rTabs,
   // Tip,
   rHidden,
-  rFixed
+  rFixed,
+  rFlexFixed
 }
