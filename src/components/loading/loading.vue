@@ -47,7 +47,7 @@
 			},
 			color: {
 				type: String,
-				default: "#4080e8"
+				default: ""
 			},
 			textColor: {
 				type: String,
@@ -70,11 +70,12 @@
 				}
 			},
 			arcStyle(){
-				return {
+				let style = {
 					width: this.cwidth/2/18.75 + "rem",
-					height: this.cwidth/2/18.75 + "rem",
-					"background-color": this.color
+					height: this.cwidth/2/18.75 + "rem"
 				}
+				this.color && (Object.assign(style, {"background-color": this.color}))
+				return style
 			},
 			txtStyle(){
 				let obj = {
