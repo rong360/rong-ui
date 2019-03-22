@@ -3,7 +3,7 @@
 		<header>
 			<slot name="header"></slot>
 		</header>
-		<main v-scroll>
+		<main ref="main" v-scroll="scroll">
 			<slot></slot>
 		</main>
 		<footer>
@@ -20,7 +20,7 @@ export default {
       bind: (el, binding) => {
         let canBodyScroll = false
         let startY = 0
-
+        let timeId = null
         el.__scrollBody__ = (e) => {
           if (!canBodyScroll) {
             e.preventDefault()
@@ -31,6 +31,7 @@ export default {
         }
         el.__touchmoveDiv__ = (e) => {
           let maxScrollHeight = el.scrollHeight - el.clientHeight
+          el.__maxScrollHeight = maxScrollHeight
 
           if ((e.changedTouches[0].clientY - startY) > 0 && el.scrollTop == 0) { // 向下
             canBodyScroll = false
@@ -39,9 +40,22 @@ export default {
           } else {
             canBodyScroll = true
           }
+          binding.expression && binding.value(el.scrollTop, el.__maxScrollHeight)
         }
         el.__touchendDiv__ = (e) => {
           canBodyScroll = false
+          let start = null
+
+          function step (timestamp) {
+            if (!start) start = timestamp
+            var progress = timestamp - start
+            if (progress < 5000) {
+              timeId = requestAnimationFrame(step)
+            }
+            binding.expression && binding.value(el.scrollTop, el.__maxScrollHeight)
+          }
+          timeId && cancelAnimationFrame(timeId)
+          timeId = requestAnimationFrame(step)
         }
         document.body.addEventListener('touchmove', el.__scrollBody__, {passive: false })
         el.addEventListener('touchstart', el.__touchstartDiv__, false)
@@ -54,6 +68,13 @@ export default {
         el.removeEventListener('touchmove', el.__touchmoveDiv__, false)
         el.removeEventListener('touchend', el.__touchmoveDiv__, false)
       }
+    }
+  },
+  methods: {
+    scroll (scrollTop, maxScrollHeight) {
+      scrollTop = Math.max(0, scrollTop)
+      scrollTop = Math.min(scrollTop, maxScrollHeight)
+      this.$emit('scroll', scrollTop, maxScrollHeight)
     }
   }
 }
