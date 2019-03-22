@@ -49,7 +49,7 @@ export default {
           function step (timestamp) {
             if (!start) start = timestamp
             var progress = timestamp - start
-            if (progress < 5000) {
+            if (progress < 10000) {
               timeId = requestAnimationFrame(step)
             }
             binding.expression && binding.value(el.scrollTop, el.__maxScrollHeight)
@@ -74,7 +74,10 @@ export default {
     scroll (scrollTop, maxScrollHeight) {
       scrollTop = Math.max(0, scrollTop)
       scrollTop = Math.min(scrollTop, maxScrollHeight)
-      this.$emit('scroll', scrollTop, maxScrollHeight)
+      if (scrollTop !== this.oldScrollTop) {
+        this.$emit('scroll', scrollTop, maxScrollHeight)
+      }
+      this.oldScrollTop = scrollTop
     }
   }
 }
