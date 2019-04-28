@@ -24,7 +24,7 @@ var env = process.env.NODE_ENV === 'testing'
 delete baseWebpackConfig.entry
 var webpackConfig = merge(baseWebpackConfig, {
   entry: {
-    app: './src/index.js'
+    app: ['./src/util/pollyfill.js','./src/index.js']
   },
   module: {
     rules: utils.styleLoaders({
