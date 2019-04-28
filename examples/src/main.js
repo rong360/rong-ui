@@ -8,19 +8,19 @@ require('./util/rem.js')
 
 // import "../dist/rong-ui.css"
 // import {
-//   Dialog, 
-//   Tip, 
-//   Toast, 
-//   Loading, 
-//   rProgress, 
-//   rButton, 
-//   rIcon, 
-//   rInput, 
-//   rInt, 
-//   rFloat, 
-//   rTelephone, 
-//   rIDCard, 
-//   rNumber, 
+//   Dialog,
+//   Tip,
+//   Toast,
+//   Loading,
+//   rProgress,
+//   rButton,
+//   rIcon,
+//   rInput,
+//   rInt,
+//   rFloat,
+//   rTelephone,
+//   rIDCard,
+//   rNumber,
 //   keyboard
 // } from "../dist/rong-ui.js"
 
@@ -53,6 +53,8 @@ import rHidden from '@/components/rHidden'
 import rFixed from '@/components/rFixed'
 import rFlexFixed from '@/components/rFlexFixed'
 
+require('../../src/util/pollyfill.js')
+
 const components = [
   Dialog,
   Toast,
@@ -81,7 +83,6 @@ const components = [
 ]
 
 components.map(cp => Vue.use(cp))
-
 
 Vue.config.productionTip = false
 
