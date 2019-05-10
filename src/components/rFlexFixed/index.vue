@@ -19,15 +19,23 @@ export default {
     'scroll': {
       bind: (el, binding) => {
         let canBodyScroll = false
+        let startX = 0
         let startY = 0
         let timeId = null
+        let isInScrollList = false
         el.__scrollBody__ = (e) => {
           if (!canBodyScroll) {
             e.preventDefault()
           }
         }
         el.__touchstartDiv__ = (e) => {
+          startX = e.changedTouches[0].clientX
           startY = e.changedTouches[0].clientY
+          el.scrollList.forEach(element => {
+            if (element.contains(e.target)) {
+              isInScrollList = true
+            }
+          })
         }
         el.__touchmoveDiv__ = (e) => {
           let maxScrollHeight = el.scrollHeight - el.clientHeight
@@ -40,10 +48,14 @@ export default {
           } else {
             canBodyScroll = true
           }
+          if (isInScrollList && (Math.abs(e.changedTouches[0].clientX - startX) > Math.abs(e.changedTouches[0].clientY - startY))) {
+            canBodyScroll = true
+          }
           binding.expression && binding.value(el.scrollTop, el.__maxScrollHeight)
         }
         el.__touchendDiv__ = (e) => {
           canBodyScroll = false
+          isInScrollList = false
           let start = null
 
           function step (timestamp) {
@@ -61,6 +73,9 @@ export default {
         el.addEventListener('touchstart', el.__touchstartDiv__, false)
         el.addEventListener('touchmove', el.__touchmoveDiv__, false)
         el.addEventListener('touchend', el.__touchendDiv__, false)
+      },
+      inserted (el) {
+        el.scrollList = document.querySelectorAll('.rFlexFixed-scroll')
       },
       unbind: (el, binding) => {
         document.body.removeEventListener('touchmove', el.__scrollBody__, false)
