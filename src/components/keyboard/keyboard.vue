@@ -3,7 +3,7 @@
 		<div :class="['r-keyboard-content',show?'':'r-keyboard-content-hidden']" @touchstart="doTouch" @touchend="endTouch">
 			<div class="r-keyboard-head">
 				<div class="cancel">取消</div>
-				<div class="title">{{title}}</div>
+				<div class="title"><span v-if="showTitle">{{title}}</span></div>
 				<div data-code="ok" class="confirm">确定</div>
 			</div>
 			<div class="r-keyboard-row">
@@ -64,6 +64,11 @@ import rIcon from "../rIcon/rIcon";
 			fixed: {
 				type: Number,
 				default: -1
+			},
+			//是否显示键盘上title
+			showTitle: {
+				type: Boolean,
+				default: true
 			}
 		},
 		computed: {

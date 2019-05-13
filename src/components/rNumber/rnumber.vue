@@ -73,7 +73,8 @@
 						needVerify: true,
 						verify: function(){ return true },
 						needVerifyToast: true,
-						showLabel: true
+						showLabel: true,
+						showKeyboardTitle: true
 					};
 				return this.extendObj(defaultConfig,this.attrs);
 			},
@@ -149,7 +150,9 @@
 						//键盘默认值
 						value: self.currentValue,
 						//codeStr最大长度
-						maxlength: self.conf.maxlength
+						maxlength: self.conf.maxlength,
+						//是否显示title
+						showTitle: self.conf.showKeyboardTitle
 					},
 					methods: {
 						typing(code, codeStr){
