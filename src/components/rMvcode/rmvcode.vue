@@ -74,8 +74,8 @@
 							}
 						})
 					}else{
-						this.startTimer()
-						this.$emit("onclickSendBtn")
+						(!this.conf.offStartTimer)&&this.startTimer()
+						this.$emit("onclickSendBtn", this)
 					}
 				}
 			},
@@ -94,6 +94,12 @@
 						self.btnText = "获取验证码";
 					}
 				},1000)
+				this.timer = timer;
+			},
+			stopTimer(){
+				this.disabled = false;
+				clearInterval(this.timer)
+				this.btnText = "获取验证码";
 			},
 		    oninput(val){
 				this.$emit("oninput", val);
