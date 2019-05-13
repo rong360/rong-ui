@@ -65,12 +65,12 @@
 								self.$emit("success",res, self);
 								self.conf.success.call(self, res);
 								(!self.conf.offStartTimer)&&self.startTimer()
-								self.$emit("onclickSendBtn")
+								self.$emit("onclickSendBtn", self)
 							},
 							error: function(res){
 								self.$emit("fail",res, self);
 								self.conf.fail.call(self, res);
-								self.$emit("onclickSendBtn")
+								self.$emit("onclickSendBtn", self)
 							}
 						})
 					}else{
