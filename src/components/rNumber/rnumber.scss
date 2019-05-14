@@ -35,6 +35,7 @@
 			//flex: 1;
 			display: inline-block;
 			text-align: left;
+			flex-shrink: 0;
 			span:nth-child(2){
 				padding-left: r(3);
 			}

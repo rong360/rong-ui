@@ -147,6 +147,7 @@
 	// box-sizing: border-box;
 	border-radius: 20px;
 	text-align: center;
+	flex-shrink: 0;
 	&.disabled{
 		border: 1px solid #C8C7CC;
 		color: #C8C7CC;
