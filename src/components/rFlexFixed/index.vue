@@ -34,6 +34,7 @@ export default {
           startX = e.changedTouches[0].clientX
           startY = e.changedTouches[0].clientY
           oldStartY = startY
+          if (!el.scrollList) el.scrollList = el.querySelectorAll('.rFlexFixed-scroll')
           el.scrollList.forEach(element => {
             if (element.contains(e.target)) {
               isInScrollList = true
@@ -89,9 +90,6 @@ export default {
         el.addEventListener('touchstart', el.__touchstartDiv__, false)
         el.addEventListener('touchmove', el.__touchmoveDiv__, false)
         el.addEventListener('touchend', el.__touchendDiv__, false)
-      },
-      inserted (el) {
-        el.scrollList = document.querySelectorAll('.rFlexFixed-scroll')
       },
       unbind: (el, binding) => {
         document.body.removeEventListener('touchmove', el.__scrollBody__, false)
