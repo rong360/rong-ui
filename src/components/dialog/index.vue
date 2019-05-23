@@ -252,6 +252,8 @@
 						case 'right':
 							this.$refs.dlgContent.style.right = '0px';
 							break;
+						default:
+							this.$refs.dlgContent.style.left = this.position.x;
 					}
 				}
 
@@ -268,6 +270,8 @@
 							break;
 						case 'bottom':
 							this.$refs.dlgContent.style.bottom = '0px';
+						default:
+							this.$refs.dlgContent.style.top = this.position.y;
 					}
 				}
 			},
