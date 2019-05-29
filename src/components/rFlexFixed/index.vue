@@ -25,8 +25,16 @@ export default {
         let isInScrollList = false
         let oldStartY = 0
         let directionY = ''
+        let isSupportDevice = () => {
+          let isSupportDevice = true
+          let ua = navigator.userAgent
+          if (/iP(ad|hone|od)/.test(ua) && /OS [1-9]_/.test(ua)) { // ios9以下不支持
+            isSupportDevice = false
+          }
+          return isSupportDevice
+        }
         el.__scrollBody__ = (e) => {
-          if (!canBodyScroll) {
+          if (isSupportDevice() && !canBodyScroll) {
             e.preventDefault()
           }
         }
