@@ -5,6 +5,8 @@
     >main{
         display: block;
         flex: 1;
+        width: 100%;
+        overflow-x: hidden;
         overflow-y: scroll;
         -webkit-overflow-scrolling: touch;/* 解决ios滑动不流畅问题 */
     }

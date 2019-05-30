@@ -1,5 +1,5 @@
 <template>
-	<div class="r-flexfixed">
+	<div class="r-flexfixed" @touchstart="touchstartFlexFixed" @touchend="touchendFlexFixed">
 		<header>
 			<slot name="header"></slot>
 		</header>
@@ -18,7 +18,7 @@ export default {
   directives: {
     'scroll': {
       bind: (el, binding) => {
-        let canBodyScroll = false
+        el.canBodyScroll = false
         let startX = 0
         let startY = 0
         let timeId = null
@@ -34,7 +34,7 @@ export default {
           return isSupportDevice
         }
         el.__scrollBody__ = (e) => {
-          if (isSupportDevice() && !canBodyScroll) {
+          if (isSupportDevice() && !el.canBodyScroll) {
             e.preventDefault()
           }
         }
@@ -42,7 +42,7 @@ export default {
           startX = e.changedTouches[0].clientX
           startY = e.changedTouches[0].clientY
           oldStartY = startY
-          if (!el.scrollList) el.scrollList = el.querySelectorAll('.rFlexFixed-scroll')
+          if (typeof el.scrollList === 'undefined') el.scrollList = el.querySelectorAll('.rFlexFixed-scroll')
           el.scrollList.forEach(element => {
             if (element.contains(e.target)) {
               isInScrollList = true
@@ -61,19 +61,19 @@ export default {
           oldStartY = e.changedTouches[0].clientY
 
           if (directionY === 'down' && el.scrollTop == 0) { // 顶部向下
-            canBodyScroll = false
+            el.canBodyScroll = false
           } else if (directionY === 'up' && el.scrollTop >= maxScrollHeight) { // 底部向上
-            canBodyScroll = false
+            el.canBodyScroll = false
           } else {
-            canBodyScroll = true
+            el.canBodyScroll = true
           }
           if (isInScrollList && (Math.abs(e.changedTouches[0].clientX - startX) > Math.abs(e.changedTouches[0].clientY - startY))) {
-            canBodyScroll = true
+            el.canBodyScroll = true
           }
           binding.expression && binding.value(el.scrollTop, el.__maxScrollHeight, directionY)
         }
         el.__touchendDiv__ = (e) => {
-          canBodyScroll = false
+          el.canBodyScroll = false
           isInScrollList = false
           let start = null
 
@@ -115,6 +115,12 @@ export default {
         this.$emit('scroll', scrollTop, maxScrollHeight, directionY)
       }
       this.oldScrollTop = scrollTop
+    },
+    touchstartFlexFixed () {
+      this.$refs.main.canBodyScroll = false // 解决keep-alive兼容
+    },
+    touchendFlexFixed () {
+      this.$refs.main.canBodyScroll = true // 解决keep-alive兼容
     }
   }
 }
