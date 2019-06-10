@@ -11,7 +11,7 @@
 			</label>
 			<div class="input-wrap" :data-keyboardid="kid">
 			    <div :class="iClsName" @click="doInput" v-if="conf.useSafeKeyboard"><span>{{ currentValue ? currentValue : conf.placeholder }}<i></i></span></div>
-				<input :type="inputType" :name="conf.name" v-model="currentValue" :maxlength="conf.maxlength" v-else>
+				<input :type="conf.inputType" :name="conf.name" v-model="currentValue" :maxlength="conf.maxlength" v-else>
 		        <rIcon 
 		        	:type="conf.inputIconType" 
 					v-show="showInputIcon"
