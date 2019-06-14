@@ -111,7 +111,28 @@
 	      this.currentValue = typeof this.conf.value !== 'undefined' ? this.conf.value + '' : ''
     },
 	    currentValue: function () {
-	      let currentValue = this.currentValue.replace(/\D/g, '')
+	      let currentValue = this.currentValue
+	      if (this.conf.type === 'idcard') {
+	        if (this.currentValue.length <= 17) {
+	          currentValue = currentValue.replace(/\D/g, '')
+	        } else {
+	          currentValue = currentValue.substr(0, 18)
+	          if (!/(\d|X|x)$/.test(currentValue)) {
+	            currentValue = currentValue.replace(/\D/g, '')
+	          }
+	        }
+	      } else if(this.conf.type === 'float') {
+					currentValue = currentValue.replace(/\D/g, word => {
+						return word === '.' ? '.' : ''
+					})
+					let numArr = currentValue.split(".")
+					if(numArr.length > 1){
+						numArr = numArr.slice(0,2)
+						currentValue = numArr.join(".")
+					}
+				} else {
+	        currentValue = currentValue.replace(/\D/g, '')
+	      }
 	      this.currentValue = currentValue
 	      this.$emit('oninput', this.currentValue)
 	    }
