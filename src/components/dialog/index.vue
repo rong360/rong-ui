@@ -1,5 +1,5 @@
 <template>
-  <div class="r-dialog" v-show="show" @touchmove.prevent="function(){}">
+  <div class="r-dialog" v-show="show" @touchstart="touchstartDialog($event)" @touchmove="touchmoveDialog($event)">
     <transition name="dialog-fade">
       <div class="r-dlg-cliper" :style="CliperStyleObj" v-show="animateShow"></div>
     </transition>
@@ -20,7 +20,7 @@
         <div class="r-title" v-if="showTitle" :style="titleStyleObj">
           <div class="r-title-wrap">{{title}}</div>
         </div>
-        <img :src="iconComputed" alt v-if="showIcon">
+        <img :src="iconComputed" alt v-if="showIcon" :style="iconStyleObj">
         <div class="r-dlg-close" v-if="showCloseBtn" :style="closeStyleObj" @click="onClose">
           <svg
             width="11px"
@@ -73,7 +73,15 @@ export default {
   data: function () {
     return {
       animateShow: !this.animate,
-      fromDlgCst: false
+			fromDlgCst: false,
+			scrollList: null,
+      currentScrollArea: null,
+      dialogMouseInfo: {
+        startX: 0,
+        startY: 0,
+        endX: 0,
+        endY: 0
+      }
     }
   },
   props: {
@@ -96,6 +104,12 @@ export default {
     showIcon: {
       type: Boolean,
       default: false
+		},
+		iconStyleObj: {
+      type: Object,
+      default: function () {
+        return {}
+      }
     },
     // 内容
     message: String,
@@ -232,7 +246,10 @@ export default {
       this.viewWidth = document.documentElement.clientWidth
       this.viewHeight = document.documentElement.clientHeight
       this.maxL = this.viewWidth - this.$refs.dlgContent.offsetWidth
-      this.maxT = this.viewHeight - this.$refs.dlgContent.offsetHeight
+			this.maxT = this.viewHeight - this.$refs.dlgContent.offsetHeight
+			if(this.scrollList===null){
+        this.scrollList = this.$refs.dlgContent.querySelectorAll('.scroll-area')
+      }
     })
 
     if (this.fromDlgCst) {
@@ -344,6 +361,38 @@ export default {
         if (T < 0) T = 0
         this.$refs.dlgContent.style.marginLeft = L + 'px'
         this.$refs.dlgContent.style.top = T + 'px'
+      }
+		},
+		touchstartDialog(e){
+      this.currentScrollArea = null
+      this.scrollList.forEach(element => {
+        if (element.contains(e.target)) {
+          this.currentScrollArea = element
+        }
+      })
+      this.dialogMouseInfo.startX = e.targetTouches[0].clientX
+      this.dialogMouseInfo.startY = e.targetTouches[0].clientY
+    },
+    touchmoveDialog(e){
+      this.dialogMouseInfo.endX = e.targetTouches[0].clientX
+      this.dialogMouseInfo.endY = e.targetTouches[0].clientY
+      let directionY = ""
+      if(this.dialogMouseInfo.endY - this.dialogMouseInfo.startY > 0){
+        directionY = 'down'
+      }else if(this.dialogMouseInfo.endY - this.dialogMouseInfo.startY < 0){
+        directionY = 'up'
+      }
+      if(
+        !this.currentScrollArea || 
+        (
+          this.currentScrollArea && 
+          (
+            (directionY=='down'&& this.currentScrollArea.scrollTop==0) || 
+            (directionY=='up'&& this.currentScrollArea.scrollTop>= (this.currentScrollArea.scrollHeight-this.currentScrollArea.offsetHeight) )
+          )
+        )
+      ){
+        e.preventDefault();
       }
     }
   }
