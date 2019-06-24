@@ -4,8 +4,9 @@
 			<div class="tip">请输入以下信息：</div>
 			<rInt :attrs="config" :ref="config.name" @onclear="onclear"></rInt>
 			<rInt :attrs="config0" :ref="config0.name" @onclickInputIcon="onclickInputIcon"></rInt>
-			<rInt :attrs="config1" :ref="config1.name" @onclickLabelIcon="onclickLabelIcon"></rInt>
+			<rInt :attrs="config1" :ref="config1.name" @onclickLabelIcon="onclickLabelIcon" @onfocus="onfocus" @onblur="onblur"></rInt>
 			<rInt :attrs="config2" @oninput="oninput"  @onconfirm="onconfirm" :ref="config2.name"></rInt>
+			<rInt :attrs="config3" @onblur="onblur" :ref="config3.name"></rInt>
 			<div class="btn" @click="doSubmit">提交</div>
 		</div>				
 	</div>
@@ -84,6 +85,30 @@
 						}
 						return true;
 					}
+				},
+				config3: {
+					title: "白雪和几个小矮人(系统键盘)",
+					name: 'sand',
+					value: "",
+					placeholder: "请输入",
+					disabled: false,
+					readonly: false,
+					unit: '',
+					showInputIcon: true,
+					maxlength: 6,
+					useSafeKeyboard: false,
+					verify: function(val){
+						if(val != 7){
+							this.$toast({
+								propsData: {
+									type: "negetive",
+									message: "傻瓜，小矮人是七个啊！！！"
+								}
+							});
+							return false;
+						}
+						return true;
+					}
 				}
 			}
 		},
@@ -98,6 +123,13 @@
 						message: '数据为空了，你可以把button置灰'
 					}
 				})
+			},
+			onfocus(e, component){
+				console.log('获得焦点')
+			},
+			onblur(e, component){
+				console.log('失去焦点')
+				component.verify()
 			},
 			onconfirm(code, codeStr, component){
 				//this.$refs.sand.verify();

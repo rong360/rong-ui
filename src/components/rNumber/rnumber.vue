@@ -6,19 +6,27 @@
         <rIcon :type="conf.labelIconType" v-if="conf.showLabelIcon" @iconClick="onclickLabelIcon"></rIcon>
       </label>
       <div class="input-wrap" :data-keyboardid="kid">
-        <div :class="iClsName" @click="doInput" v-if="conf.useSafeKeyboard">
+        <div v-if="conf.useSafeKeyboard" :class="iClsName" @click="doInput">
           <span>
             {{ currentValue ? currentValue : conf.placeholder }}
             <i></i>
           </span>
         </div>
         <input
+          v-else
           :type="conf.inputType"
           :name="conf.name"
           v-model="currentValue"
+          :placeholder="conf.placeholder"
           :maxlength="conf.maxlength"
-          @blur="blurInput"
-          v-else
+          :disabled="conf.disabled"
+          :readonly="!!conf.readonly"
+          :class="inputClsName"
+          @focus="onFocus"
+          @blur="onBlur"
+          @input="onInput"
+          @keyup="onKeyup"
+          :pattern="conf.type=='int'?'[0-9]*':''"
         >
         <rIcon :type="conf.inputIconType" v-show="showInputIcon" @iconClick="onclickInputIcon"></rIcon>
       </div>
@@ -39,12 +47,15 @@ export default {
     attrs: Object
   },
   data () {
+    let ua = navigator.userAgent
+    let isAndroid = !!ua.match(/(Android)\s+([\d.]+)/)
     return {
       kid: 0, // keyboard id
       kb: null, // 键盘，document下每次只存在一个键盘
       currentValue:
         typeof this.attrs.value !== 'undefined' ? this.attrs.value + '' : '',
-      showKb: false // 控制光标
+      showKb: false, // 控制光标
+      isAndroid: isAndroid
     }
   },
   computed: {
@@ -59,10 +70,20 @@ export default {
       ) {
         this.maskCode = this.attrs.value
       }
+      let inputType = ''
+      if (this.attrs.type === 'idcard') {
+        inputType = 'text'
+      }else{
+        if(this.isAndroid){
+          inputType = 'tel'
+        }else{
+          inputType = 'number'
+        }
+      }
       // 默认参数
       let defaultConfig = {
         title: '表单名称',
-        inputType: 'tel',
+        inputType: inputType,
         name: '',
         value: '',
         type: 'float',
@@ -107,6 +128,9 @@ export default {
         ? ' rinput-value-right'
         : ' rinput-value-' + this.conf.lr) // 光标样式
     },
+    inputClsName () {
+      return this.conf.lr == 'right' ? 'ta-right' : 'ta-left'
+    },
     lblStyle () {
       return this.conf.lblWidth ? { width: this.conf.lblWidth } : {}
     },
@@ -133,7 +157,7 @@ export default {
         typeof this.conf.value !== 'undefined' ? this.conf.value + '' : ''
     },
     currentValue: function () {
-      let currentValue = this.currentValue
+      let currentValue = this.currentValue;
       if (this.conf.type === 'idcard') {
         if (this.currentValue.length <= 17) {
           currentValue = currentValue.replace(/\D/g, '')
@@ -159,6 +183,10 @@ export default {
         }
       } else {
         currentValue = currentValue.replace(/\D/g, '')
+      }
+      // 使用系统键盘时限制整数和浮点类型长度
+      if (!this.conf.useSafeKeyboard && this.conf.type != 'idcard' && this.conf.maxlength > -1 && currentValue.length > this.conf.maxlength) {
+        currentValue = currentValue.substr(0, this.conf.maxlength)
       }
       this.currentValue = currentValue
       this.$emit('oninput', this.currentValue)
@@ -212,9 +240,12 @@ export default {
             self.currentValue = codeStr
 
             if (code == 'ok') {
-              self.kb = null
-              self.showKb = false
-              self.$emit('onconfirm', code, codeStr, self)
+              // 延迟设置showKb:false,因为false后clear清空按钮就不展示了，那么永远点击不到清空按钮上了
+              setTimeout(() => {
+                self.kb = null
+                self.showKb = false
+                self.$emit('onconfirm', code, codeStr, self)
+              }, 100)
             }
           }
         }
@@ -226,14 +257,16 @@ export default {
     onclickInputIcon (e) {
       if (this.conf.inputIconType == 'close-circled') {
         this.currentValue = ''
-        if (this.kb) {
-          // 有键盘-清空当前组件的数据，键盘数据清空
-          this.kb.currentValue = ''
-        } else {
-          // 无键盘-清掉其他键盘，focus当前输入框，为当前组件初始化一个键盘
-          this.clearKeyboard()
-          this.showKb = true
-          this.initKeyboard()
+        if (this.conf.useSafeKeyboard) {
+          if (this.kb) {
+            // 有键盘-清空当前组件的数据，键盘数据清空
+            this.kb.currentValue = ''
+          } else {
+            // 无键盘-清掉其他键盘，focus当前输入框，为当前组件初始化一个键盘
+            this.clearKeyboard()
+            this.showKb = true
+            this.initKeyboard()
+          }
         }
         this.$emit('onclear', this)
       } else {
@@ -305,8 +338,9 @@ export default {
       if (!obj1.name) console.warn('组件未传入name属性！title=' + obj1.title)
       return obj1
     },
-    blurInput () {
-			let currentValue = this.currentValue
+    onBlur (e) {
+      let self = this
+      let currentValue = e.target.value;
       if (this.conf.type === 'float') {
         if (currentValue === '.') {
           currentValue = ''
@@ -319,8 +353,30 @@ export default {
             currentValue.length - 1
           )
         }
-			}
-			this.currentValue = currentValue
+      }
+      this.currentValue = currentValue
+      if (currentValue == '') {
+        e.target.value = typeof e.target.__value__ === 'undefined' ? '': e.target.__value__
+      }
+      setTimeout(function () {
+        self.showKb = false
+        self.$emit('onblur', e, this)
+      }, 50)
+    },
+    onFocus (e) {
+      this.showKb = true
+      this.$emit('onfocus', e, this)
+    },
+    onInput (e) {
+    },
+    onKeyup (e) {
+      if (typeof e.target.__value__ === 'undefined') {
+        e.target.__value__ = ''
+      }
+      if (e.target.value != '' || e.keyCode == 8) {
+        e.target.__value__ = e.target.value
+      }
+      e.target.value = e.target.__value__
     }
   }
 }

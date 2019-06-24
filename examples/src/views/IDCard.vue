@@ -3,7 +3,12 @@
 		<div class="exp">
 			<div class="tip">请输入以下信息：</div>
 			<rIDCard :attrs="config" :ref="config.name"></rIDCard>
-			<rIDCard :attrs="config0" @oninput="oninput" @onclear="onclear" @onconfirm="verifyIDCard" :ref="config0.name"></rIDCard>
+			<rIDCard :attrs="config0" @oninput="oninput" @onclear="onclear"  @onconfirm="verifyIDCard" :ref="config0.name"></rIDCard>
+			<rIDCard 
+				:attrs="config1"  
+				@onblur="onblur"  
+				:ref="config1.name"
+			/>
 			<div class="btn" @click="doSubmit">提交</div>
 		</div>		
 	</div>
@@ -38,6 +43,18 @@
 					autofocus: false,
 					unit: '',
 					canDelete: true
+				},
+				config1: {
+					title: "思聪老公身份证号码(系统键盘)",
+					name: 'sonID2',
+					value: "",
+					placeholder: "请输入",
+					disabled: false,
+					readonly: false,
+					autofocus: false,
+					unit: '',
+					canDelete: true,
+					useSafeKeyboard: false
 				}
 			}
 		},
@@ -47,6 +64,13 @@
 			},
 			onclear(){
 				this.$toast('数据为空了，你可以把button置灰')
+			},
+			onfocus(e, component){
+				console.log('获得焦点')
+			},
+			onblur(e, component){
+				console.log('失去焦点')
+				component.verify()
 			},
 			verifyIDCard(code, codeStr, component){
 				//this.$refs.sonID.verify();

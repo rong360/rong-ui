@@ -1,6 +1,6 @@
 <template>
 	<div class="r-keyboard">
-		<div :class="['r-keyboard-content',show?'':'r-keyboard-content-hidden']" @touchstart="doTouch" @touchend="endTouch">
+		<div :class="['r-keyboard-content',show?'':'r-keyboard-content-hidden']" @touchstart="doTouch" @touchend="endTouch" ref="content">
 			<div class="r-keyboard-head">
 				<div class="cancel">取消</div>
 				<div class="title"><span v-if="showTitle">{{title}}</span></div>
@@ -105,6 +105,27 @@ import rIcon from "../rIcon/rIcon";
 				self.dealKeyboardOcclusion();
 				//点击非键盘部分，收起键盘
 				document.addEventListener("touchstart",self.docTouchStart)
+				/**
+				 * 解决华为部分机型事件定位不准确bug
+				 * 	特殊机型以顶部定位 top
+				 * 	其它机型以底部定位 bottom
+				 */
+				let setKeyboardPosition = () => {
+					let content = this.$refs.content 
+					let ua = navigator.userAgent.toLowerCase()
+					let isHonor_8x = (ua.indexOf('honorjsn-al00a')>-1) && /mqqbrowser\/8.1/.test(ua)// 华为荣耀8x
+					if(isHonor_8x){
+						let clientH=window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight
+						if(clientH < 670){
+							content.style.top = (clientH- content.clientHeight) - 50 + 'px'
+						}else{
+							content.style.top = (clientH- content.clientHeight) + 'px'
+						}
+					}else{
+						content.style.bottom = '0px'
+					}
+				}
+				//setKeyboardPosition()
 			})
 
 			//键盘遮挡时，加长页面，便于滚动

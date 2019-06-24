@@ -16,7 +16,7 @@
 		transition-property: transform visibility;
 		transition-duration: .3s;
 		border-top: 1px solid #D8D9DC;
-		background: #fff;
+		background: #D8D9DC;
 		&-hidden{
 			visibility: hidden;
 		    transform: translate3d(0, 100%, 0);
@@ -24,6 +24,7 @@
 		.r-keyboard-head{
 			display: flex;
 			border-bottom: 1px solid #D8D9DC;
+			background: #fff;
 			.title{
 				flex: 1;
 				text-align: center;
@@ -56,6 +57,7 @@
 		    box-sizing: content-box;
 	    	color: #000;
 			font-size: r(29);
+			background: #fff;
 			&>div{
 				width: 33.33333%;
 				height: r(216/4);

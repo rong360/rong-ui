@@ -3,98 +3,116 @@
 		<div class="exp">
 			<div class="tip">请输入以下信息：</div>
 			<rTelephone :attrs="config" :ref="config.name" @onclickLabelIcon="labelClick"></rTelephone>
-			<rTelephone :attrs="config0" @oninput="oninput" @onclear="onclear" @onconfirm="onconfirm" :ref="config0.name"></rTelephone>
+			<rTelephone :attrs="config0" @oninput="oninput" @onclear="onclear" @onfocus="onfocus" @onblur="onblur" @onconfirm="onconfirm" :ref="config0.name"></rTelephone>
+			<rTelephone :attrs="config1" @onblur="onblur" :ref="config1.name"></rTelephone>
 			<div class="btn" @click="doSubmit">提交</div>
 		</div>
 	</div>
 </template>
 <script>
 	export default{
-		name: "rTelephoneExp",
-		data(){
-			return {
-				phone: "",
-				count: 0,
-				txt: "",
-				config: {
-					title: "马云爸爸手机号码(不校验)",
-					name: 'fatherPhone',
-					value: "",
-					showLabelIcon: true,
-					placeholder: "请输入",
-					disabled: false,
-					readonly: false,
-					unit: '',
-					needVerify: false
-				},
-				config0: {
-					title: "思聪老公的手机号码(键盘确定时校验)",
-					name: 'sonPhone',
-					value: "",
-					placeholder: "请输入",
-					disabled: false,
-					readonly: false,
-					unit: ''
-				}
-			}
-		},
-		created(){
-			var self = this;
-			setTimeout(function(){
-				self.config.value = '1328888888';
-				self.config.readonly = true;
-			}, 2000)
-		},
-		methods:{
-			labelClick(){
-				this.$toast("LabelIcon Click: 需要输入11位手机号码")
+	  name: 'rTelephoneExp',
+	  data () {
+	    return {
+	    phone: '',
+	    count: 0,
+	    txt: '',
+	    config: {
+	    title: '马云爸爸手机号码(不校验)',
+	    name: 'fatherPhone',
+	    value: '',
+	    showLabelIcon: true,
+	    placeholder: '请输入',
+	    disabled: false,
+	    readonly: false,
+	    unit: '',
+	    needVerify: false
+  },
+	    config0: {
+	    title: '思聪老公的手机号码(键盘确定时校验)',
+	    name: 'sonPhone',
+	    value: '',
+	    placeholder: '请输入',
+	    disabled: false,
+	    readonly: false,
+			unit: ''
+	},
+	config1: {
+	    title: '思聪老公的手机号码(系统键盘)',
+	    name: 'sonPhone2',
+	    value: '',
+	    placeholder: '请输入',
+	    disabled: false,
+	    readonly: false,
+			unit: '',
+			useSafeKeyboard: false
+  }
+  }
+  },
+	  created () {
+	    var self = this
+	    setTimeout(function () {
+	  self.config.value = '1328888888'
+		self.config.readonly = true
+	}, 2000)
+  },
+	  methods: {
+	    labelClick () {
+	    this.$toast('LabelIcon Click: 需要输入11位手机号码')
+  },
+	    oninput (val) {
+	    this.phone = val
+	  },
+	    onclear () {
+	    this.$toast({
+	    propsData: {
+	    message: '数据为空了，你可以把button置灰'
+	},
+  })
+	},
+			onfocus(e, component){
+				console.log('获得焦点')
 			},
-			oninput(val){
-				this.phone = val;
+			onblur(e, component){
+				console.log('失去焦点')
+				component.verify()
 			},
-			onclear(){
-				this.$toast({
-					propsData: {
-						message: '数据为空了，你可以把button置灰'
-					}
-				})
-			},
-			onconfirm(code, codeStr, component){
-				//this.$refs.sonPhone.verify();
-				component.verify();
-			},
-			doSubmit(){
-				let pass;
-				for(var key in this.$refs){
-					pass = this.$refs[key].verify();
-					if(!pass){
+	    onconfirm (code, codeStr, component) {
+				// this.$refs.sonPhone.verify();
+	    component.verify()
+	  },
+	    doSubmit () {
+	    let pass
+	    for (var key in this.$refs) {
+	  pass = this.$refs[key].verify()
+	  if (!pass) {
 						// this.$tip(this.$refs[key].attrs.title + "格式错误~");
-						break;
-					}
-				}
+	  break
+	}
+	}
 
-				if(pass) {
-					let s = [],
-						sa = {};
-					for(var key in this.$refs){
-						s.push(this.$refs[key].getSerialize());
-						Object.assign(sa,this.$refs[key].getSerializeArray());
-					}
-					this.$dialog({
-						propsData: {
-							showCancelBtn: false,
-							message:"验证通过！ 序列化数据为："+s.join("<br>&")
-						},
-						methods: {
-							onConfirm: function(){
-								this.remove();
-								// alert("序列化数组："+JSON.stringify(sa));
-							}
-						}
-					});
-				}
-			}
-		}
+	    if (pass) {
+	    let s = [],
+	    sa = {}
+	    for (var key in this.$refs) {
+	  s.push(this.$refs[key].getSerialize())
+	  Object.assign(sa, this.$refs[key].getSerializeArray())
+	}
+	    this.$dialog({
+	    propsData: {
+	    showCancelBtn: false,
+	    message: '验证通过！ 序列化数据为：' + s.join('<br>&')
+  },
+	    methods: {
+	    onConfirm: function () {
+	    this.remove()
+							// alert("序列化数组："+JSON.stringify(sa));
+	  }
+  }
+  })
+	  }
+  }
+  }
 	}
 </script>
 <style lang="scss" scoped>

@@ -14,7 +14,20 @@
 			:ref="config.name"
 		>
 		</rMvcode>
-		<rMvcode :attrs="config0" @oninput="oninput" @onclear="onclear" @success="onSuccess" @fail="onFail" :ref="config0.name"></rMvcode>
+		<rMvcode 
+			:attrs="config0" 
+			@oninput="oninput" 
+			@onclear="onclear" 
+			@success="onSuccess" 
+			@fail="onFail" 
+			:ref="config0.name"
+		/>
+		<rMvcode 
+			:attrs="config1" 
+			@onblur="onblur" 
+			@fail="onFail" 
+			:ref="config1.name"
+		/>
 		<div class="btn" @click="doSubmit">提交</div>
 	</div>
 </div>
@@ -55,6 +68,22 @@
 					placeholder: "请输入短信验证码",
 					disabled: false,
 					readonly: false
+				},
+				config1: {
+					counter: 30,
+					action: "/sendMvcode",
+					params: {
+						phone: '13234343434'
+					},
+					lblWidth: "5em",
+					title: "验证码3",
+					name: 'mvcode3',
+					value: "",
+					placeholder: "请输入短信验证码",
+					disabled: false,
+					readonly: false,
+					useSafeKeyboard: false,
+					maxlength: 4
 				}
 			}
 		},
@@ -77,6 +106,13 @@
 						message: '数据为空了，你可以把button置灰'
 					}
 				})
+			},
+			onfocus(e, component){
+				console.log('获得焦点')
+			},
+			onblur(e, component){
+				console.log('失去焦点')
+				component.verify()
 			},
 			onconfirm(code, codeStr, component){
 				//this.$refs.sand.verify();

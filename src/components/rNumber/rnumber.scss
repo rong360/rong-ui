@@ -47,6 +47,18 @@
 			justify-content: space-around;	
 			input{
 				width: 100%;
+				display: block;
+				flex: 1;
+				outline: none;
+				border: none;
+				height: r(25);
+				line-height: r(25);
+				overflow: hidden;
+				text-overflow: ellipsis;
+				white-space: nowrap;
+				font-size: r(14);
+				color: #333;
+				caret-color: #4080e8;
 			}		
 			.rinput{
 				flex: 1;
@@ -77,13 +89,20 @@
 				left: 0;
 			}
 			span.r-iconfont-close-circled{
-				margin-left: r(7);
+				padding-left: r(7);
 			}
 			.ta-left{ text-align: left;}
 			.ta-right{ text-align: right;}
 			.txt-placeholder{ color: #C8C7CC;}/*无值时的样式*/
 			.txt-value{ color: #333;} /*有值时的样式*/
 			.read-only{ color: #999;}
+			input[disabled],
+			input[readonly]{
+				color: #999;
+			}
+			input::-webkit-input-placeholder{
+				color: #C8C7CC;
+			}
 		}	
 		.r-input-unit{
 			margin-left: r(7);

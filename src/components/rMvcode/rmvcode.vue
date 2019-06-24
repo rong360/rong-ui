@@ -3,6 +3,8 @@
 		:attrs="conf" 
 		@oninput="oninput" 
 		@onclear="onclear"
+		@onfocus="onfocus"
+		@onblur="onblur"
 		@onconfirm="onconfirm"
 		@onclickLabelIcon = "onclickLabelIcon"
 		@onclickInputIcon = "onclickInputIcon"
@@ -106,6 +108,12 @@
 			},
 			onclear(){
 				this.$emit("onclear", this);
+			},
+			onfocus(e, component){
+				this.$emit("onfocus", e , this, component);
+			},
+			onblur(e, component){
+				this.$emit("onblur", e , this, component);
 			},
 			onconfirm(code, codeStr){
 				this.$emit('onconfirm', code, codeStr, this);
