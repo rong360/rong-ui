@@ -201,7 +201,8 @@ export default {
     canDrag: {
       type: Boolean,
       default: false
-    }
+    },
+    removeDialogOnHashChange: true
   },
   computed: {
     iconComputed () {
@@ -253,7 +254,7 @@ export default {
     })
 
     if (this.fromDlgCst) {
-      window.addEventListener('hashchange', this.remove)
+      this.removeDialogOnHashChange && window.addEventListener('hashchange', this.remove)
     }
   },
   methods: {
@@ -277,7 +278,7 @@ export default {
       if (this.fromDlgCst && this.$el && this.$el.parentNode) {
         this.$el.parentNode.removeChild(this.$el)
         this.$destroy()
-        window.removeEventListener('hashchange', this.remove)
+        this.removeDialogOnHashChange && window.removeEventListener('hashchange', this.remove)
       }
     },
     resetPos () {
