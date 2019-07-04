@@ -29,9 +29,10 @@
 			}
 		},
 		methods:{
-			doRefresh(){
+			doRefresh(e){
 				let img = this.$refs.rvcodeImg;
 				img.setAttribute("src",img.getAttribute("src"));
+				this.$emit("doRefresh", e, this)
 			},
 			onenter(e, component){
 				this.$emit("onenter", e, this);

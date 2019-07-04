@@ -360,7 +360,7 @@ export default {
       }
       setTimeout(function () {
         self.showKb = false
-        self.$emit('onblur', e, this)
+        self.$emit('onblur', e, self)
       }, 50)
     },
     onFocus (e) {

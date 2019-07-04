@@ -112,9 +112,9 @@
     },
 	    onBlur (e) {
 	      let self = this
-	      this.$emit('onblur', e, this)
 	      setTimeout(function () {
-	        self.showKb = false
+					self.showKb = false
+					self.$emit('onblur', e, self)
       }, 50)
     },
 	    onInput (e) {
