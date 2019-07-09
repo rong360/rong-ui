@@ -79,6 +79,7 @@ Dialog提示框、Toast弹框、Loading加载中、Keyboard虚拟数字键盘 �
 |Button 按钮| [点击查看](https://github.com/rong360/rong360.github.io/blob/master/rong-ui/doc/button.md)|
 |Icon 图标| [点击查看](https://github.com/rong360/rong360.github.io/blob/master/rong-ui/doc/icon.md)|
 |Tabs 标签页| [点击查看](https://github.com/rong360/rong360.github.io/blob/master/rong-ui/doc/tabs.md)|
+|Range 滑动范围| [点击查看](https://github.com/rong360/rong360.github.io/blob/master/rong-ui/doc/range.md)|
 |Input 输入框| [点击查看](https://github.com/rong360/rong360.github.io/blob/master/rong-ui/doc/input.md)|
 |Vcode 图片验证码| [点击查看](https://github.com/rong360/rong360.github.io/blob/master/rong-ui/doc/vcode.md)|
 |Email 邮箱| [点击查看](https://github.com/rong360/rong360.github.io/blob/master/rong-ui/doc/email.md)|

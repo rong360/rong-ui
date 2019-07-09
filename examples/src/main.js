@@ -52,6 +52,7 @@ import rTabs from '@/components/rTabs'
 import rHidden from '@/components/rHidden'
 import rFixed from '@/components/rFixed'
 import rFlexFixed from '@/components/rFlexFixed'
+import rRange from '@/components/rRange'
 
 require('../../src/util/pollyfill.js')
 
@@ -79,7 +80,8 @@ const components = [
   rTabs,
   rHidden,
   rFixed,
-  rFlexFixed
+  rFlexFixed,
+  rRange
 ]
 
 components.map(cp => Vue.use(cp))

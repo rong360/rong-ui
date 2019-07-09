@@ -28,6 +28,7 @@ import rTabs from '../views/tabs.vue'
 import rHidden from '../views/hidden.vue'
 import rFixed from '../views/Fixed.vue'
 import rFlexFixed from '../views/FlexFixed.vue'
+import rRange from '../views/Range.vue'
 
 Vue.use(Router)
 
@@ -167,6 +168,11 @@ export default new Router({
       path: '/flexfixed',
       name: 'flexfixed',
       component: rFlexFixed
+    },
+    {
+      path: '/range',
+      name: 'range',
+      component: rRange
     }
   ]
 })

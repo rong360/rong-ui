@@ -22,6 +22,7 @@ import rTitlebar from './components/rTitlebar'
 import rUpload from './components/rUpload'
 import rVcode from './components/rVcode'
 import rTabs from './components/rTabs'
+import rRange from './components/rRange'
 // import Tip from './components/tip'
 
 import rHidden from './components/rHidden'
@@ -53,6 +54,7 @@ export {
   rUpload,
   rVcode,
   rTabs,
+  rRange,
   // Tip,
   rHidden,
   rFixed,

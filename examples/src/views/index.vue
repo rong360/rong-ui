@@ -16,6 +16,7 @@
 	    	<li data-id="button" @click="goCp">Button 按钮</li>
 			<li data-id="icon" @click="goCp">Icon 图标</li>
 		  	<li data-id="tabs" @click="goCp">Tabs 标签页</li>
+				<li data-id="range" @click="goCp">range 范围</li>
 	  	</ul>
 	  	<ul>
 		  	<li data-id="input" @click="goCp">Input 输入框</li>
