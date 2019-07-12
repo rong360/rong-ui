@@ -89,6 +89,8 @@ export default {
       if(this.disabled) return
       let oldTranslateX = this.oldTranslateX
       let translateX = oldTranslateX + e.changedTouches[0].clientX - this.startX
+      translateX = Math.max(0, translateX)
+      translateX = Math.min(translateX, this.maxTranslateX)
       let translateX_rate = translateX / this.maxTranslateX
       let currentValue = this.min + (this.max - this.min) * translateX_rate
       currentValue = this.fixCurrentValue(currentValue)
@@ -100,12 +102,15 @@ export default {
     },
     // 修正currentValue为step的整数倍
     fixCurrentValue(currentValue){
-      let remainder = currentValue%this.step //余数
+      if(currentValue == this.max){
+        return this.max
+      }
+      let remainder = (currentValue-this.min)%this.step //余数
       let halfStep = this.step/2
       if(remainder < halfStep){
-        currentValue = Math.floor(currentValue/this.step) * this.step
+        currentValue = this.min + Math.floor((currentValue-this.min)/this.step) * this.step
       }else{
-        currentValue = Math.ceil(currentValue/this.step) * this.step
+        currentValue = this.min + Math.ceil((currentValue-this.min)/this.step) * this.step
       }
       if(currentValue < this.min){
         currentValue = this.min

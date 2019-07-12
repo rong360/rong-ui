@@ -35,10 +35,10 @@
           step: 5000
         },
         config1: {
-          amount: 10000,
+          amount: 8000,
           min: 5000,
-          max: 100000,
-          step: 5000
+          max: 13000,
+          step: 3000
         }
 			}
     },
