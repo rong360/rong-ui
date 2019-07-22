@@ -6,6 +6,7 @@
 			@onclear="onclear"
 			@onenter="onenter"
 			@onfocus="onfocus"
+			@onblur="onblur"
 			@onchange="onchange"
 			@onclickLabelIcon="onclickLabelIcon"
 			@onclickInputIcon="onclickInputIcon"
