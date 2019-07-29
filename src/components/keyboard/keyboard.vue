@@ -133,7 +133,7 @@ import rIcon from "../rIcon/rIcon";
 				}
 				self.dealKeyboardOcclusion();
 				//点击非键盘部分，收起键盘
-				document.addEventListener("click",self.docTouchStart)
+				document.addEventListener("touchstart",self.docTouchStart)
 				/**
 				 * 解决华为部分机型事件定位不准确bug
 				 * 	特殊机型以顶部定位 top
@@ -242,7 +242,7 @@ import rIcon from "../rIcon/rIcon";
 					this.$el.remove();
 					this.$destroy();
 					window.removeEventListener('hashchange', this.remove);
-					document.removeEventListener("click",this.docTouchStart)
+					document.removeEventListener("touchstart",this.docTouchStart)
 				}
 				if(this.keyboardSeat){
 					this.keyboardSeat.parentNode && this.keyboardSeat.parentNode.removeChild(this.keyboardSeat);
