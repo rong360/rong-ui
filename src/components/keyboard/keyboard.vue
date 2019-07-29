@@ -1,30 +1,30 @@
 <template>
 	<div class="r-keyboard">
-		<div :class="['r-keyboard-content',show?'':'r-keyboard-content-hidden']" @touchstart="doTouch" @touchend="endTouch" ref="content">
+		<div :class="['r-keyboard-content',show?'':'r-keyboard-content-hidden']" ref="content">
 			<div class="r-keyboard-head">
 				<div class="cancel">取消</div>
 				<div class="title"><span v-if="showTitle">{{title}}</span></div>
-				<div data-code="ok" class="confirm">确定</div>
+				<div data-code="ok" @touchstart="doTouch" @touchend="endTouch" class="confirm">确定</div>
 			</div>
 			<div class="r-keyboard-row">
-				<div data-code="1">1</div>
-				<div data-code="2">2</div>
-				<div data-code="3">3</div>
+				<div data-code="1" @touchstart="doTouch" @touchend="endTouch">1</div>
+				<div data-code="2" @touchstart="doTouch" @touchend="endTouch">2</div>
+				<div data-code="3" @touchstart="doTouch" @touchend="endTouch">3</div>
 			</div>
 			<div class="r-keyboard-row">
-				<div data-code="4">4</div>
-				<div data-code="5">5</div>
-				<div data-code="6">6</div>
+				<div data-code="4" @touchstart="doTouch" @touchend="endTouch">4</div>
+				<div data-code="5" @touchstart="doTouch" @touchend="endTouch">5</div>
+				<div data-code="6" @touchstart="doTouch" @touchend="endTouch">6</div>
 			</div>
 			<div class="r-keyboard-row">
-				<div data-code="7">7</div>
-				<div data-code="8">8</div>
-				<div data-code="9">9</div>
+				<div data-code="7" @touchstart="doTouch" @touchend="endTouch">7</div>
+				<div data-code="8" @touchstart="doTouch" @touchend="endTouch">8</div>
+				<div data-code="9" @touchstart="doTouch" @touchend="endTouch">9</div>
 			</div>
 			<div class="r-keyboard-row">
-				<div :data-code="typeStr.code" v-html="typeStr.str"></div>
-				<div data-code="0">0</div>
-				<div data-code="d" class="d"><rIcon type="clear" data-code="d"></rIcon></div>
+				<div :data-code="typeStr.code" @touchstart="doTouch" @touchend="endTouch" v-html="typeStr.str"></div>
+				<div data-code="0" @touchstart="doTouch" @touchend="endTouch">0</div>
+				<div data-code="d" @touchstart="doTouch" @touchend="endTouch" class="d"><rIcon type="clear" data-code="d" @touchstart="doTouch" @touchend="endTouch"></rIcon></div>
 			</div>
 		</div>
 	</div>
@@ -39,7 +39,10 @@ import rIcon from "../rIcon/rIcon";
 		data(){
 			return {
 				currentValue: this.value+"",
-				show: false
+				show: false,
+				pageRootEle: document.querySelector(this.pageRoot) || document.body,
+				pageScrollEle: window.pageScrollEle || document.body,
+				keyboardHeight: window.keyboardHeight || 0
 			}
 		},
 		props: {
@@ -69,6 +72,11 @@ import rIcon from "../rIcon/rIcon";
 			showTitle: {
 				type: Boolean,
 				default: true
+			},
+			// 页面根元素
+			pageRoot: {
+				type: String,
+				default: '#app'
 			}
 		},
 		computed: {
@@ -98,9 +106,27 @@ import rIcon from "../rIcon/rIcon";
 			var self = this;
 
 			this.show = true;
+
+			//键盘遮挡时，加长页面，便于滚动
+			this.keyboardSeat = document.createElement('div');
+			this.pageRootEle.appendChild(this.keyboardSeat);
+
 			this.$nextTick(function(){
 				if(!document.querySelector("[data-keyboardid='" + this.kid + "']")){
 					console.warn("当前键盘未被绑定！")
+				}
+				// 判断页面滚动元素
+				if (!window.pageScrollEle) {
+					document.body.scrollTop++
+					if(document.body.scrollTop > 0){
+						this.pageScrollEle = document.body
+					}
+					window.pageScrollEle = this.pageScrollEle
+				}
+				// 存储键盘高度
+				if (!window.keyboardHeight) {
+					this.keyboardHeight = this.$el.querySelector('.r-keyboard-content').offsetHeight
+					window.keyboardHeight = this.keyboardHeight
 				}
 				self.dealKeyboardOcclusion();
 				//点击非键盘部分，收起键盘
@@ -127,10 +153,6 @@ import rIcon from "../rIcon/rIcon";
 				}
 				//setKeyboardPosition()
 			})
-
-			//键盘遮挡时，加长页面，便于滚动
-			this.keyboardSeat = document.createElement('div');
-			document.body.appendChild(this.keyboardSeat);
 
 			//页面路由变化时移除组件
 			window.addEventListener('hashchange', this.remove);
@@ -234,17 +256,19 @@ import rIcon from "../rIcon/rIcon";
 				var target = document.querySelector("[data-keyboardid='" + this.kid + "']");
 
 				if(target){
-					var scrollTop = document.documentElement.scrollTop || document.body.scrollTop,
-						offsetTop = this.getPos(target).top,
-						keyboardHeight = this.$el.querySelector('.r-keyboard-content').offsetHeight,
+					(!target.top) && (target.top = this.getPos(target).top)
+					var scrollTop = this.pageScrollEle.scrollTop,
+						targetOffsetTop = target.top,
 						targetHeight = target.offsetHeight,
 						screenHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight,
-						viewHeight = screenHeight - keyboardHeight,
-						eleHeight = offsetTop + targetHeight - scrollTop;
-
+						viewHeight = screenHeight - this.keyboardHeight,
+						eleHeight = targetOffsetTop + targetHeight - scrollTop;
+				
+				//alert(`${this.pageScrollEle.scrollTop}-${eleHeight}-${viewHeight}`)
 					if(eleHeight > viewHeight){
-						document.documentElement.scrollTop += eleHeight - viewHeight;
-						document.body.scrollTop += eleHeight - viewHeight;
+						this.pageScrollEle.scrollTop += eleHeight - viewHeight;
+					} else if (targetOffsetTop - scrollTop < 0) {
+						this.pageScrollEle.scrollTop = targetOffsetTop
 					}
 				}
 			},

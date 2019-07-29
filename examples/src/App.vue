@@ -63,7 +63,6 @@ a{
   // text-decoration: none;
 }
 html,body{
-  overflow: auto;
   background: #efeff4;
   height: 100%;
   font-family: PingFangSC-Regular,Microsoft Yahei, sans-serif;
