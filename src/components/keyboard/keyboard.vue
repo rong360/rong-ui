@@ -1,30 +1,30 @@
 <template>
 	<div class="r-keyboard">
-		<div :class="['r-keyboard-content',show?'':'r-keyboard-content-hidden']" ref="content">
+		<div :class="['r-keyboard-content',show?'':'r-keyboard-content-hidden']" @click="doTouch" ref="content">
 			<div class="r-keyboard-head">
 				<div class="cancel">取消</div>
 				<div class="title"><span v-if="showTitle">{{title}}</span></div>
-				<div data-code="ok" @touchstart="doTouch" @touchend="endTouch" class="confirm">确定</div>
+				<div data-code="ok" data-type="btn" class="confirm">确定</div>
 			</div>
 			<div class="r-keyboard-row">
-				<div data-code="1" @touchstart="doTouch" @touchend="endTouch">1</div>
-				<div data-code="2" @touchstart="doTouch" @touchend="endTouch">2</div>
-				<div data-code="3" @touchstart="doTouch" @touchend="endTouch">3</div>
+				<div data-code="1" data-type="btn">1</div>
+				<div data-code="2" data-type="btn">2</div>
+				<div data-code="3" data-type="btn">3</div>
 			</div>
 			<div class="r-keyboard-row">
-				<div data-code="4" @touchstart="doTouch" @touchend="endTouch">4</div>
-				<div data-code="5" @touchstart="doTouch" @touchend="endTouch">5</div>
-				<div data-code="6" @touchstart="doTouch" @touchend="endTouch">6</div>
+				<div data-code="4" data-type="btn">4</div>
+				<div data-code="5" data-type="btn">5</div>
+				<div data-code="6" data-type="btn">6</div>
 			</div>
 			<div class="r-keyboard-row">
-				<div data-code="7" @touchstart="doTouch" @touchend="endTouch">7</div>
-				<div data-code="8" @touchstart="doTouch" @touchend="endTouch">8</div>
-				<div data-code="9" @touchstart="doTouch" @touchend="endTouch">9</div>
+				<div data-code="7" data-type="btn">7</div>
+				<div data-code="8" data-type="btn">8</div>
+				<div data-code="9" data-type="btn">9</div>
 			</div>
 			<div class="r-keyboard-row">
-				<div :data-code="typeStr.code" @touchstart="doTouch" @touchend="endTouch" v-html="typeStr.str"></div>
-				<div data-code="0" @touchstart="doTouch" @touchend="endTouch">0</div>
-				<div data-code="d" @touchstart="doTouch" @touchend="endTouch" class="d"><rIcon type="clear" data-code="d" @touchstart="doTouch" @touchend="endTouch"></rIcon></div>
+				<div :data-code="typeStr.code" data-type="btn" v-html="typeStr.str"></div>
+				<div data-code="0" data-type="btn">0</div>
+				<div data-code="d" data-type="btn" class="d"><rIcon type="clear" data-code="d"></rIcon></div>
 			</div>
 		</div>
 	</div>
@@ -41,7 +41,7 @@ import rIcon from "../rIcon/rIcon";
 				currentValue: this.value+"",
 				show: false,
 				pageRootEle: document.querySelector(this.pageRoot) || document.body,
-				pageScrollEle: window.pageScrollEle || document.body,
+				pageScrollEle: window.pageScrollEle || document.documentElement || document.body,
 				keyboardHeight: window.keyboardHeight || 0
 			}
 		},
@@ -118,8 +118,11 @@ import rIcon from "../rIcon/rIcon";
 				// 判断页面滚动元素
 				if (!window.pageScrollEle) {
 					document.body.scrollTop++
+					document.documentElement.scrollTop++
 					if(document.body.scrollTop > 0){
 						this.pageScrollEle = document.body
+					}else if(document.documentElement.scrollTop > 0){
+						this.pageScrollEle = document.documentElement
 					}
 					window.pageScrollEle = this.pageScrollEle
 				}
@@ -130,7 +133,7 @@ import rIcon from "../rIcon/rIcon";
 				}
 				self.dealKeyboardOcclusion();
 				//点击非键盘部分，收起键盘
-				document.addEventListener("touchstart",self.docTouchStart)
+				document.addEventListener("click",self.docTouchStart)
 				/**
 				 * 解决华为部分机型事件定位不准确bug
 				 * 	特殊机型以顶部定位 top
@@ -165,10 +168,22 @@ import rIcon from "../rIcon/rIcon";
 
 				e.preventDefault();
 
-				if(code){
-					//点击样式
-					this.$el.querySelector("div[data-code='"+code+"']").setAttribute('active', true);
+				var btn = null
+				if(target.dataset.type == 'btn'){
+					btn = target
+				} else if (target.className == 'r-iconfont-clear') {
+					btn = target.parentNode
+				}
 
+				if (btn) {
+					this.activeTimer && clearTimeout(this.activeTimer)
+					btn.setAttribute('active', true)
+					this.activeTimer = setTimeout(() => {
+						btn.removeAttribute('active')
+					}, 100)
+				}
+
+				if(code){
 					if(code == 'd'){
 						this.currentValue = this.currentValue.substr(0, this.currentValue.length-1);
 					}else{
@@ -218,14 +233,6 @@ import rIcon from "../rIcon/rIcon";
 					this.typing(code, this.currentValue);
 				}
 			},
-			endTouch(e){
-				//移除点击样式
-				e.preventDefault();
-				let code = e.target.dataset.code;
-				if(code){
-					this.$el.querySelector("div[data-code='"+code+"']").removeAttribute('active');
-				}
-			},
 			typing(code, codeStr){
 				this.$emit("typing",code, codeStr);
 			},
@@ -235,7 +242,7 @@ import rIcon from "../rIcon/rIcon";
 					this.$el.remove();
 					this.$destroy();
 					window.removeEventListener('hashchange', this.remove);
-					document.removeEventListener("touchstart",this.docTouchStart)
+					document.removeEventListener("click",this.docTouchStart)
 				}
 				if(this.keyboardSeat){
 					this.keyboardSeat.parentNode && this.keyboardSeat.parentNode.removeChild(this.keyboardSeat);
@@ -248,7 +255,7 @@ import rIcon from "../rIcon/rIcon";
 				if(e.target.closest("[data-keyboardid='" + this.kid + "']")) return;
 
 				var triggeredEvent = document.createEvent('Events');
-	        	triggeredEvent.initEvent('touchstart', true, true); 
+	        	triggeredEvent.initEvent('click', true, true); 
 	        	this.$el.querySelector("[data-code='ok']").dispatchEvent(triggeredEvent)					
 			},
 			//处理键盘遮挡问题
