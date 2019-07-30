@@ -7,7 +7,7 @@ var keyboardCst = function (options) {
 	let instance = new KeyboardConstructor(options);
 
 	document.body.appendChild(instance.$mount().$el);
-
+  
 	return instance;
 }
 
