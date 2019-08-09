@@ -43,8 +43,7 @@ import rIcon from "../rIcon/rIcon";
 			return {
 				currentValue: this.value+"",
 				show: false,
-				pageRootEle: document.querySelector(this.pageRoot) || document.body,
-				pageScrollEle: window.pageScrollEle || document.documentElement || document.body,
+				pageScrollEle: window.pageScrollEle || document.querySelector('#app') || document.documentElement || document.body,
 				keyboardHeight: window.keyboardHeight || 0
 			}
 		},
@@ -75,11 +74,6 @@ import rIcon from "../rIcon/rIcon";
 			showTitle: {
 				type: Boolean,
 				default: true
-			},
-			// 页面根元素
-			pageRoot: {
-				type: String,
-				default: '#app'
 			}
 		},
 		computed: {
@@ -112,7 +106,6 @@ import rIcon from "../rIcon/rIcon";
 
 			//键盘遮挡时，加长页面，便于滚动
 			this.keyboardSeat = document.createElement('div');
-			this.pageRootEle.appendChild(this.keyboardSeat);
 
 			this.$nextTick(function(){
 				if(!document.querySelector("[data-keyboardid='" + this.kid + "']")){
@@ -128,7 +121,9 @@ import rIcon from "../rIcon/rIcon";
 						this.pageScrollEle = document.documentElement
 					}
 					window.pageScrollEle = this.pageScrollEle
-				}
+        }
+        // 挂载keyboardSeat
+        window.pageScrollEle.appendChild(this.keyboardSeat);
 				// 存储键盘高度
 				if (!window.keyboardHeight) {
 					this.keyboardHeight = this.$el.querySelector('.r-keyboard-content').offsetHeight
