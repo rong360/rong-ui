@@ -202,7 +202,10 @@ export default {
       type: Boolean,
       default: false
     },
-    removeDialogOnHashChange: true
+    removeDialogOnHashChange: {
+      type: Boolean,
+      default: true
+    }
   },
   computed: {
     iconComputed () {
@@ -384,11 +387,11 @@ export default {
         directionY = 'up'
       }
       if(
-        !this.currentScrollArea || 
+        !this.currentScrollArea ||
         (
-          this.currentScrollArea && 
+          this.currentScrollArea &&
           (
-            (directionY=='down'&& this.currentScrollArea.scrollTop==0) || 
+            (directionY=='down'&& this.currentScrollArea.scrollTop==0) ||
             (directionY=='up'&& this.currentScrollArea.scrollTop>= (this.currentScrollArea.scrollHeight-this.currentScrollArea.offsetHeight) )
           )
         )
