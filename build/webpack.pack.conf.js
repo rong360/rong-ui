@@ -64,7 +64,11 @@ var webpackConfig = merge(baseWebpackConfig, {
     }),
     // Compress extracted CSS. We are using this plugin so that possible
     // duplicated CSS from different components can be deduped.
-    new OptimizeCSSPlugin(),
+    new OptimizeCSSPlugin({
+      cssProcessorOptions: {
+        safe: true
+      }
+    }),
     new webpack.BannerPlugin({banner: banner, raw: true, entryOnly: true})
   ]
 })
