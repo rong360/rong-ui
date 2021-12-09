@@ -1,18 +1,18 @@
 <template>
 <div class="wrap">
-	<div class="exp">	
+	<div class="exp">
 		<div class="tip">请输入以下信息：</div>
-		<rVcode 
-			:attrs="config" 
-			@oninput="oninput" 
-			@onclear="onclear" 
+		<rVcode
+			:attrs="config"
+			@oninput="oninput"
+			@onclear="onclear"
 			@onfocus="onfocus"
-			@onblur="onblur" 
+			@onblur="onblur"
 			@onenter="onenter"
 			@onchange="onchange"
 			@onclickLabelIcon="onclickLabelIcon"
 			@onclickInputIcon="onclickInputIcon"
-			:ref="config.name" 
+			:ref="config.name"
 		></rVcode>
 		<rVcode :attrs="config0" @oninput="oninput" @onclear="onclear" :ref="config0.name"></rVcode>
 		<rVcode :attrs="config1"  :ref="config1.name"></rVcode>
@@ -207,5 +207,5 @@
 	background: #4080e8;
 	color: #fff;
 	border-radius: 20px;
-}	
+}
 </style>

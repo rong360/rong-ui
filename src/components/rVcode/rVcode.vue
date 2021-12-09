@@ -1,7 +1,7 @@
 <template>
-	<rInput 
-		:attrs="conf" 
-		@oninput="oninput" 
+	<rInput
+		:attrs="conf"
+		@oninput="oninput"
 		@onclear="onclear"
 		@onenter="onenter"
 		@onfocus="onfocus"

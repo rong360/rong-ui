@@ -1,12 +1,12 @@
 <template>
-	<rNumber 
-		:attrs="conf" 
-		@oninput="oninput" 
-		@onclear="onclear" 
+	<rNumber
+		:attrs="conf"
+		@oninput="oninput"
+		@onclear="onclear"
 		@onfocus="onfocus"
 		@onblur="onblur"
-		@onconfirm="onconfirm" 
-		@onclickLabelIcon="onclickLabelIcon" 
+		@onconfirm="onconfirm"
+		@onclickLabelIcon="onclickLabelIcon"
 		@onclickInputIcon="onclickInputIcon"
 	/>
 </template>
@@ -27,7 +27,7 @@
 						}
 					};
 				Object.assign(defaultConfig, this.attrs);
-				defaultConfig.type = 'int';
+				defaultConfig.type = 'telephone';
 				defaultConfig.maxlength = 11;
 				defaultConfig.unit = '';
 				return defaultConfig;

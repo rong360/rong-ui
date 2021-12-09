@@ -61,7 +61,7 @@ export default {
   computed: {
     conf () {
       // 检测type是否是支持的类型
-      if ('int|float|idcard'.indexOf(this.attrs.type) < 0) { this.attrs.type = 'float' }
+      if ('int|float|idcard|telephone'.indexOf(this.attrs.type) < 0) { this.attrs.type = 'float' }
       // 存储初始化时掩码数据,用于校验时判断掩码是否发生变化
       if (
         typeof this.maskCode === 'undefined' &&
