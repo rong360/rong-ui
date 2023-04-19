@@ -192,6 +192,12 @@ export default {
       this.$emit('oninput', this.currentValue)
     }
   },
+  inject: {
+    form: { default: null }
+  },
+  mounted () {
+    this.form && this.form.fields.push(this)
+  },
   methods: {
     doInput (e) {
       var self = this
@@ -378,6 +384,9 @@ export default {
       }
       e.target.value = e.target.__value__
     }
+  },
+  beforeDestroy () {
+    this.form && this.form.fields.splice(this.form.fields.indexOf(this), 1)
   }
 }
 </script>

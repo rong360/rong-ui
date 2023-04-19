@@ -6,11 +6,11 @@
 			</label>
 			<div :class="inputClsName" @click="showPicker">{{text?text:conf.placeholder}}</div>
 			<rIcon type="arrow-right" :color="conf.readonly||conf.disabled?'#999':'#C8C7CC'" @iconClick="showPicker"></rIcon>
-		</div>			
+		</div>
 		<div class="r-select-children" v-if="children && children.length">
 			<template v-for="(child,index) in children">
 				<component :is="child.type" :attrs="child" :ref="child.name"></component>
-			</template>		
+			</template>
 		</div>
 	</div>
 </template>
@@ -29,6 +29,9 @@ import rIcon from "../rIcon/rIcon"
 				selectedIndex: -1
 			}
 		},
+    inject: {
+      form: { default: null }
+    },
 		computed:{
 			conf(){
 				let defaultConfig = {
@@ -108,6 +111,7 @@ import rIcon from "../rIcon/rIcon"
 			}
 		},
 		mounted(){
+      this.form && this.form.fields.push(this)
 			this.pickerSeat = document.createElement('div');
 			document.body.appendChild(this.pickerSeat);
 		},
@@ -275,6 +279,7 @@ import rIcon from "../rIcon/rIcon"
 			if(this.pickerSeat){
 				this.pickerSeat.parentNode.removeChild(this.pickerSeat);
 			}
+      this.form && this.form.fields.splice(this.form.fields.indexOf(this), 1)
 		}
 	}
 </script>
