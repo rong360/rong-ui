@@ -1,5 +1,5 @@
 <template>
-  <div class="r-dialog" v-show="show" @touchstart="touchstartDialog($event)" @touchmove="touchmoveDialog($event)">
+  <div class="r-dialog" :class="className" v-show="show" @touchstart="touchstartDialog($event)" @touchmove="touchmoveDialog($event)">
     <transition name="dialog-fade">
       <div class="r-dlg-cliper" :style="CliperStyleObj" v-show="animateShow"></div>
     </transition>
@@ -205,7 +205,8 @@ export default {
     removeDialogOnHashChange: {
       type: Boolean,
       default: true
-    }
+    },
+    className: String
   },
   computed: {
     iconComputed () {

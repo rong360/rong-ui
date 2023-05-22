@@ -629,13 +629,13 @@ import Decode from "../util/decode.js"
 				});
 			},
 			showDialog9(){
-				this.showDlg = true;	
+				this.showDlg = true;
 			},
 			onConfirm(){
-				this.showDlg = false;	
+				this.showDlg = false;
 			},
 			onCancel(){
-				this.showDlg = false;	
+				this.showDlg = false;
 			},
 			doRead(){
 				this.showDlg = false;
@@ -652,7 +652,7 @@ import Decode from "../util/decode.js"
 					var decode_jscode = Decode(jscode);
 					this.$el.querySelector("#code_area .code-body").innerHTML = decode_jscode.code;
 					// this.$el.querySelector("#code_area .c-content").innerHTML = decode_jscode.code;
-					// this.$el.querySelector("#code_area .c-lines").innerHTML = decode_jscode.lines;			
+					// this.$el.querySelector("#code_area .c-lines").innerHTML = decode_jscode.lines;
 				}
 				this.showSource = true;
 			},
